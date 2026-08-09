@@ -70,12 +70,11 @@ h2{
    inline-block, which is the one thing a line break cannot happen inside. */
 .np{display:inline-block}
 
-/* Between the headline and the body: the headline says the promise, this says
-   what the promise is made of. Lighter than the headline so the eye still
-   reads them in order. */
-.subhead{
-  font-size:clamp(1rem,1.5vw,1.2rem); font-weight:200; line-height:1.9;
-  color:var(--mid); letter-spacing:.03em; margin:-1.8rem 0 2.8rem; max-width:36em;
+/* Not a second heading — a caption under the first one. A heading here made
+   the section look like it began twice. */
+.lede-note{
+  font-size:.86rem; font-weight:300; line-height:1.8; color:var(--lo);
+  letter-spacing:.08em; margin:-2rem 0 2.6rem;
 }
 
 /* Body text has too many phrases to mark up by hand. Browsers that have it will
@@ -571,7 +570,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
   <div class="wrap">
     <h2>The looks</h2>
     <p class="head">Start from a look. Then make it yours.</p>
-    <p class="subhead">Change the stock, move any control, and save what you end up with as your own preset.</p>
+    <p class="lede-note">Six presets, every one of them editable</p>
     <div class="cmp-head">
       <span class="cmp-tag cmp-l">Bypass</span>
       <span class="cmp-tag cmp-r">Film Classic</span>
