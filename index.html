@@ -57,9 +57,25 @@ h2{
   font-size:.64rem; font-weight:400; letter-spacing:.34em;
   color:var(--lo); text-transform:uppercase; margin:0 0 1rem;
 }
+/* Not ch: that unit is the width of "0", and a CJK character is twice it, so a
+   26ch headline wrapped Japanese at thirteen characters — which is where
+   「デジタルを、フィルムに通/す。」came from. em is wrong for Latin by a smaller
+   margin than ch is wrong for Japanese, and the phrase spans below do the rest. */
 .head{
-  font-size:clamp(1.7rem,3.2vw,2.6rem); font-weight:200; line-height:1.25;
-  letter-spacing:.005em; color:var(--hi); margin:0 0 2.8rem; max-width:26ch;
+  font-size:clamp(1.7rem,3.2vw,2.6rem); font-weight:200; line-height:1.4;
+  letter-spacing:.005em; color:var(--hi); margin:0 0 2.8rem; max-width:19em;
+}
+/* Japanese has no spaces, so the browser breaks wherever it runs out of room —
+   including between the last two characters of a word. Each phrase is an
+   inline-block, which is the one thing a line break cannot happen inside. */
+.np{display:inline-block}
+
+/* Body text has too many phrases to mark up by hand. Browsers that have it will
+   break Japanese at phrase boundaries instead of between any two characters;
+   the ones that do not fall back to what they did before, which is what the
+   page looked like until now. */
+:lang(ja) p, :lang(ja) dd, :lang(ja) li, :lang(ja) figcaption, :lang(ja) .host span{
+  word-break:auto-phrase; line-break:strict;
 }
 .head em{font-style:normal; color:var(--amber-lit)}
 h3{
@@ -202,8 +218,8 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
  */
 .intro{border-top:0; padding:4rem 0 4.5rem; background:var(--panel)}
 .intro .line{
-  font-size:clamp(1.9rem,4.2vw,3.2rem); font-weight:100; line-height:1.2;
-  color:var(--hi); letter-spacing:.01em; margin:0 0 1.2rem; max-width:22ch;
+  font-size:clamp(1.9rem,4.2vw,3.2rem); font-weight:100; line-height:1.35;
+  color:var(--hi); letter-spacing:.01em; margin:0 0 1.2rem; max-width:17em;
 }
 .intro .sub{
   color:var(--mid); font-size:.92rem; line-height:1.95; max-width:38rem;

@@ -53,9 +53,25 @@ h2{
   font-size:.64rem; font-weight:400; letter-spacing:.34em;
   color:var(--lo); text-transform:uppercase; margin:0 0 1rem;
 }
+/* Not ch: that unit is the width of "0", and a CJK character is twice it, so a
+   26ch headline wrapped Japanese at thirteen characters — which is where
+   「デジタルを、フィルムに通/す。」came from. em is wrong for Latin by a smaller
+   margin than ch is wrong for Japanese, and the phrase spans below do the rest. */
 .head{
-  font-size:clamp(1.7rem,3.2vw,2.6rem); font-weight:200; line-height:1.25;
-  letter-spacing:.005em; color:var(--hi); margin:0 0 2.8rem; max-width:26ch;
+  font-size:clamp(1.7rem,3.2vw,2.6rem); font-weight:200; line-height:1.4;
+  letter-spacing:.005em; color:var(--hi); margin:0 0 2.8rem; max-width:19em;
+}
+/* Japanese has no spaces, so the browser breaks wherever it runs out of room —
+   including between the last two characters of a word. Each phrase is an
+   inline-block, which is the one thing a line break cannot happen inside. */
+.np{display:inline-block}
+
+/* Body text has too many phrases to mark up by hand. Browsers that have it will
+   break Japanese at phrase boundaries instead of between any two characters;
+   the ones that do not fall back to what they did before, which is what the
+   page looked like until now. */
+:lang(ja) p, :lang(ja) dd, :lang(ja) li, :lang(ja) figcaption, :lang(ja) .host span{
+  word-break:auto-phrase; line-break:strict;
 }
 .head em{font-style:normal; color:var(--amber-lit)}
 h3{
@@ -198,8 +214,8 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
  */
 .intro{border-top:0; padding:4rem 0 4.5rem; background:var(--panel)}
 .intro .line{
-  font-size:clamp(1.9rem,4.2vw,3.2rem); font-weight:100; line-height:1.2;
-  color:var(--hi); letter-spacing:.01em; margin:0 0 1.2rem; max-width:22ch;
+  font-size:clamp(1.9rem,4.2vw,3.2rem); font-weight:100; line-height:1.35;
+  color:var(--hi); letter-spacing:.01em; margin:0 0 1.2rem; max-width:17em;
 }
 .intro .sub{
   color:var(--mid); font-size:.92rem; line-height:1.95; max-width:38rem;
@@ -440,10 +456,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 
 <section class="intro">
   <div class="wrap">
-    <p class="line">デジタルを、フィルムに通す。</p>
-    <p class="sub">露光、現像、プリント。実際に起きる順番でそのまま通すので、
-      色も粒子も「後から足したもの」になりません。Resolve、Flame、Premiere Pro、
-      After Effects、そして現場用の単体アプリまで、インストーラ1本で入ります。</p>
+    <p class="line"><span class="np">デジタルを、</span><span class="np">フィルムに通す。</span></p>
+    <p class="sub">露光、現像、プリント。実際に起きる順番でそのまま通すので、色も粒子も「後から足したもの」になりません。Resolve、Flame、Premiere Pro、After Effects、そして現場用の単体アプリまで、インストーラ1本で入ります。</p>
     <p class="cta">
       <a class="btn btn-lit" href="#get">ダウンロード</a>
       <a class="btn btn-line" href="#get">&yen;19,800 / 年</a>
@@ -459,20 +473,17 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <div class="proof-cell">
         <p class="proof-num">14</p>
         <p class="proof-lab">フィルム14種、ルック6種</p>
-        <p class="proof-sub">ネガ・リバーサル・モノクロ・プリント。ルックが設定した値は、
-          そのあとも全て調整できます。</p>
+        <p class="proof-sub">ネガ・リバーサル・モノクロ・プリント。ルックが設定した値は、そのあとも全て調整できます。</p>
       </div>
       <div class="proof-cell">
         <p class="proof-num">1<small>INSTALLER</small></p>
         <p class="proof-lab">1本で、全部のソフトに</p>
-        <p class="proof-sub">OFX 版と Adobe 版が同じパッケージ。ライセンスも1つで、
-          ソフトごとに買い直す必要はありません。</p>
+        <p class="proof-sub">OFX 版と Adobe 版が同じパッケージ。ライセンスも1つで、ソフトごとに買い直す必要はありません。</p>
       </div>
       <div class="proof-cell">
         <p class="proof-num">4K<small>REAL TIME</small></p>
         <p class="proof-lab">全工程 Metal</p>
-        <p class="proof-sub">グレイン、ハレーション、MTF、ゲートウィーブまで GPU 処理。
-          実際の速度はマシンによります。</p>
+        <p class="proof-sub">グレイン、ハレーション、MTF、ゲートウィーブまで GPU 処理。実際の速度はマシンによります。</p>
       </div>
     </div>
   </div>
@@ -481,7 +492,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 <section>
   <div class="wrap">
     <h2>対応ソフト</h2>
-    <p class="head">買うのは一度。使うのは、いつもの環境で。</p>
+    <p class="head"><span class="np">買うのは一度。</span><span class="np">使うのは、</span><span class="np">いつもの環境で。</span></p>
     <div class="hosts">
       <div class="host">
         <b>DaVinci Resolve</b>
@@ -514,7 +525,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 <section>
   <div class="wrap">
     <h2>ルック</h2>
-    <p class="head">選んで終わりではなく、選んでからが本番。</p>
+    <p class="head"><span class="np">選んで終わりではなく、</span><span class="np">選んでからが本番。</span></p>
     <div class="compare" data-base="../img/" data-prefix="look-">
       <img src="../img/source.jpg" alt="" width="760" height="427">
       <div class="cmp-after"><img src="../img/look-filmClassic.jpg" alt="" width="760" height="427"></div>
@@ -539,7 +550,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 <section>
   <div class="wrap">
     <h2>各処理の効き</h2>
-    <p class="head">一つひとつが独立したスイッチで、切れば消える。</p>
+    <p class="head"><span class="np">一つひとつが独立したスイッチで、</span><span class="np">切れば消える。</span></p>
     <div class="compare" data-base="../img/" data-prefix="fx-">
       <img src="../img/fx-base.jpg" alt="" width="760" height="427">
       <div class="cmp-after"><img src="../img/fx-grain.jpg" alt="" width="760" height="427"></div>
@@ -565,9 +576,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 <section>
   <div class="wrap">
     <h2>現場で</h2>
-    <p class="head">現場のモニタで決めた絵を、そのまま渡す。</p>
-    <p>単体アプリは SDI 入力を受けて、グレーディングとフィルムの処理を通し、SDI で出します。
-      設定は <code>.koma</code> ファイルに保存でき、そのままプラグイン側で読み込めます。</p>
+    <p class="head"><span class="np">現場のモニタで決めた絵を、</span><span class="np">そのまま渡す。</span></p>
+    <p>単体アプリは SDI 入力を受けて、グレーディングとフィルムの処理を通し、SDI で出します。設定は <code>.koma</code> ファイルに保存でき、そのままプラグイン側で読み込めます。</p>
 
     <div class="figure" style="margin-top:2.5rem">
       <svg viewBox="0 0 900 250" role="img"
@@ -614,36 +624,31 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 <section>
   <div class="wrap">
     <h2>もっと詳しく</h2>
-    <p class="head">なぜ、その絵になるのか。</p>
+    <p class="head"><span class="np">なぜ、</span><span class="np">その絵になるのか。</span></p>
 
     <details>
       <summary>中で何をしているか</summary>
       <div class="body">
 
     <p>
-      入力を露光量に戻し、ネガの特性曲線を通し、プリントに焼き、表示に戻します。
-      色や粒子を後から足すのではなく、その一連を通した結果として出てきます。
+      入力を露光量に戻し、ネガの特性曲線を通し、プリントに焼き、表示に戻します。色や粒子を後から足すのではなく、その一連を通した結果として出てきます。
     </p>
     <div class="grid" style="margin-top:2.5rem">
       <div>
         <h3>階調</h3>
-        <p>ネガの特性曲線とプリント濃度を、白・中間・黒の3点で校正しています。
-           Rec.709 を入れて Rec.709 で受け取っても、二重にトーンマッピングされません。</p>
+        <p>ネガの特性曲線とプリント濃度を、白・中間・黒の3点で校正しています。Rec.709 を入れて Rec.709 で受け取っても、二重にトーンマッピングされません。</p>
       </div>
       <div>
         <h3>滲み</h3>
-        <p>レンズ内散乱、乳剤層内の側方散乱、ベース裏面での反射、色素雲の拡散。
-           物理が違うので、半径も色の偏りも別々に扱います。</p>
+        <p>レンズ内散乱、乳剤層内の側方散乱、ベース裏面での反射、色素雲の拡散。物理が違うので、半径も色の偏りも別々に扱います。</p>
       </div>
       <div>
         <h3>粒子</h3>
-        <p>濃度空間で乗算し、σ は濃度の平方根に比例させています。
-           層ごとに粒子の大きさが違い、ゲージは 65mm から 8mm まで。</p>
+        <p>濃度空間で乗算し、σ は濃度の平方根に比例させています。層ごとに粒子の大きさが違い、ゲージは 65mm から 8mm まで。</p>
       </div>
       <div>
         <h3>解像</h3>
-        <p>MTF のなまり、現像がエッジに残すアキュータンス、層間効果。
-           倍率色収差、ゲートウィーブ、光線引き。</p>
+        <p>MTF のなまり、現像がエッジに残すアキュータンス、層間効果。倍率色収差、ゲートウィーブ、光線引き。</p>
       </div>
     </div>
       </div>
@@ -654,35 +659,24 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <div class="body">
 
     <p>
-      1つのショットを、グレーディングは Resolve、合成は Flame、編集は Premiere、
-      というように別々のソフトで触ることになります。KOMA はそのどれもが同じエンジンを
-      呼んでいるので、ソフトを移るたびにルックを作り直す必要がありません。
-      「素材の色が変わっていて合成をやり直し」も起きません。
+      1つのショットを、グレーディングは Resolve、合成は Flame、編集は Premiere、というように別々のソフトで触ることになります。KOMA はそのどれもが同じエンジンを呼んでいるので、ソフトを移るたびにルックを作り直す必要がありません。「素材の色が変わっていて合成をやり直し」も起きません。
     </p>
     <div class="grid" style="margin-top:2.5rem">
       <div>
         <h3>プリセット1つで持ち回れる</h3>
-        <p><code>.koma</code> ファイルに全ての値が入ります。グレーディングで保存して、
-           合成で開いて、編集で当てる。中身はただのテキストなので、
-           案件のフォルダに素材と一緒に置いておけます。</p>
+        <p><code>.koma</code> ファイルに全ての値が入ります。グレーディングで保存して、合成で開いて、編集で当てる。中身はただのテキストなので、案件のフォルダに素材と一緒に置いておけます。</p>
       </div>
       <div>
         <h3>どのソフトでも同じ絵になる</h3>
-        <p>プラグインも単体アプリも中身は同じ実装で、CPU と GPU の結果を
-           フレーム単位で突き合わせて検査しています。ソフトごとに作り分けて
-           いないので、同じプリセットなら同じ絵が出ます。</p>
+        <p>プラグインも単体アプリも中身は同じ実装で、CPU と GPU の結果をフレーム単位で突き合わせて検査しています。ソフトごとに作り分けていないので、同じプリセットなら同じ絵が出ます。</p>
       </div>
       <div>
         <h3>並べ替えても壊れない</h3>
-        <p>銘柄・ルック・カラースペースは、メニューの位置ではなく名前で保存します。
-           項目を並べ替えても追加してもプリセットは壊れません。
-           作品の期間ずっと持ち回れるのはそのためです。</p>
+        <p>銘柄・ルック・カラースペースは、メニューの位置ではなく名前で保存します。項目を並べ替えても追加してもプリセットは壊れません。作品の期間ずっと持ち回れるのはそのためです。</p>
       </div>
       <div>
         <h3>バイパスで素の画に戻せる</h3>
-        <p>バイパスは入力をそのまま返します。素の画で合成を組み立てて、
-           仕上がったショットにフィルム段を乗せ直せます。
-           実際のフィルムで起きる順番と同じです。</p>
+        <p>バイパスは入力をそのまま返します。素の画で合成を組み立てて、仕上がったショットにフィルム段を乗せ直せます。実際のフィルムで起きる順番と同じです。</p>
       </div>
     </div>
       </div>
@@ -694,25 +688,19 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
     <div class="grid" style="margin-top:3rem">
       <div>
         <h3>入力も出力も</h3>
-        <p>AJA と Blackmagic のカードで、入力も出力もできます。
-           出力は入力にゲンロックするので、こちらでフレームレートを
-           決めなくてもカメラに合います。</p>
+        <p>AJA と Blackmagic のカードで、入力も出力もできます。出力は入力にゲンロックするので、こちらでフレームレートを決めなくてもカメラに合います。</p>
       </div>
       <div>
         <h3>フィルムの前にグレーディング</h3>
-        <p>CDL / トーンカーブ / HSL カーブがフィルム段の手前に入ります。
-           ホストで「グレードノード → KOMA」と並べたときと同じ順序なので、
-           現場で決めたものをポストで組み直せます。</p>
+        <p>CDL / トーンカーブ / HSL カーブがフィルム段の手前に入ります。ホストで「グレードノード → KOMA」と並べたときと同じ順序なので、現場で決めたものをポストで組み直せます。</p>
       </div>
       <div>
         <h3>遅延は最小</h3>
-        <p>1フレーム。モニタに出るのはレンダリングした絵そのもので、
-           その後ろでもう一度描いているわけではありません。</p>
+        <p>1フレーム。モニタに出るのはレンダリングした絵そのもので、その後ろでもう一度描いているわけではありません。</p>
       </div>
       <div>
         <h3>静止画とクリップ</h3>
-        <p>静止画でもクリップでも開いて、再生・コマ送り・フル解像度での書き出しが
-           できます。ルックはチャートではなく、実際の素材を見て決めるものなので。</p>
+        <p>静止画でもクリップでも開いて、再生・コマ送り・フル解像度での書き出しができます。ルックはチャートではなく、実際の素材を見て決めるものなので。</p>
       </div>
     </div>
       </div>
@@ -724,22 +712,16 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 
     <dl>
       <dt>フィルム</dt><dd>14 種類。ネガ、リバーサル、モノクロ、プリント。</dd>
-      <dt>ルック</dt><dd>Neutral を含む 6 種類。選ぶと各コントロールに値が書き込まれるので、
-        そこから調整を続けられます。</dd>
-      <dt>入力</dt><dd>Rec.709 / sRGB / Linear のほか、S-Log3、LogC3、LogC4、V-Log、
-        Log3G10、C-Log3。18% グレーの位置は各社の公表値に合わせています。</dd>
+      <dt>ルック</dt><dd>Neutral を含む 6 種類。選ぶと各コントロールに値が書き込まれるので、そこから調整を続けられます。</dd>
+      <dt>入力</dt><dd>Rec.709 / sRGB / Linear のほか、S-Log3、LogC3、LogC4、V-Log、Log3G10、C-Log3。18% グレーの位置は各社の公表値に合わせています。</dd>
       <dt>プリセット</dt><dd><code>.koma</code> ファイル。ソフト間でそのまま持ち運べます。</dd>
-      <dt>単体アプリ</dt><dd>同じエンジンのアプリケーション。フィルムの処理の手前に
-        グレーディング（CDL / トーンカーブ / HSL）が入ります。</dd>
-      <dt>SDI</dt><dd>単体アプリから AJA / Blackmagic のカードで入出力。カメラを受けて、
-        ルックを乗せたままモニタへ返せます。</dd>
-      <dt>macOS</dt><dd>11 以降。Apple シリコンと Intel の両方。全工程 Metal で、
-        4K がリアルタイムで再生できます。</dd>
+      <dt>単体アプリ</dt><dd>同じエンジンのアプリケーション。フィルムの処理の手前にグレーディング（CDL / トーンカーブ / HSL）が入ります。</dd>
+      <dt>SDI</dt><dd>単体アプリから AJA / Blackmagic のカードで入出力。カメラを受けて、ルックを乗せたままモニタへ返せます。</dd>
+      <dt>macOS</dt><dd>11 以降。Apple シリコンと Intel の両方。全工程 Metal で、4K がリアルタイムで再生できます。</dd>
       <dt>Windows / Linux</dt><dd>対応予定。</dd>
     </dl>
     <p class="note" style="margin-top:2rem">
-      After Effects は現時点では CPU で描画します。
-      速度はマシンと、どの処理を有効にしているかで変わります。
+      After Effects は現時点では CPU で描画します。速度はマシンと、どの処理を有効にしているかで変わります。
     </p>
       </div>
     </details>
@@ -749,7 +731,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 <section id="get">
   <div class="wrap">
     <h2>ダウンロードと価格</h2>
-    <p class="head">試すのは無料。お金がかかるのは、納品するときだけ。</p>
+    <p class="head"><span class="np">試すのは無料。</span><span class="np">お金がかかるのは、</span><span class="np">納品するときだけ。</span></p>
     <div class="plans">
       <div class="plan">
         <h3>無料版</h3>
@@ -778,8 +760,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
     </div>
     <p class="note" style="margin-top:2rem">
       販売はまだ開始していません。
-      <a href="mailto:taki@kotetsu.work">taki@kotetsu.work</a> までご連絡いただければ、
-      開始時にお知らせします。
+      <a href="mailto:taki@kotetsu.work">taki@kotetsu.work</a> までご連絡いただければ、開始時にお知らせします。
     </p>
   </div>
 </section>
@@ -788,17 +769,10 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
   <div class="wrap">
     <p>KOMA — 株式会社虎徹</p>
     <p>
-      Adobe、Premiere Pro、After Effects は Adobe Inc. の商標です。
-      DaVinci Resolve は Blackmagic Design Pty Ltd の商標です。
-      Autodesk および Flame は Autodesk, Inc. の登録商標です。
-      Nuke は The Foundry Visionmongers Ltd、Baselight は FilmLight Ltd、
-      Vegas Pro は MAGIX Software GmbH の商標です。
-      KOMA はこれらの各社が承認・提携するものではありません。
-      各社の製品名は、どのソフトで動くかを示すためにのみ用いています。
+      Adobe、Premiere Pro、After Effects は Adobe Inc. の商標です。DaVinci Resolve は Blackmagic Design Pty Ltd の商標です。Autodesk および Flame は Autodesk, Inc. の登録商標です。Nuke は The Foundry Visionmongers Ltd、Baselight は FilmLight Ltd、Vegas Pro は MAGIX Software GmbH の商標です。KOMA はこれらの各社が承認・提携するものではありません。各社の製品名は、どのソフトで動くかを示すためにのみ用いています。
     </p>
     <p>
-      KOMA に収録しているフィルムの呼称は独自のもので、
-      実在するフィルム製品の商標ではありません。
+      KOMA に収録しているフィルムの呼称は独自のもので、実在するフィルム製品の商標ではありません。
     </p>
     <p class="lang"><a href="../">English</a></p>
   </div>
@@ -808,37 +782,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 
 
 <script>
-// Every .compare works the same way and takes its files from its own data
-// attributes, because there are two of these on the page and a second copy of
-// this loop is how the two stop behaving alike. Inline, so the page keeps
-// loading nothing from anywhere else.
-(function () {
-  document.querySelectorAll('.compare').forEach(function (box) {
-    var base   = box.dataset.base,
-        prefix = box.dataset.prefix,
-        range  = box.querySelector('.cmp-range'),
-        after  = box.querySelector('.cmp-after img'),
-        label  = box.querySelector('.cmp-r'),
-        chips  = box.nextElementSibling;
-
-    range.addEventListener('input', function () {
-      box.style.setProperty('--pos', range.value + '%');
-    });
-    if (!chips || !chips.classList.contains('chips')) return;
-
-    chips.querySelectorAll('.chip').forEach(function (chip) {
-      // Fetched now rather than on the click, so the first switch is not a
-      // flash of nothing where the picture was.
-      new Image().src = base + prefix + chip.dataset.item + '.jpg';
-      chip.addEventListener('click', function () {
-        chips.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
-        chip.classList.add('on');
-        after.src = base + prefix + chip.dataset.item + '.jpg';
-        label.textContent = chip.textContent;
-      });
-    });
-  });
-})();
+// Every .compare works the same way and takes its files from its own data // attributes, because there are two of these on the page and a second copy of // this loop is how the two stop behaving alike. Inline, so the page keeps // loading nothing from anywhere else. (function () { document.querySelectorAll('.compare').forEach(function (box) { var base   = box.dataset.base, prefix = box.dataset.prefix, range  = box.querySelector('.cmp-range'), after  = box.querySelector('.cmp-after img'), label  = box.querySelector('.cmp-r'), chips  = box.nextElementSibling; range.addEventListener('input', function () { box.style.setProperty('--pos', range.value + '%'); }); if (!chips || !chips.classList.contains('chips')) return; chips.querySelectorAll('.chip').forEach(function (chip) { // Fetched now rather than on the click, so the first switch is not a // flash of nothing where the picture was. new Image().src = base + prefix + chip.dataset.item + '.jpg'; chip.addEventListener('click', function () { chips.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); }); chip.classList.add('on'); after.src = base + prefix + chip.dataset.item + '.jpg'; label.textContent = chip.textContent; }); }); }); })();
 </script>
 
 </body>
