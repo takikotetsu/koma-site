@@ -364,6 +364,14 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 .chip:hover{color:var(--hi)}
 .chip.on{color:var(--amber-lit); background:rgba(201,96,58,.1)}
 
+/* What the selected stage is. "アキュータンスってなに" is a fair question to
+   have while looking at a slider labelled アキュータンス, and the answer
+   belongs next to it rather than in a paragraph further down. */
+.cmp-desc{
+  margin:1.6rem 0 0; color:var(--mid); font-size:.9rem; line-height:1.95;
+  max-width:46rem; min-height:3.9rem;
+}
+
 /* ---- the part most readers should be able to skip ------------------------
  * Everything here is true and most of it is the reason the picture looks right,
  * but a landing page that opens with characteristic curves is a page nobody
@@ -577,22 +585,24 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <span class="cmp-tag cmp-r">Grain</span>
     </div>
     <div class="compare" data-base="img/" data-prefix="fx-">
-      <img src="img/fx-base.jpg" alt="" width="1200" height="675">
-      <div class="cmp-after"><img src="img/fx-grain.jpg" alt="" width="1200" height="675"></div>
+      <img src="img/fx-base.jpg" alt="" width="1200" height="666">
+      <div class="cmp-after"><img src="img/fx-grain.jpg" alt="" width="1200" height="666"></div>
       <div class="cmp-line"></div>
       <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="All off">
     </div>
     <div class="chips">
-      <button class="chip on" data-item="grain">Grain</button>
-      <button class="chip" data-item="halation">Halation</button>
-      <button class="chip" data-item="bloom">Bloom</button>
-      <button class="chip" data-item="irradiation">Irradiation</button>
-      <button class="chip" data-item="acutance">Acutance</button>
-      <button class="chip" data-item="ca">Aberration</button>
-      <button class="chip" data-item="vignette">Vignette</button>
-      <button class="chip" data-item="leak">Light leak</button>
+      <button class="chip on" data-item="grain" data-desc="Film grain, multiplied in density: coarser in the shadows and tighter in the highlights. Shown at 35mm.">Grain</button>
+      <button class="chip" data-item="halation" data-desc="Light that gets through the emulsion, reflects off the back of the base and exposes it again. Long wavelengths go deepest, so red spreads widest.">Halation</button>
+      <button class="chip" data-item="bloom" data-desc="Scatter inside the lens. A wide, soft glow around anything bright.">Bloom</button>
+      <button class="chip" data-item="irradiation" data-desc="Light scattering sideways off crystals within the emulsion. Tighter than halation, and strongest in the blue layer.">Irradiation</button>
+      <button class="chip" data-item="mtf" data-desc="Film resolves less fine detail than a sensor, and a smaller gauge is magnified more, so it resolves less again.">Resolution</button>
+      <button class="chip" data-item="acutance" data-desc="Developer exhausts beside a dense edge, leaving a light line on one side and a dark one on the other — Mackie lines. It is why film looks sharp while resolving less.">Acutance</button>
+      <button class="chip" data-item="ca" data-desc="Lateral chromatic aberration in the lens: radial, zero at the centre, worst in the corners.">Aberration</button>
+      <button class="chip" data-item="vignette" data-desc="Falloff toward the edges of the frame.">Vignette</button>
+      <button class="chip" data-item="leak" data-desc="Light getting past the cartridge or the gate and exposing the film directly.">Light leak</button>
     </div>
-    <p class="note" style="margin-top:1.6rem">A drawn chart, not a photograph: each stage acts on something a given photograph may not contain. Every setting here is pushed well past a delivery amount so it reads at this size.</p>
+    <p class="cmp-desc">Film grain, multiplied in density: coarser in the shadows and tighter in the highlights. Shown at 35mm.</p>
+    <p class="note" style="margin-top:1.2rem">One stage at a time, against the same frame with every stage off. Each is pushed past a delivery amount so it reads at this size.</p>
   </div>
 </section>
 
@@ -877,6 +887,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         chip.classList.add('on');
         after.src = base + prefix + chip.dataset.item + '.jpg';
         label.textContent = chip.textContent;
+        var desc = box.parentElement.querySelector('.cmp-desc');
+        if (desc && chip.dataset.desc) desc.textContent = chip.dataset.desc;
       });
     });
   });

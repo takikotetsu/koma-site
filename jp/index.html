@@ -360,6 +360,14 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 .chip:hover{color:var(--hi)}
 .chip.on{color:var(--amber-lit); background:rgba(201,96,58,.1)}
 
+/* What the selected stage is. "アキュータンスってなに" is a fair question to
+   have while looking at a slider labelled アキュータンス, and the answer
+   belongs next to it rather than in a paragraph further down. */
+.cmp-desc{
+  margin:1.6rem 0 0; color:var(--mid); font-size:.9rem; line-height:1.95;
+  max-width:46rem; min-height:3.9rem;
+}
+
 /* ---- the part most readers should be able to skip ------------------------
  * Everything here is true and most of it is the reason the picture looks right,
  * but a landing page that opens with characteristic curves is a page nobody
@@ -565,22 +573,24 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <span class="cmp-tag cmp-r">粒子</span>
     </div>
     <div class="compare" data-base="../img/" data-prefix="fx-">
-      <img src="../img/fx-base.jpg" alt="" width="1200" height="675">
-      <div class="cmp-after"><img src="../img/fx-grain.jpg" alt="" width="1200" height="675"></div>
+      <img src="../img/fx-base.jpg" alt="" width="1200" height="666">
+      <div class="cmp-after"><img src="../img/fx-grain.jpg" alt="" width="1200" height="666"></div>
       <div class="cmp-line"></div>
       <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="すべてオフ">
     </div>
     <div class="chips">
-      <button class="chip on" data-item="grain">粒子</button>
-      <button class="chip" data-item="halation">ハレーション</button>
-      <button class="chip" data-item="bloom">ブルーム</button>
-      <button class="chip" data-item="irradiation">イラジエーション</button>
-      <button class="chip" data-item="acutance">アキュータンス</button>
-      <button class="chip" data-item="ca">色収差</button>
-      <button class="chip" data-item="vignette">周辺光量</button>
-      <button class="chip" data-item="leak">光線引き</button>
+      <button class="chip on" data-item="grain" data-desc="濃度に応じて乗算されるフィルムの粒状。暗部ほど粗く、明部では締まります。ここでは 35mm 相当。">粒子</button>
+      <button class="chip" data-item="halation" data-desc="乳剤を抜けた光がベース裏面で反射し、もう一度感光させる現象。長波長ほど深く入るので、赤が最も広く滲みます。">ハレーション</button>
+      <button class="chip" data-item="bloom" data-desc="レンズ内での散乱。明るいものの周りが広く柔らかく光ります。">ブルーム</button>
+      <button class="chip" data-item="irradiation" data-desc="乳剤層の中で結晶に当たって横へ散る光。ハレーションより狭く、青の層で最大になります。">イラジエーション</button>
+      <button class="chip" data-item="mtf" data-desc="フィルムはセンサーほど細かい模様を解像しません。ゲージが小さいほど拡大率が上がるので、さらに落ちます。">解像（MTF）</button>
+      <button class="chip" data-item="acutance" data-desc="濃い部分の隣で現像液が消耗し、明るい側に明線・暗い側に暗線が残る現象（マッキーライン）。解像は落ちているのにフィルムがシャープに見える理由です。">アキュータンス</button>
+      <button class="chip" data-item="ca" data-desc="レンズの倍率色収差。放射状で、中心はゼロ、隅で最大になります。">色収差</button>
+      <button class="chip" data-item="vignette" data-desc="画面の周辺が落ちること。">周辺光量</button>
+      <button class="chip" data-item="leak" data-desc="パトローネやゲートから漏れた光が、フィルムを直接感光させたもの。">光線引き</button>
     </div>
-    <p class="note" style="margin-top:1.6rem">写真ではなく描いたチャートです。段によって効く対象が違うので、写真だと写っていないものは出ません。値はこの大きさで見えるように、実際に納品で使う量よりかなり強くしてあります。</p>
+    <p class="cmp-desc">濃度に応じて乗算されるフィルムの粒状。暗部ほど粗く、明部では締まります。ここでは 35mm 相当。</p>
+    <p class="note" style="margin-top:1.2rem">同じフレームに、1つだけ処理を入れたもの。左は全処理オフです。この大きさで見えるように、実際に納品で使う量より強くかけています。</p>
   </div>
 </section>
 
@@ -820,6 +830,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         chip.classList.add('on');
         after.src = base + prefix + chip.dataset.item + '.jpg';
         label.textContent = chip.textContent;
+        var desc = box.parentElement.querySelector('.cmp-desc');
+        if (desc && chip.dataset.desc) desc.textContent = chip.dataset.desc;
       });
     });
   });
