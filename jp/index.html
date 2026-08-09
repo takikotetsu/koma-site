@@ -515,24 +515,50 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
   <div class="wrap">
     <h2>ルック</h2>
     <p class="head">選んで終わりではなく、選んでからが本番。</p>
-    <div class="compare" data-base="../img/">
+    <div class="compare" data-base="../img/" data-prefix="look-">
       <img src="../img/source.jpg" alt="" width="760" height="427">
-      <div class="cmp-after"><img id="cmpAfter" src="../img/look-filmClassic.jpg" alt="" width="760" height="427"></div>
+      <div class="cmp-after"><img src="../img/look-filmClassic.jpg" alt="" width="760" height="427"></div>
       <div class="cmp-line"></div>
       <input class="cmp-range" type="range" min="0" max="100" value="50"
              aria-label="Bypass">
       <span class="cmp-tag cmp-l">Bypass</span>
-      <span class="cmp-tag cmp-r" id="cmpName">Film Classic</span>
+      <span class="cmp-tag cmp-r">Film Classic</span>
     </div>
     <div class="chips">
-      <button class="chip" data-look="neutral">Neutral</button>
-      <button class="chip on" data-look="filmClassic">Film Classic</button>
-      <button class="chip" data-look="tealAmber">Teal & Amber</button>
-      <button class="chip" data-look="goldenWarm">Print Master</button>
-      <button class="chip" data-look="neonNight">Neon Night</button>
-      <button class="chip" data-look="fadedPastel">Faded Pastel</button>
+      <button class="chip" data-item="neutral">Neutral</button>
+      <button class="chip on" data-item="filmClassic">Film Classic</button>
+      <button class="chip" data-item="tealAmber">Teal & Amber</button>
+      <button class="chip" data-item="goldenWarm">Print Master</button>
+      <button class="chip" data-item="neonNight">Neon Night</button>
+      <button class="chip" data-item="fadedPastel">Faded Pastel</button>
     </div>
     <p class="note" style="margin-top:1.6rem">同じ1フレームの、KOMA なしとあり。ハンドルをドラッグして、下でルックを選べます。入力は S-Log3。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>各処理の効き</h2>
+    <p class="head">一つひとつが独立したスイッチで、切れば消える。</p>
+    <div class="compare" data-base="../img/" data-prefix="fx-">
+      <img src="../img/fx-base.jpg" alt="" width="760" height="427">
+      <div class="cmp-after"><img src="../img/fx-grain.jpg" alt="" width="760" height="427"></div>
+      <div class="cmp-line"></div>
+      <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="すべてオフ">
+      <span class="cmp-tag cmp-l">すべてオフ</span>
+      <span class="cmp-tag cmp-r">粒子</span>
+    </div>
+    <div class="chips">
+      <button class="chip on" data-item="grain">粒子</button>
+      <button class="chip" data-item="halation">ハレーション</button>
+      <button class="chip" data-item="bloom">ブルーム</button>
+      <button class="chip" data-item="irradiation">イラジエーション</button>
+      <button class="chip" data-item="acutance">アキュータンス</button>
+      <button class="chip" data-item="ca">色収差</button>
+      <button class="chip" data-item="vignette">周辺光量</button>
+      <button class="chip" data-item="leak">光線引き</button>
+    </div>
+    <p class="note" style="margin-top:1.6rem">同じフレームに1つだけ処理を入れたもの。この大きさで見えるように、実際に納品で使う量よりかなり強くかけています。設定できる範囲の中の、上限側です。</p>
   </div>
 </section>
 
@@ -779,30 +805,37 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 </footer>
 
 
+
+
 <script>
-// One handle, one row of switches. Inline because the page has to stand on its
-// own: no external script, nothing to fail while somebody is reading.
+// Every .compare works the same way and takes its files from its own data
+// attributes, because there are two of these on the page and a second copy of
+// this loop is how the two stop behaving alike. Inline, so the page keeps
+// loading nothing from anywhere else.
 (function () {
-  var box = document.querySelector('.compare');
-  if (!box) return;
-  var base = box.dataset.base,
-      range = box.querySelector('.cmp-range'),
-      after = document.getElementById('cmpAfter'),
-      name  = document.getElementById('cmpName');
+  document.querySelectorAll('.compare').forEach(function (box) {
+    var base   = box.dataset.base,
+        prefix = box.dataset.prefix,
+        range  = box.querySelector('.cmp-range'),
+        after  = box.querySelector('.cmp-after img'),
+        label  = box.querySelector('.cmp-r'),
+        chips  = box.nextElementSibling;
 
-  range.addEventListener('input', function () {
-    box.style.setProperty('--pos', range.value + '%');
-  });
+    range.addEventListener('input', function () {
+      box.style.setProperty('--pos', range.value + '%');
+    });
+    if (!chips || !chips.classList.contains('chips')) return;
 
-  // Fetched now rather than on the click, so the first switch is not a flash of
-  // nothing where the picture was.
-  document.querySelectorAll('.chip').forEach(function (chip) {
-    new Image().src = base + 'look-' + chip.dataset.look + '.jpg';
-    chip.addEventListener('click', function () {
-      document.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
-      chip.classList.add('on');
-      after.src = base + 'look-' + chip.dataset.look + '.jpg';
-      name.textContent = chip.textContent;
+    chips.querySelectorAll('.chip').forEach(function (chip) {
+      // Fetched now rather than on the click, so the first switch is not a
+      // flash of nothing where the picture was.
+      new Image().src = base + prefix + chip.dataset.item + '.jpg';
+      chip.addEventListener('click', function () {
+        chips.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
+        chip.classList.add('on');
+        after.src = base + prefix + chip.dataset.item + '.jpg';
+        label.textContent = chip.textContent;
+      });
     });
   });
 })();

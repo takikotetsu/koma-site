@@ -522,24 +522,50 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
   <div class="wrap">
     <h2>The looks</h2>
     <p class="head">Start from a look. Then make it yours.</p>
-    <div class="compare" data-base="img/">
+    <div class="compare" data-base="img/" data-prefix="look-">
       <img src="img/source.jpg" alt="" width="760" height="427">
-      <div class="cmp-after"><img id="cmpAfter" src="img/look-filmClassic.jpg" alt="" width="760" height="427"></div>
+      <div class="cmp-after"><img src="img/look-filmClassic.jpg" alt="" width="760" height="427"></div>
       <div class="cmp-line"></div>
       <input class="cmp-range" type="range" min="0" max="100" value="50"
              aria-label="Bypass">
       <span class="cmp-tag cmp-l">Bypass</span>
-      <span class="cmp-tag cmp-r" id="cmpName">Film Classic</span>
+      <span class="cmp-tag cmp-r">Film Classic</span>
     </div>
     <div class="chips">
-      <button class="chip" data-look="neutral">Neutral</button>
-      <button class="chip on" data-look="filmClassic">Film Classic</button>
-      <button class="chip" data-look="tealAmber">Teal & Amber</button>
-      <button class="chip" data-look="goldenWarm">Print Master</button>
-      <button class="chip" data-look="neonNight">Neon Night</button>
-      <button class="chip" data-look="fadedPastel">Faded Pastel</button>
+      <button class="chip" data-item="neutral">Neutral</button>
+      <button class="chip on" data-item="filmClassic">Film Classic</button>
+      <button class="chip" data-item="tealAmber">Teal & Amber</button>
+      <button class="chip" data-item="goldenWarm">Print Master</button>
+      <button class="chip" data-item="neonNight">Neon Night</button>
+      <button class="chip" data-item="fadedPastel">Faded Pastel</button>
     </div>
     <p class="note" style="margin-top:1.6rem">The same frame with KOMA off and on. Drag the handle; pick a look below. Input set to S-Log3.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Stage by stage</h2>
+    <p class="head">Every stage is a switch, and every switch is a picture.</p>
+    <div class="compare" data-base="img/" data-prefix="fx-">
+      <img src="img/fx-base.jpg" alt="" width="760" height="427">
+      <div class="cmp-after"><img src="img/fx-grain.jpg" alt="" width="760" height="427"></div>
+      <div class="cmp-line"></div>
+      <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="All off">
+      <span class="cmp-tag cmp-l">All off</span>
+      <span class="cmp-tag cmp-r">Grain</span>
+    </div>
+    <div class="chips">
+      <button class="chip on" data-item="grain">Grain</button>
+      <button class="chip" data-item="halation">Halation</button>
+      <button class="chip" data-item="bloom">Bloom</button>
+      <button class="chip" data-item="irradiation">Irradiation</button>
+      <button class="chip" data-item="acutance">Acutance</button>
+      <button class="chip" data-item="ca">Aberration</button>
+      <button class="chip" data-item="vignette">Vignette</button>
+      <button class="chip" data-item="leak">Light leak</button>
+    </div>
+    <p class="note" style="margin-top:1.6rem">The same frame with one stage on. Each is pushed well past a delivery setting so it reads at this size — they are the controls you get, turned up.</p>
   </div>
 </section>
 
@@ -794,30 +820,37 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 </footer>
 
 
+
+
 <script>
-// One handle, one row of switches. Inline because the page has to stand on its
-// own: no external script, nothing to fail while somebody is reading.
+// Every .compare works the same way and takes its files from its own data
+// attributes, because there are two of these on the page and a second copy of
+// this loop is how the two stop behaving alike. Inline, so the page keeps
+// loading nothing from anywhere else.
 (function () {
-  var box = document.querySelector('.compare');
-  if (!box) return;
-  var base = box.dataset.base,
-      range = box.querySelector('.cmp-range'),
-      after = document.getElementById('cmpAfter'),
-      name  = document.getElementById('cmpName');
+  document.querySelectorAll('.compare').forEach(function (box) {
+    var base   = box.dataset.base,
+        prefix = box.dataset.prefix,
+        range  = box.querySelector('.cmp-range'),
+        after  = box.querySelector('.cmp-after img'),
+        label  = box.querySelector('.cmp-r'),
+        chips  = box.nextElementSibling;
 
-  range.addEventListener('input', function () {
-    box.style.setProperty('--pos', range.value + '%');
-  });
+    range.addEventListener('input', function () {
+      box.style.setProperty('--pos', range.value + '%');
+    });
+    if (!chips || !chips.classList.contains('chips')) return;
 
-  // Fetched now rather than on the click, so the first switch is not a flash of
-  // nothing where the picture was.
-  document.querySelectorAll('.chip').forEach(function (chip) {
-    new Image().src = base + 'look-' + chip.dataset.look + '.jpg';
-    chip.addEventListener('click', function () {
-      document.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
-      chip.classList.add('on');
-      after.src = base + 'look-' + chip.dataset.look + '.jpg';
-      name.textContent = chip.textContent;
+    chips.querySelectorAll('.chip').forEach(function (chip) {
+      // Fetched now rather than on the click, so the first switch is not a
+      // flash of nothing where the picture was.
+      new Image().src = base + prefix + chip.dataset.item + '.jpg';
+      chip.addEventListener('click', function () {
+        chips.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
+        chip.classList.add('on');
+        after.src = base + prefix + chip.dataset.item + '.jpg';
+        label.textContent = chip.textContent;
+      });
     });
   });
 })();
