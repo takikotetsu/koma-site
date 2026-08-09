@@ -338,13 +338,20 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 }
 .cmp-range::-webkit-slider-thumb{-webkit-appearance:none; width:3rem; height:100%}
 .cmp-range::-moz-range-thumb{width:3rem; height:100%; border:0; background:transparent}
-.cmp-tag{
-  position:absolute; bottom:1rem; font-size:.62rem; letter-spacing:.24em;
-  text-transform:uppercase; color:var(--hi); line-height:1;
-  padding:.5rem .8rem; background:rgba(11,13,16,.55); pointer-events:none;
+/* Above the frame, not inside it. Inside, they landed on whatever the picture
+   happened to have in that corner — on the chart, the corner is a black and
+   white checker, which is the one background a small pale label cannot be read
+   on. Outside, they are legible whatever the picture is, which is the whole
+   point of a label. */
+.cmp-head{
+  display:flex; justify-content:space-between; align-items:baseline; gap:1rem;
+  margin-bottom:.8rem;
 }
-.cmp-l{left:1rem}
-.cmp-r{right:1rem; color:var(--amber-lit)}
+.cmp-tag{
+  font-size:.62rem; letter-spacing:.24em; text-transform:uppercase;
+  line-height:1; color:var(--lo);
+}
+.cmp-r{color:var(--amber-lit)}
 
 /* the looks, as a row of switches under the frame */
 .chips{display:flex; flex-wrap:wrap; gap:1px; margin-top:1px;
@@ -538,14 +545,16 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
   <div class="wrap">
     <h2>The looks</h2>
     <p class="head">Start from a look. Then make it yours.</p>
+    <div class="cmp-head">
+      <span class="cmp-tag cmp-l">Bypass</span>
+      <span class="cmp-tag cmp-r">Film Classic</span>
+    </div>
     <div class="compare" data-base="img/" data-prefix="look-">
       <img src="img/source.jpg" alt="" width="760" height="427">
       <div class="cmp-after"><img src="img/look-filmClassic.jpg" alt="" width="760" height="427"></div>
       <div class="cmp-line"></div>
       <input class="cmp-range" type="range" min="0" max="100" value="50"
              aria-label="Bypass">
-      <span class="cmp-tag cmp-l">Bypass</span>
-      <span class="cmp-tag cmp-r">Film Classic</span>
     </div>
     <div class="chips">
       <button class="chip" data-item="neutral">Neutral</button>
@@ -563,13 +572,15 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
   <div class="wrap">
     <h2>Stage by stage</h2>
     <p class="head">Every stage is a switch, and every switch is a picture.</p>
-    <div class="compare" data-base="img/" data-prefix="fx-">
-      <img src="img/fx-base.jpg" alt="" width="760" height="427">
-      <div class="cmp-after"><img src="img/fx-grain.jpg" alt="" width="760" height="427"></div>
-      <div class="cmp-line"></div>
-      <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="All off">
+    <div class="cmp-head">
       <span class="cmp-tag cmp-l">All off</span>
       <span class="cmp-tag cmp-r">Grain</span>
+    </div>
+    <div class="compare" data-base="img/" data-prefix="fx-">
+      <img src="img/fx-base.jpg" alt="" width="1200" height="675">
+      <div class="cmp-after"><img src="img/fx-grain.jpg" alt="" width="1200" height="675"></div>
+      <div class="cmp-line"></div>
+      <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="All off">
     </div>
     <div class="chips">
       <button class="chip on" data-item="grain">Grain</button>
@@ -581,7 +592,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <button class="chip" data-item="vignette">Vignette</button>
       <button class="chip" data-item="leak">Light leak</button>
     </div>
-    <p class="note" style="margin-top:1.6rem">The same frame with one stage on. Each is pushed well past a delivery setting so it reads at this size — they are the controls you get, turned up.</p>
+    <p class="note" style="margin-top:1.6rem">A drawn chart, not a photograph: each stage acts on something a given photograph may not contain. Every setting here is pushed well past a delivery amount so it reads at this size.</p>
   </div>
 </section>
 
@@ -849,7 +860,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         prefix = box.dataset.prefix,
         range  = box.querySelector('.cmp-range'),
         after  = box.querySelector('.cmp-after img'),
-        label  = box.querySelector('.cmp-r'),
+        label  = box.parentElement.querySelector('.cmp-r'),
         chips  = box.nextElementSibling;
 
     range.addEventListener('input', function () {
