@@ -440,14 +440,15 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 
 <section class="intro">
   <div class="wrap">
-    <p class="line">フィルムを、各段に分けて。</p>
-    <p class="sub">OFX ホストと Premiere Pro / After Effects 用のフィルムエミュレーションです。
-      現場用のスタンドアロンも入っていて、1つのインストーラで全部入ります。</p>
+    <p class="line">デジタルを、フィルムに通す。</p>
+    <p class="sub">露光、現像、プリント。実際に起きる順番でそのまま通すので、
+      色も粒子も「後から足したもの」になりません。Resolve、Flame、Premiere Pro、
+      After Effects、そして現場用の単体アプリまで、インストーラ1本で入ります。</p>
     <p class="cta">
       <a class="btn btn-lit" href="#get">ダウンロード</a>
       <a class="btn btn-line" href="#get">&yen;19,800 / 年</a>
     </p>
-    <p class="note" style="margin:0">ライセンスを入れるまでは透かし付きで全機能が使えます。macOS 11 以降。</p>
+    <p class="note" style="margin:0">ライセンスを入れるまでは、透かし付きで全機能が試せます。macOS 11 以降。</p>
   </div>
 </section>
 
@@ -457,21 +458,21 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
     <div class="proof">
       <div class="proof-cell">
         <p class="proof-num">14</p>
-        <p class="proof-lab">銘柄、6 つのルック</p>
+        <p class="proof-lab">フィルム14種、ルック6種</p>
         <p class="proof-sub">ネガ・リバーサル・モノクロ・プリント。ルックが設定した値は、
           そのあとも全て調整できます。</p>
       </div>
       <div class="proof-cell">
         <p class="proof-num">1<small>INSTALLER</small></p>
-        <p class="proof-lab">機械上の全ホストに</p>
-        <p class="proof-sub">OFX と Adobe が1つのパッケージに入り、ライセンスも1つ。
-          ホストごとの購入はありません。</p>
+        <p class="proof-lab">1本で、全部のソフトに</p>
+        <p class="proof-sub">OFX 版と Adobe 版が同じパッケージ。ライセンスも1つで、
+          ソフトごとに買い直す必要はありません。</p>
       </div>
       <div class="proof-cell">
         <p class="proof-num">4K<small>REAL TIME</small></p>
-        <p class="proof-lab">全段 Metal</p>
-        <p class="proof-sub">グレイン、ハレーション、MTF、ゲートウィーブまで GPU で。
-          速度は機械によります。</p>
+        <p class="proof-lab">全工程 Metal</p>
+        <p class="proof-sub">グレイン、ハレーション、MTF、ゲートウィーブまで GPU 処理。
+          実際の速度はマシンによります。</p>
       </div>
     </div>
   </div>
@@ -479,8 +480,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 
 <section>
   <div class="wrap">
-    <h2>どこで動くか</h2>
-    <p class="head">一度買えば、どの部屋でも。</p>
+    <h2>対応ソフト</h2>
+    <p class="head">買うのは一度。使うのは、いつもの環境で。</p>
     <div class="hosts">
       <div class="host">
         <b>DaVinci Resolve</b>
@@ -499,7 +500,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         <span>専用プラグイン</span>
       </div>
       <div class="host">
-        <b>その他の OFX ホスト</b>
+        <b>その他の OFX 対応ソフト</b>
         <span>Nuke、Baselight、Vegas Pro</span>
       </div>
       <div class="host">
@@ -513,7 +514,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 <section>
   <div class="wrap">
     <h2>ルック</h2>
-    <p class="head">ルックから始めて、あとは自分の絵に。</p>
+    <p class="head">選んで終わりではなく、選んでからが本番。</p>
     <div class="compare" data-base="../img/">
       <img src="../img/source.jpg" alt="" width="760" height="427">
       <div class="cmp-after"><img id="cmpAfter" src="../img/look-filmClassic.jpg" alt="" width="760" height="427"></div>
@@ -538,9 +539,9 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 <section>
   <div class="wrap">
     <h2>現場で</h2>
-    <p class="head">ルックは、メールではなくモニタで決める。</p>
-    <p>スタンドアロンは SDI を受けて、グレーディングとフィルム段を通し、SDI で返します。
-      設定は <code>.koma</code> プリセットとして保存でき、それをプラグインが読みます。</p>
+    <p class="head">現場のモニタで決めた絵を、そのまま渡す。</p>
+    <p>単体アプリは SDI 入力を受けて、グレーディングとフィルムの処理を通し、SDI で出します。
+      設定は <code>.koma</code> ファイルに保存でき、そのままプラグイン側で読み込めます。</p>
 
     <div class="figure" style="margin-top:2.5rem">
       <svg viewBox="0 0 900 250" role="img"
@@ -579,18 +580,18 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         <text class="dg-t" x="765" y="205" text-anchor="middle">Resolve / Flame /</text>
         <text class="dg-t" x="765" y="223" text-anchor="middle">Premiere Pro</text>
       </svg>
-      <figcaption>現場で書いたプリセットを、編集でも合成でもそのまま開きます。</figcaption>
+      <figcaption>現場で保存したプリセットを、編集でも合成でもそのまま開けます。</figcaption>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>詳しく</h2>
+    <h2>もっと詳しく</h2>
     <p class="head">なぜ、その絵になるのか。</p>
 
     <details>
-      <summary>何をしているか</summary>
+      <summary>中で何をしているか</summary>
       <div class="body">
 
     <p>
@@ -623,36 +624,36 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
     </details>
 
     <details>
-      <summary>どのアプリでも同じルックになる理由</summary>
+      <summary>どのソフトでも同じルックになる理由</summary>
       <div class="body">
 
     <p>
-      1つのショットが、あるアプリでグレーディングされ、別のアプリで合成され、
-      さらに別のアプリで編集されます。KOMA はその全部の後ろにある1つのエンジンなので、
-      ドアをくぐるたびにルックを作り直す必要がありません。
-      素材が合わなくなって合成をやり直す、も起きません。
+      1つのショットを、グレーディングは Resolve、合成は Flame、編集は Premiere、
+      というように別々のソフトで触ることになります。KOMA はそのどれもが同じエンジンを
+      呼んでいるので、ソフトを移るたびにルックを作り直す必要がありません。
+      「素材の色が変わっていて合成をやり直し」も起きません。
     </p>
     <div class="grid" style="margin-top:2.5rem">
       <div>
-        <h3>1つのファイル</h3>
-        <p><code>.koma</code> プリセットが全ての値を持ちます。グレーディングで保存し、
-           合成で開き、編集で当てる。ただのテキストなので、
-           作品のリポジトリに他のものと一緒に入れられます。</p>
+        <h3>プリセット1つで持ち回れる</h3>
+        <p><code>.koma</code> ファイルに全ての値が入ります。グレーディングで保存して、
+           合成で開いて、編集で当てる。中身はただのテキストなので、
+           案件のフォルダに素材と一緒に置いておけます。</p>
       </div>
       <div>
-        <h3>同じ数字</h3>
-        <p>プラグインもアプリも実装は1つで、CPU と GPU をフレーム単位で
-           突き合わせて検査しています。ホストごとに近似し直していないので、
-           同じプリセットは同じ絵になります。</p>
+        <h3>どのソフトでも同じ絵になる</h3>
+        <p>プラグインも単体アプリも中身は同じ実装で、CPU と GPU の結果を
+           フレーム単位で突き合わせて検査しています。ソフトごとに作り分けて
+           いないので、同じプリセットなら同じ絵が出ます。</p>
       </div>
       <div>
-        <h3>名前で書く</h3>
+        <h3>並べ替えても壊れない</h3>
         <p>銘柄・ルック・カラースペースは、メニューの位置ではなく名前で保存します。
            項目を並べ替えても追加してもプリセットは壊れません。
            作品の期間ずっと持ち回れるのはそのためです。</p>
       </div>
       <div>
-        <h3>素材の手前で切れる</h3>
+        <h3>バイパスで素の画に戻せる</h3>
         <p>バイパスは入力をそのまま返します。素の画で合成を組み立てて、
            仕上がったショットにフィルム段を乗せ直せます。
            実際のフィルムで起きる順番と同じです。</p>
@@ -666,13 +667,13 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <div class="body">
     <div class="grid" style="margin-top:3rem">
       <div>
-        <h3>入出力の両方</h3>
-        <p>AJA と Blackmagic のカードで入力も出力も。
-           出力は入力にロックするので、レートを指定させるのではなく
-           カメラのレートに従います。</p>
+        <h3>入力も出力も</h3>
+        <p>AJA と Blackmagic のカードで、入力も出力もできます。
+           出力は入力にゲンロックするので、こちらでフレームレートを
+           決めなくてもカメラに合います。</p>
       </div>
       <div>
-        <h3>手前にグレーディング</h3>
+        <h3>フィルムの前にグレーディング</h3>
         <p>CDL / トーンカーブ / HSL カーブがフィルム段の手前に入ります。
            ホストで「グレードノード → KOMA」と並べたときと同じ順序なので、
            現場で決めたものをポストで組み直せます。</p>
@@ -684,8 +685,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       </div>
       <div>
         <h3>静止画とクリップ</h3>
-        <p>フレームでもクリップでも開いて、再生し、コマ送りし、
-           フル解像度で書き出せます。ルックはチャートではなく素材で判断するもの。</p>
+        <p>静止画でもクリップでも開いて、再生・コマ送り・フル解像度での書き出しが
+           できます。ルックはチャートではなく、実際の素材を見て決めるものなので。</p>
       </div>
     </div>
       </div>
@@ -701,18 +702,18 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         そこから調整を続けられます。</dd>
       <dt>入力</dt><dd>Rec.709 / sRGB / Linear のほか、S-Log3、LogC3、LogC4、V-Log、
         Log3G10、C-Log3。18% グレーの位置は各社の公表値に合わせています。</dd>
-      <dt>プリセット</dt><dd><code>.koma</code> ファイル。ホスト間で持ち運べます。</dd>
-      <dt>アプリケーション</dt><dd>同じエンジンのスタンドアロン。フィルム段の手前に
+      <dt>プリセット</dt><dd><code>.koma</code> ファイル。ソフト間でそのまま持ち運べます。</dd>
+      <dt>単体アプリ</dt><dd>同じエンジンのアプリケーション。フィルムの処理の手前に
         グレーディング（CDL / トーンカーブ / HSL）が入ります。</dd>
-      <dt>SDI</dt><dd>アプリから AJA / Blackmagic のカードで入出力。カメラを受けて、
+      <dt>SDI</dt><dd>単体アプリから AJA / Blackmagic のカードで入出力。カメラを受けて、
         ルックを乗せたままモニタへ返せます。</dd>
-      <dt>macOS</dt><dd>11 以降。Apple シリコンと Intel の両方。全段 Metal で、
+      <dt>macOS</dt><dd>11 以降。Apple シリコンと Intel の両方。全工程 Metal で、
         4K がリアルタイムで再生できます。</dd>
       <dt>Windows / Linux</dt><dd>対応予定。</dd>
     </dl>
     <p class="note" style="margin-top:2rem">
       After Effects は現時点では CPU で描画します。
-      速度は機械と、どの段を有効にしているかで変わります。
+      速度はマシンと、どの処理を有効にしているかで変わります。
     </p>
       </div>
     </details>
@@ -721,32 +722,32 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 
 <section id="get">
   <div class="wrap">
-    <h2>入手</h2>
-    <p class="head">試すのは無料。払うのは納品するときだけ。</p>
+    <h2>ダウンロードと価格</h2>
+    <p class="head">試すのは無料。お金がかかるのは、納品するときだけ。</p>
     <div class="plans">
       <div class="plan">
-        <h3>未登録</h3>
+        <h3>無料版</h3>
         <p class="price">無料</p>
-        <p class="sub">全機能が、全ホストで。</p>
+        <p class="sub">全機能、全対応ソフトで。</p>
         <ul>
-          <li>制限された機能や削られた機能はありません</li>
+          <li>機能制限はありません</li>
           <li>出力に KOMA の透かしが入ります</li>
           <li>アカウント登録も試用期限もありません</li>
-          <li>評価はできて、納品はできない、という線引きです</li>
+          <li>試すには十分、納品には使えない、という線引きです</li>
         </ul>
-        <p class="cta"><a class="btn btn-line" href="mailto:taki@kotetsu.work?subject=KOMA%20download">ビルドを請求する</a></p>
+        <p class="cta"><a class="btn btn-line" href="mailto:taki@kotetsu.work?subject=KOMA%20download">ダウンロードを希望する</a></p>
       </div>
       <div class="plan plan-lit">
-        <h3>ライセンス</h3>
+        <h3>製品版</h3>
         <p class="price">&yen;19,800 / 年</p>
         <p class="sub">約 US$129。税と為替レートは確定前です。</p>
         <ul>
-          <li>どこでも透かしが外れます</li>
-          <li>機械ではなく購入者に紐づきます。台数の制限はありません</li>
-          <li>認証はオフラインで完結するので、ネットワークのない部屋でも動きます</li>
-          <li>1つのライセンスでプラグインもアプリも有効になります</li>
+          <li>すべての出力から透かしが外れます</li>
+          <li>PC ではなく購入者に紐づくので、台数の制限がありません</li>
+          <li>認証はオフラインで完結するので、ネット環境のない現場でも動きます</li>
+          <li>ライセンス1つで、プラグインも単体アプリも有効になります</li>
         </ul>
-        <p class="cta"><a class="btn btn-lit" href="mailto:taki@kotetsu.work?subject=KOMA%20licence">案内を希望する</a></p>
+        <p class="cta"><a class="btn btn-lit" href="mailto:taki@kotetsu.work?subject=KOMA%20licence">発売の連絡を受け取る</a></p>
       </div>
     </div>
     <p class="note" style="margin-top:2rem">
@@ -767,7 +768,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       Nuke は The Foundry Visionmongers Ltd、Baselight は FilmLight Ltd、
       Vegas Pro は MAGIX Software GmbH の商標です。
       KOMA はこれらの各社が承認・提携するものではありません。
-      各社の製品名は、どのホストで動くかを示すためにのみ用いています。
+      各社の製品名は、どのソフトで動くかを示すためにのみ用いています。
     </p>
     <p>
       KOMA に収録しているフィルムの呼称は独自のもので、
