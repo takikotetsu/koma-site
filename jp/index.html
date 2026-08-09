@@ -197,6 +197,10 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
   display:inline-block; margin-left:.5em; vertical-align:.55em}
 .proof-lab{color:var(--hi); font-size:.95rem; font-weight:300; margin:0 0 .3rem}
 .proof-sub{color:var(--lo); font-size:.78rem; line-height:1.75; margin:0}
+/* Naming the machine is not the same as quoting a millisecond figure: the
+   number would be about a machine nobody reading has, the machine is what
+   makes the claim above it checkable. */
+.foot{display:inline-block; margin-top:.5rem; color:var(--rule); font-size:.72rem}
 @media (max-width:44rem){ .proof{grid-template-columns:1fr} }
 
 /* ---- feature cards ------------------------------------------------------ */
@@ -506,7 +510,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <div class="proof-cell">
         <p class="proof-num">4K<small>REAL TIME</small></p>
         <p class="proof-lab">全工程 Metal</p>
-        <p class="proof-sub">グレイン、ハレーション、MTF、ゲートウィーブまで GPU 処理。実際の速度はマシンによります。</p>
+        <p class="proof-sub">グレイン、ハレーション、MTF、ゲートウィーブまで GPU 処理。<br><span class="foot">※ MacBook Pro（M1 Max）での実測</span></p>
       </div>
     </div>
   </div>
