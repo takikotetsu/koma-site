@@ -41,13 +41,23 @@ body{
 }
 .wrap{max-width:var(--max); margin:0 auto; padding:0 2rem}
 
-section{padding:7rem 0; border-top:1px solid var(--hair)}
+section{padding:5.5rem 0; border-top:1px solid var(--hair)}
 section.flush{padding-top:0; border-top:0}
 
+/* The page was all one size and one weight, which read as even and flat. The
+   contrast comes from scale rather than from weight, because the wordmark in
+   the application is a hairline and a bold page would be describing a different
+   product. So: a small tracked label to say where you are, and a large light
+   line under it to say something worth reading. */
 h2{
-  font-size:.68rem; font-weight:400; letter-spacing:.34em;
-  color:var(--lo); text-transform:uppercase; margin:0 0 2.6rem;
+  font-size:.64rem; font-weight:400; letter-spacing:.34em;
+  color:var(--lo); text-transform:uppercase; margin:0 0 1rem;
 }
+.head{
+  font-size:clamp(1.7rem,3.2vw,2.6rem); font-weight:200; line-height:1.25;
+  letter-spacing:.005em; color:var(--hi); margin:0 0 2.8rem; max-width:26ch;
+}
+.head em{font-style:normal; color:var(--amber-lit)}
 h3{
   font-size:.95rem; font-weight:300; margin:0 0 .7rem;
   letter-spacing:.1em; color:var(--hi);
@@ -116,7 +126,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
     rgba(11,13,16,0) 62%, rgba(11,13,16,.55) 88%, var(--ink) 100%);
 }
 /* above both layers of picture and above the veil */
-.hero .wrap{position:relative; z-index:3; width:100%; padding-bottom:3.4rem; padding-top:8rem}
+.hero .wrap{position:relative; z-index:3; width:100%; padding-bottom:3.8rem; padding-top:8rem}
 .hero-veil{z-index:2}
 
 .lockup{display:flex; align-items:center; gap:clamp(1rem,2.6vw,2rem); flex-wrap:wrap}
@@ -156,6 +166,47 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
   .hero-video{display:none}
 }
 
+/* ---- the three things worth knowing before anything else ----------------
+ * Big and thin rather than big and bold. The number carries the weight and the
+ * hairline keeps it the same object as the mark at the top of the page.
+ */
+.proof{display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+  background:var(--hair); border:1px solid var(--hair)}
+.proof-cell{background:var(--panel); padding:2.6rem 1.8rem}
+.proof-num{
+  font-size:clamp(2.4rem,4.4vw,3.4rem); font-weight:100; line-height:1;
+  letter-spacing:.02em; color:var(--amber-lit); margin:0 0 .9rem;
+}
+.proof-num small{font-size:.36em; letter-spacing:.16em; color:var(--mid);
+  display:inline-block; margin-left:.5em; vertical-align:.55em}
+.proof-lab{color:var(--hi); font-size:.95rem; font-weight:300; margin:0 0 .3rem}
+.proof-sub{color:var(--lo); font-size:.78rem; line-height:1.75; margin:0}
+@media (max-width:44rem){ .proof{grid-template-columns:1fr} }
+
+/* ---- feature cards ------------------------------------------------------ */
+.cards{display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+  background:var(--hair); border:1px solid var(--hair)}
+.card{background:var(--panel); padding:2.1rem 1.9rem}
+.card h3{font-size:1.05rem; font-weight:300; letter-spacing:.02em; margin:0 0 .6rem}
+.card p{color:var(--lo); font-size:.86rem; line-height:1.85; margin:0; max-width:none}
+@media (max-width:44rem){ .cards{grid-template-columns:1fr} }
+
+/* ---- the band under the banner -----------------------------------------
+ * The banner carries the mark and nothing else now. This is where the sentence
+ * and the two buttons went, on their own ground where they are read rather than
+ * competing with a moving picture.
+ */
+.intro{border-top:0; padding:4rem 0 4.5rem; background:var(--panel)}
+.intro .line{
+  font-size:clamp(1.9rem,4.2vw,3.2rem); font-weight:100; line-height:1.2;
+  color:var(--hi); letter-spacing:.01em; margin:0 0 1.2rem; max-width:22ch;
+}
+.intro .sub{
+  color:var(--mid); font-size:.92rem; line-height:1.95; max-width:38rem;
+  margin:0 0 2.4rem;
+}
+.intro .cta{margin-bottom:.9rem}
+
 /* ---- the way in ---------------------------------------------------------
  * Two of these on the page, one under the hero and one at the foot. Somebody
  * who is already convinced should not have to scroll the whole argument to
@@ -194,12 +245,13 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 }
 @media (max-width:54rem){ .hosts{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:34rem){ .hosts{grid-template-columns:1fr} }
-.host{background:var(--ink); padding:1.7rem 1.5rem}
+.host{background:var(--panel); padding:2.1rem 1.8rem}
 .host b{
-  display:block; color:var(--hi); font-weight:300; font-size:1rem;
-  letter-spacing:.06em; margin-bottom:.45rem;
+  display:block; color:var(--hi); font-weight:300;
+  font-size:clamp(1.05rem,1.5vw,1.25rem); letter-spacing:.02em;
+  margin-bottom:.55rem; line-height:1.3;
 }
-.host span{display:block; color:var(--lo); font-size:.78rem; line-height:1.8}
+.host span{display:block; color:var(--lo); font-size:.8rem; line-height:1.8}
 
 /* ---- a drawing, when a sentence would need three goes -------------------- */
 .figure{border:1px solid var(--hair); background:rgba(18,21,25,.45); padding:2.2rem 1.6rem}
@@ -220,7 +272,8 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 .plan{border:1px solid var(--hair); padding:2.3rem 2.1rem; background:rgba(18,21,25,.5)}
 .plan-lit{border-color:rgba(201,96,58,.5)}
 .plan h3{margin-bottom:.2rem}
-.plan .price{font-size:1.7rem; margin:.9rem 0 .2rem}
+.plan .price{font-size:clamp(2rem,3.4vw,2.8rem); font-weight:100;
+  letter-spacing:.01em; margin:1rem 0 .3rem}
 .plan .sub{color:var(--lo); font-size:.8rem; margin:0 0 1.4rem}
 .plan ul{margin:0 0 1.7rem; padding:0; list-style:none}
 .plan li{
@@ -241,10 +294,10 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 .look img{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover}
 .look figcaption{
   position:absolute; left:0; bottom:0; right:0;
-  padding:2.4rem .9rem .7rem;
-  font-size:.6rem; letter-spacing:.28em; text-transform:uppercase;
+  padding:3rem 1.2rem 1rem;
+  font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
   font-weight:400; color:var(--hi);
-  background:linear-gradient(180deg,rgba(11,13,16,0),rgba(11,13,16,.86));
+  background:linear-gradient(180deg,rgba(11,13,16,0),rgba(11,13,16,.9));
 }
 
 /* ---- the part most readers should be able to skip ------------------------
@@ -345,19 +398,52 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <h1 class="word">KOMA</h1>
     </div>
     <p class="tagline">Film Emulation</p>
-    <p class="lede">フィルムを、各段に分けて模す。
-      1つのインストーラで全ホストに、同じルックを現場にも。</p>
-    <p class="cta">
-      <a class="btn btn-lit" href="#get">ダウンロード</a>
-      <a class="btn btn-line" href="#get">価格</a>
-    </p>
-    <p class="cta-note">ライセンスを入れるまでは、透かし付きで全機能が使えます。</p>
   </div>
 </header>
 
-<section class="flush" style="padding-top:5rem">
+<section class="intro">
+  <div class="wrap">
+    <p class="line">フィルムを、各段に分けて。</p>
+    <p class="sub">OFX ホストと Premiere Pro / After Effects 用のフィルムエミュレーションです。
+      現場用のスタンドアロンも入っていて、1つのインストーラで全部入ります。</p>
+    <p class="cta">
+      <a class="btn btn-lit" href="#get">ダウンロード</a>
+      <a class="btn btn-line" href="#get">&yen;19,800 / 年</a>
+    </p>
+    <p class="note" style="margin:0">ライセンスを入れるまでは透かし付きで全機能が使えます。macOS 11 以降。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>要点</h2>
+    <div class="proof">
+      <div class="proof-cell">
+        <p class="proof-num">14</p>
+        <p class="proof-lab">銘柄、6 つのルック</p>
+        <p class="proof-sub">ネガ・リバーサル・モノクロ・プリント。ルックが設定した値は、
+          そのあとも全て調整できます。</p>
+      </div>
+      <div class="proof-cell">
+        <p class="proof-num">1<small>INSTALLER</small></p>
+        <p class="proof-lab">機械上の全ホストに</p>
+        <p class="proof-sub">OFX と Adobe が1つのパッケージに入り、ライセンスも1つ。
+          ホストごとの購入はありません。</p>
+      </div>
+      <div class="proof-cell">
+        <p class="proof-num">4K<small>REAL TIME</small></p>
+        <p class="proof-lab">全段 Metal</p>
+        <p class="proof-sub">グレイン、ハレーション、MTF、ゲートウィーブまで GPU で。
+          速度は機械によります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
   <div class="wrap">
     <h2>どこで動くか</h2>
+    <p class="head">一度買えば、どの部屋でも。</p>
     <div class="hosts">
       <div class="host">
         <b>DaVinci Resolve</b>
@@ -384,13 +470,13 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         <span>単体アプリ、SDI 入出力</span>
       </div>
     </div>
-    <p class="note" style="margin-top:1.6rem">1つのインストーラ、1つのライセンス、機械上の全ホスト。</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <h2>ルック</h2>
+    <p class="head">ルックから始めて、あとは自分の絵に。</p>
     <div class="looks">
       <figure class="look">
         <img src="../img/look-neutral.jpg" alt="Neutral" loading="lazy" width="760" height="428">
@@ -417,15 +503,16 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         <figcaption>Faded Pastel</figcaption>
       </figure>
     </div>
-    <p class="note" style="margin-top:1.6rem">同じ1フレームを6つのルックで。設定された値はすべて調整できます。</p>
+    <p class="note" style="margin-top:1.6rem">同じ1フレームを6つのルックで。入力は S-Log3。</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <h2>現場で</h2>
-    <p>SDI を受けて、ルックを乗せて、SDI で返す。
-      モニタで承認したものが、言葉ではなくファイルとしてポストに届きます。</p>
+    <p class="head">ルックは、メールではなくモニタで決める。</p>
+    <p>スタンドアロンは SDI を受けて、グレーディングとフィルム段を通し、SDI で返します。
+      設定は <code>.koma</code> プリセットとして保存でき、それをプラグインが読みます。</p>
 
     <div class="figure" style="margin-top:2.5rem">
       <svg viewBox="0 0 900 250" role="img"
@@ -464,7 +551,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         <text class="dg-t" x="765" y="205" text-anchor="middle">Resolve / Flame /</text>
         <text class="dg-t" x="765" y="223" text-anchor="middle">Premiere Pro</text>
       </svg>
-      <figcaption>同じプリセットが編集でも合成でも開きます。</figcaption>
+      <figcaption>現場で書いたプリセットを、編集でも合成でもそのまま開きます。</figcaption>
     </div>
   </div>
 </section>
@@ -472,6 +559,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 <section>
   <div class="wrap">
     <h2>詳しく</h2>
+    <p class="head">なぜ、その絵になるのか。</p>
 
     <details>
       <summary>何をしているか</summary>
@@ -606,6 +694,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 <section id="get">
   <div class="wrap">
     <h2>入手</h2>
+    <p class="head">試すのは無料。払うのは納品するときだけ。</p>
     <div class="plans">
       <div class="plan">
         <h3>未登録</h3>
