@@ -26,6 +26,9 @@
   --hair:rgba(57,66,78,.28);
 }
 *{box-sizing:border-box}
+/* figure は既定で margin:1em 40px を持つ。打ち消していなかったので、
+   ルックの画がセルの中で 70% の幅になり、右側だけ空いて見えていた。 */
+figure{margin:0}
 html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
 body{
   margin:0; background:var(--ink); color:var(--mid);
@@ -176,10 +179,14 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
  * say plainly what each host is, so nobody has to know that "OFX" includes the
  * one they use.
  */
+/* 3 列固定。auto-fit にすると幅しだいで 4+2 になり、最後の行に穴が空く。
+   6 つあるものは 3x2 か 2x3 で割り切れる形に置く。 */
 .hosts{
-  display:grid; gap:1px; grid-template-columns:repeat(auto-fit,minmax(13.5rem,1fr));
+  display:grid; gap:1px; grid-template-columns:repeat(3,1fr);
   background:var(--hair); border:1px solid var(--hair);
 }
+@media (max-width:54rem){ .hosts{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:34rem){ .hosts{grid-template-columns:1fr} }
 .host{background:var(--ink); padding:1.7rem 1.5rem}
 .host b{
   display:block; color:var(--hi); font-weight:300; font-size:1rem;
@@ -218,9 +225,11 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 
 /* ---- looks -------------------------------------------------------------- */
 .looks{
-  display:grid; gap:1px; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
+  display:grid; gap:1px; grid-template-columns:repeat(3,1fr);
   background:var(--hair); border:1px solid var(--hair);
 }
+@media (max-width:54rem){ .looks{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:34rem){ .looks{grid-template-columns:1fr} }
 .look{position:relative; background:var(--ink); overflow:hidden}
 .look img{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover}
 .look figcaption{
@@ -230,6 +239,27 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
   font-weight:400; color:var(--hi);
   background:linear-gradient(180deg,rgba(11,13,16,0),rgba(11,13,16,.86));
 }
+
+/* ---- the part most readers should be able to skip ------------------------
+ * Everything here is true and most of it is the reason the picture looks right,
+ * but a landing page that opens with characteristic curves is a page nobody
+ * finishes. It goes behind a summary so the people who want it can have all of
+ * it, and everybody else sees one line.
+ */
+details{border-top:1px solid var(--hair); padding:1.5rem 0}
+details summary{
+  cursor:pointer; list-style:none; color:var(--hi);
+  font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; font-weight:400;
+  display:flex; align-items:center; gap:.7rem;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::before{
+  content:"+"; color:var(--amber-lit); font-size:1rem; line-height:1;
+  width:1rem; text-align:center;
+}
+details[open] summary::before{content:"2"}
+details summary:hover{color:var(--amber-lit)}
+details .body{padding:2.2rem 0 .6rem 1.7rem}
 
 /* ---- lists -------------------------------------------------------------- */
 .grid{display:grid; gap:3rem; grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))}
@@ -308,8 +338,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <h1 class="word">KOMA</h1>
     </div>
     <p class="tagline">Film Emulation</p>
-    <p class="lede">露光からプリントまでの各段を、起きる順に模したフィルムエミュレーション。
-      1つのインストーラで機械上の全ホストに入り、同じルックを現場の SDI モニタにも出せます。</p>
+    <p class="lede">フィルムを、各段に分けて模す。
+      1つのインストーラで全ホストに、同じルックを現場にも。</p>
     <p class="cta">
       <a class="btn btn-lit" href="#get">ダウンロード</a>
       <a class="btn btn-line" href="#get">価格</a>
@@ -324,33 +354,30 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
     <div class="hosts">
       <div class="host">
         <b>DaVinci Resolve</b>
-        <span>Studio に OFX プラグインとして。カラーページと Fusion。</span>
+        <span>OFX プラグイン</span>
       </div>
       <div class="host">
         <b>Autodesk&reg; Flame&reg;</b>
-        <span>OFX プラグインとして。Batch とタイムライン。</span>
+        <span>OFX プラグイン</span>
       </div>
       <div class="host">
         <b>Adobe&reg; Premiere Pro&reg;</b>
-        <span>専用プラグイン。GPU で描画します。</span>
+        <span>専用プラグイン、GPU で描画</span>
       </div>
       <div class="host">
         <b>Adobe&reg; After Effects&reg;</b>
-        <span>専用プラグイン。32bit float のプロジェクトで。</span>
+        <span>専用プラグイン</span>
       </div>
       <div class="host">
         <b>その他の OFX ホスト</b>
-        <span>Nuke、Baselight、Vegas Pro など OFX を読むもの。</span>
+        <span>Nuke、Baselight、Vegas Pro</span>
       </div>
       <div class="host">
         <b>KOMA 単体</b>
-        <span>SDI 入出力を持つスタンドアロンアプリケーション。</span>
+        <span>単体アプリ、SDI 入出力</span>
       </div>
     </div>
-    <p class="note" style="margin-top:1.6rem">
-      これが1つのインストーラに入っています。OFX 版と Adobe 版が別売りということはなく、
-      KOMA を買えば機械上のどのホストでも使えます。
-    </p>
+    <p class="note" style="margin-top:1.6rem">1つのインストーラ、1つのライセンス、機械上の全ホスト。</p>
   </div>
 </section>
 
@@ -383,57 +410,15 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         <figcaption>Faded Pastel</figcaption>
       </figure>
     </div>
-    <p class="note" style="margin-top:1.6rem">同じ1フレームを6つのルックで。ルックが設定した値は、そのあとも全て調整できます。</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>どの部屋でも同じルック</h2>
-    <p>
-      1つのショットが、あるアプリでグレーディングされ、別のアプリで合成され、
-      さらに別のアプリで編集されます。KOMA はその全部の後ろにある1つのエンジンなので、
-      ドアをくぐるたびにルックを作り直す必要がありません。
-      素材が合わなくなって合成をやり直す、も起きません。
-    </p>
-    <div class="grid" style="margin-top:2.5rem">
-      <div>
-        <h3>1つのファイル</h3>
-        <p><code>.koma</code> プリセットが全ての値を持ちます。グレーディングで保存し、
-           合成で開き、編集で当てる。ただのテキストなので、
-           作品のリポジトリに他のものと一緒に入れられます。</p>
-      </div>
-      <div>
-        <h3>同じ数字</h3>
-        <p>プラグインもアプリも実装は1つで、CPU と GPU をフレーム単位で
-           突き合わせて検査しています。ホストごとに近似し直していないので、
-           同じプリセットは同じ絵になります。</p>
-      </div>
-      <div>
-        <h3>名前で書く</h3>
-        <p>銘柄・ルック・カラースペースは、メニューの位置ではなく名前で保存します。
-           項目を並べ替えても追加してもプリセットは壊れません。
-           作品の期間ずっと持ち回れるのはそのためです。</p>
-      </div>
-      <div>
-        <h3>素材の手前で切れる</h3>
-        <p>バイパスは入力をそのまま返します。素の画で合成を組み立てて、
-           仕上がったショットにフィルム段を乗せ直せます。
-           実際のフィルムで起きる順番と同じです。</p>
-      </div>
-    </div>
+    <p class="note" style="margin-top:1.6rem">同じ1フレームを6つのルックで。設定された値はすべて調整できます。</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <h2>現場で</h2>
-    <p>
-      スタンドアロンはプラグインのビューアではありません。SDI を受けて、
-      グレーディングとフィルム段を通し、SDI で返します。
-      現場のモニタで監督が承認したルックが、そのままポストに届きます。
-      口頭の説明ではなく、ファイルとして。
-    </p>
+    <p>SDI を受けて、ルックを乗せて、SDI で返す。
+      モニタで承認したものが、言葉ではなくファイルとしてポストに届きます。</p>
 
     <div class="figure" style="margin-top:2.5rem">
       <svg viewBox="0 0 900 250" role="img"
@@ -472,42 +457,19 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         <text class="dg-t" x="765" y="205" text-anchor="middle">Resolve / Flame /</text>
         <text class="dg-t" x="765" y="223" text-anchor="middle">Premiere Pro</text>
       </svg>
-      <figcaption>
-        モニタに出ていたのと同じ値が、編集にも合成にも渡ります。
-        ルックをメールで言葉にする必要がありません。
-      </figcaption>
-    </div>
-
-    <div class="grid" style="margin-top:3rem">
-      <div>
-        <h3>入出力の両方</h3>
-        <p>AJA と Blackmagic のカードで入力も出力も。
-           出力は入力にロックするので、レートを指定させるのではなく
-           カメラのレートに従います。</p>
-      </div>
-      <div>
-        <h3>手前にグレーディング</h3>
-        <p>CDL / トーンカーブ / HSL カーブがフィルム段の手前に入ります。
-           ホストで「グレードノード → KOMA」と並べたときと同じ順序なので、
-           現場で決めたものをポストで組み直せます。</p>
-      </div>
-      <div>
-        <h3>遅延は最小</h3>
-        <p>1フレーム。モニタに出るのはレンダリングした絵そのもので、
-           その後ろでもう一度描いているわけではありません。</p>
-      </div>
-      <div>
-        <h3>静止画とクリップ</h3>
-        <p>フレームでもクリップでも開いて、再生し、コマ送りし、
-           フル解像度で書き出せます。ルックはチャートではなく素材で判断するもの。</p>
-      </div>
+      <figcaption>同じプリセットが編集でも合成でも開きます。</figcaption>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>何をするか</h2>
+    <h2>詳しく</h2>
+
+    <details>
+      <summary>何をしているか</summary>
+      <div class="body">
+
     <p>
       入力を露光量に戻し、ネガの特性曲線を通し、プリントに焼き、表示に戻します。
       色や粒子を後から足すのではなく、その一連を通した結果として出てきます。
@@ -534,12 +496,82 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
            倍率色収差、ゲートウィーブ、光線引き。</p>
       </div>
     </div>
-  </div>
-</section>
+      </div>
+    </details>
 
-<section>
-  <div class="wrap">
-    <h2>入っているもの</h2>
+    <details>
+      <summary>どのアプリでも同じルックになる理由</summary>
+      <div class="body">
+
+    <p>
+      1つのショットが、あるアプリでグレーディングされ、別のアプリで合成され、
+      さらに別のアプリで編集されます。KOMA はその全部の後ろにある1つのエンジンなので、
+      ドアをくぐるたびにルックを作り直す必要がありません。
+      素材が合わなくなって合成をやり直す、も起きません。
+    </p>
+    <div class="grid" style="margin-top:2.5rem">
+      <div>
+        <h3>1つのファイル</h3>
+        <p><code>.koma</code> プリセットが全ての値を持ちます。グレーディングで保存し、
+           合成で開き、編集で当てる。ただのテキストなので、
+           作品のリポジトリに他のものと一緒に入れられます。</p>
+      </div>
+      <div>
+        <h3>同じ数字</h3>
+        <p>プラグインもアプリも実装は1つで、CPU と GPU をフレーム単位で
+           突き合わせて検査しています。ホストごとに近似し直していないので、
+           同じプリセットは同じ絵になります。</p>
+      </div>
+      <div>
+        <h3>名前で書く</h3>
+        <p>銘柄・ルック・カラースペースは、メニューの位置ではなく名前で保存します。
+           項目を並べ替えても追加してもプリセットは壊れません。
+           作品の期間ずっと持ち回れるのはそのためです。</p>
+      </div>
+      <div>
+        <h3>素材の手前で切れる</h3>
+        <p>バイパスは入力をそのまま返します。素の画で合成を組み立てて、
+           仕上がったショットにフィルム段を乗せ直せます。
+           実際のフィルムで起きる順番と同じです。</p>
+      </div>
+    </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>現場での使い方</summary>
+      <div class="body">
+    <div class="grid" style="margin-top:3rem">
+      <div>
+        <h3>入出力の両方</h3>
+        <p>AJA と Blackmagic のカードで入力も出力も。
+           出力は入力にロックするので、レートを指定させるのではなく
+           カメラのレートに従います。</p>
+      </div>
+      <div>
+        <h3>手前にグレーディング</h3>
+        <p>CDL / トーンカーブ / HSL カーブがフィルム段の手前に入ります。
+           ホストで「グレードノード → KOMA」と並べたときと同じ順序なので、
+           現場で決めたものをポストで組み直せます。</p>
+      </div>
+      <div>
+        <h3>遅延は最小</h3>
+        <p>1フレーム。モニタに出るのはレンダリングした絵そのもので、
+           その後ろでもう一度描いているわけではありません。</p>
+      </div>
+      <div>
+        <h3>静止画とクリップ</h3>
+        <p>フレームでもクリップでも開いて、再生し、コマ送りし、
+           フル解像度で書き出せます。ルックはチャートではなく素材で判断するもの。</p>
+      </div>
+    </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>入っているもの</summary>
+      <div class="body">
+
     <dl>
       <dt>フィルム</dt><dd>14 種類。ネガ、リバーサル、モノクロ、プリント。</dd>
       <dt>ルック</dt><dd>Neutral を含む 6 種類。選ぶと各コントロールに値が書き込まれるので、
@@ -559,6 +591,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       After Effects は現時点では CPU で描画します。
       速度は機械と、どの段を有効にしているかで変わります。
     </p>
+      </div>
+    </details>
   </div>
 </section>
 

@@ -30,6 +30,9 @@
   --hair:rgba(57,66,78,.28);
 }
 *{box-sizing:border-box}
+/* figure は既定で margin:1em 40px を持つ。打ち消していなかったので、
+   ルックの画がセルの中で 70% の幅になり、右側だけ空いて見えていた。 */
+figure{margin:0}
 html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
 body{
   margin:0; background:var(--ink); color:var(--mid);
@@ -180,10 +183,14 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
  * say plainly what each host is, so nobody has to know that "OFX" includes the
  * one they use.
  */
+/* 3 列固定。auto-fit にすると幅しだいで 4+2 になり、最後の行に穴が空く。
+   6 つあるものは 3x2 か 2x3 で割り切れる形に置く。 */
 .hosts{
-  display:grid; gap:1px; grid-template-columns:repeat(auto-fit,minmax(13.5rem,1fr));
+  display:grid; gap:1px; grid-template-columns:repeat(3,1fr);
   background:var(--hair); border:1px solid var(--hair);
 }
+@media (max-width:54rem){ .hosts{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:34rem){ .hosts{grid-template-columns:1fr} }
 .host{background:var(--ink); padding:1.7rem 1.5rem}
 .host b{
   display:block; color:var(--hi); font-weight:300; font-size:1rem;
@@ -222,9 +229,11 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 
 /* ---- looks -------------------------------------------------------------- */
 .looks{
-  display:grid; gap:1px; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
+  display:grid; gap:1px; grid-template-columns:repeat(3,1fr);
   background:var(--hair); border:1px solid var(--hair);
 }
+@media (max-width:54rem){ .looks{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:34rem){ .looks{grid-template-columns:1fr} }
 .look{position:relative; background:var(--ink); overflow:hidden}
 .look img{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover}
 .look figcaption{
@@ -234,6 +243,27 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
   font-weight:400; color:var(--hi);
   background:linear-gradient(180deg,rgba(11,13,16,0),rgba(11,13,16,.86));
 }
+
+/* ---- the part most readers should be able to skip ------------------------
+ * Everything here is true and most of it is the reason the picture looks right,
+ * but a landing page that opens with characteristic curves is a page nobody
+ * finishes. It goes behind a summary so the people who want it can have all of
+ * it, and everybody else sees one line.
+ */
+details{border-top:1px solid var(--hair); padding:1.5rem 0}
+details summary{
+  cursor:pointer; list-style:none; color:var(--hi);
+  font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; font-weight:400;
+  display:flex; align-items:center; gap:.7rem;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::before{
+  content:"+"; color:var(--amber-lit); font-size:1rem; line-height:1;
+  width:1rem; text-align:center;
+}
+details[open] summary::before{content:"2"}
+details summary:hover{color:var(--amber-lit)}
+details .body{padding:2.2rem 0 .6rem 1.7rem}
 
 /* ---- lists -------------------------------------------------------------- */
 .grid{display:grid; gap:3rem; grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))}
@@ -315,9 +345,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <h1 class="word">KOMA</h1>
     </div>
     <p class="tagline">Film Emulation</p>
-    <p class="lede">A film emulation that models the stages between exposure and print,
-      in the order they happen. One installer, every host on the machine, and the
-      same look on an SDI monitor on set.</p>
+    <p class="lede">Film, modelled stage by stage. One installer, every host on
+      the machine, and the same look on set.</p>
     <p class="cta">
       <a class="btn btn-lit" href="#get">Download</a>
       <a class="btn btn-line" href="#get">Pricing</a>
@@ -332,33 +361,30 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
     <div class="hosts">
       <div class="host">
         <b>DaVinci Resolve</b>
-        <span>Studio, as an OFX plug-in. The grade page and Fusion.</span>
+        <span>OFX plug-in</span>
       </div>
       <div class="host">
         <b>Autodesk&reg; Flame&reg;</b>
-        <span>As an OFX plug-in, in Batch and on the timeline.</span>
+        <span>OFX plug-in</span>
       </div>
       <div class="host">
         <b>Adobe&reg; Premiere Pro&reg;</b>
-        <span>Native plug-in, rendered on the GPU.</span>
+        <span>Native plug-in, on the GPU</span>
       </div>
       <div class="host">
         <b>Adobe&reg; After Effects&reg;</b>
-        <span>Native plug-in. 32-bit float projects.</span>
+        <span>Native plug-in</span>
       </div>
       <div class="host">
         <b>Other OFX hosts</b>
-        <span>Nuke, Baselight, Vegas Pro and anything else that loads OFX.</span>
+        <span>Nuke, Baselight, Vegas Pro</span>
       </div>
       <div class="host">
         <b>KOMA, on its own</b>
-        <span>A standalone application with SDI in and out.</span>
+        <span>Standalone, with SDI in and out</span>
       </div>
     </div>
-    <p class="note" style="margin-top:1.6rem">
-      One installer carries all of it. There is no separate OFX purchase and no
-      separate Adobe purchase — buy KOMA and every host on the machine has it.
-    </p>
+    <p class="note" style="margin-top:1.6rem">One installer. One licence. Every host on the machine.</p>
   </div>
 </section>
 
@@ -391,58 +417,15 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         <figcaption>Faded Pastel</figcaption>
       </figure>
     </div>
-    <p class="note" style="margin-top:1.6rem">One frame through each of the six. Every control the look sets stays
-      adjustable afterwards.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>The same look, in every room</h2>
-    <p>
-      A shot is graded in one application, comped in another and cut in a third.
-      KOMA is one engine behind all of them, so the look does not have to be
-      rebuilt at each door — and a comp does not have to be handed back because
-      the plate no longer matches.
-    </p>
-    <div class="grid" style="margin-top:2.5rem">
-      <div>
-        <h3>One file</h3>
-        <p>A <code>.koma</code> preset carries every value. Save it on the grade,
-           open it in the comp, apply it on the cut. It is plain text, so it goes
-           in the show's repository with everything else.</p>
-      </div>
-      <div>
-        <h3>The same numbers</h3>
-        <p>The plug-ins and the application share one implementation, checked
-           frame against frame between CPU and GPU. A look is not re-approximated
-           per host, so the same preset gives the same picture.</p>
-      </div>
-      <div>
-        <h3>Written by name</h3>
-        <p>Stocks, looks and colourspaces are stored as names, not as positions
-           in a menu. Presets survive the list being reordered or added to, which
-           is what makes them safe to keep for the length of a show.</p>
-      </div>
-      <div>
-        <h3>Off before the plate</h3>
-        <p>Bypass returns the input untouched, so a comp can be built on the
-           clean plate and the film pass put back over the finished shot — the
-           order it happens in on a real one.</p>
-      </div>
-    </div>
+    <p class="note" style="margin-top:1.6rem">One frame, six looks. Every value a look sets stays adjustable.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <h2>On set</h2>
-    <p>
-      The standalone application is not a viewer for the plug-in. It takes SDI
-      in, applies a grade and the film pass, and sends SDI out — so the look the
-      director approves on the monitor is the look that arrives in post, as a
-      file rather than as a description of one.
-    </p>
+    <p>SDI in, the look applied, SDI out. What is approved on the monitor is
+      what arrives in post — as a file, not as a description.</p>
 
     <div class="figure" style="margin-top:2.5rem">
       <svg viewBox="0 0 900 250" role="img"
@@ -484,41 +467,19 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         <text class="dg-t" x="765" y="205" text-anchor="middle">Resolve / Flame /</text>
         <text class="dg-t" x="765" y="223" text-anchor="middle">Premiere Pro</text>
       </svg>
-      <figcaption>
-        The same values that were on the monitor go into the edit and the comp.
-        Nobody has to describe the look in an email.
-      </figcaption>
-    </div>
-
-    <div class="grid" style="margin-top:3rem">
-      <div>
-        <h3>Both directions</h3>
-        <p>AJA and Blackmagic cards, in and out. The output locks to the incoming
-           signal, so it follows the camera's rate rather than asking for one.</p>
-      </div>
-      <div>
-        <h3>A grade in front</h3>
-        <p>CDL, tone curve and HSL curves sit before the film stage — the same
-           order as a grade node in front of the plug-in, so what is set on set
-           is what is rebuilt in post.</p>
-      </div>
-      <div>
-        <h3>Minimum delay</h3>
-        <p>One frame. The picture that goes to the monitor is the picture that
-           was rendered, not a second pass behind it.</p>
-      </div>
-      <div>
-        <h3>Stills and clips</h3>
-        <p>Open a frame or a clip, play it, step it, write a full-resolution
-           still. The look is judged on the material, not on a chart.</p>
-      </div>
+      <figcaption>The same preset opens in the edit and in the comp.</figcaption>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>What it does</h2>
+    <h2>The detail</h2>
+
+    <details>
+      <summary>What it actually does</summary>
+      <div class="body">
+
     <p>
       The picture is taken back to exposure, run through the negative's
       characteristic curve, printed, and returned to display. Colour and grain
@@ -549,12 +510,81 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
            leaks.</p>
       </div>
     </div>
-  </div>
-</section>
+      </div>
+    </details>
 
-<section>
-  <div class="wrap">
-    <h2>What is in it</h2>
+    <details>
+      <summary>The same look in every application</summary>
+      <div class="body">
+
+    <p>
+      A shot is graded in one application, comped in another and cut in a third.
+      KOMA is one engine behind all of them, so the look does not have to be
+      rebuilt at each door — and a comp does not have to be handed back because
+      the plate no longer matches.
+    </p>
+    <div class="grid" style="margin-top:2.5rem">
+      <div>
+        <h3>One file</h3>
+        <p>A <code>.koma</code> preset carries every value. Save it on the grade,
+           open it in the comp, apply it on the cut. It is plain text, so it goes
+           in the show's repository with everything else.</p>
+      </div>
+      <div>
+        <h3>The same numbers</h3>
+        <p>The plug-ins and the application share one implementation, checked
+           frame against frame between CPU and GPU. A look is not re-approximated
+           per host, so the same preset gives the same picture.</p>
+      </div>
+      <div>
+        <h3>Written by name</h3>
+        <p>Stocks, looks and colourspaces are stored as names, not as positions
+           in a menu. Presets survive the list being reordered or added to, which
+           is what makes them safe to keep for the length of a show.</p>
+      </div>
+      <div>
+        <h3>Off before the plate</h3>
+        <p>Bypass returns the input untouched, so a comp can be built on the
+           clean plate and the film pass put back over the finished shot — the
+           order it happens in on a real one.</p>
+      </div>
+    </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>On set, in full</summary>
+      <div class="body">
+    <div class="grid" style="margin-top:3rem">
+      <div>
+        <h3>Both directions</h3>
+        <p>AJA and Blackmagic cards, in and out. The output locks to the incoming
+           signal, so it follows the camera's rate rather than asking for one.</p>
+      </div>
+      <div>
+        <h3>A grade in front</h3>
+        <p>CDL, tone curve and HSL curves sit before the film stage — the same
+           order as a grade node in front of the plug-in, so what is set on set
+           is what is rebuilt in post.</p>
+      </div>
+      <div>
+        <h3>Minimum delay</h3>
+        <p>One frame. The picture that goes to the monitor is the picture that
+           was rendered, not a second pass behind it.</p>
+      </div>
+      <div>
+        <h3>Stills and clips</h3>
+        <p>Open a frame or a clip, play it, step it, write a full-resolution
+           still. The look is judged on the material, not on a chart.</p>
+      </div>
+    </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>What is in it</summary>
+      <div class="body">
+
     <dl>
       <dt>Stocks</dt><dd>Fourteen. Negative, reversal, monochrome, print.</dd>
       <dt>Looks</dt><dd>Six including Neutral. Picking one writes its values into
@@ -575,6 +605,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       After Effects renders on the CPU at present. How fast it runs depends on
       the machine and on which stages are on.
     </p>
+      </div>
+    </details>
   </div>
 </section>
 
