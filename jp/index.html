@@ -146,6 +146,16 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 .hero-veil{z-index:2}
 
 .lockup{display:flex; align-items:center; gap:clamp(1rem,2.6vw,2rem); flex-wrap:wrap}
+/* The tagline belongs under the word, not under the gate: it names the word.
+   The indent that used to sit on .word is here instead, so both lines start
+   from the same place. On .word it was a fraction of the wordmark's own size —
+   0.34em of 6rem is 34px, and 0.34em of the tagline's 0.64rem is 4px, so
+   putting the same rule on both would have left them 30px apart. Once it is
+   the column's indent, it is one number for both. */
+.word-col{
+  display:flex; flex-direction:column;
+  padding-left:calc(.34 * clamp(2.8rem,9vw,6rem));
+}
 .gate{
   width:clamp(56px,7vw,92px); height:auto; flex:0 0 auto;
   filter:drop-shadow(0 0 .6rem rgba(4,6,8,.9)) drop-shadow(0 0 1.8rem rgba(4,6,8,.7));
@@ -153,7 +163,6 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 .word{
   font-size:clamp(2.8rem,9vw,6rem); font-weight:100;
   letter-spacing:.34em; margin:0; line-height:1; color:var(--hi);
-  padding-left:.34em;
   /* tight, middle, wide. The tight layer gives the stroke its edge, the wide one
      separates the block from the picture, and the middle keeps the two from
      reading as two effects instead of one. */
@@ -161,7 +170,7 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
               0 0 4.5rem rgba(4,6,8,.7);
 }
 .tagline{
-  margin:1rem 0 0; color:var(--hi);
+  margin:.9rem 0 0; color:var(--hi);
   font-size:.64rem; letter-spacing:.5em; text-transform:uppercase; font-weight:400;
   text-shadow:0 0 .5rem rgba(4,6,8,.95), 0 0 1.4rem rgba(4,6,8,.85),
               0 0 3rem rgba(4,6,8,.6);
@@ -473,9 +482,11 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         <circle cx="60" cy="60" r="46" fill="url(#bloom)"/>
         <circle cx="60" cy="60" r="9.5" fill="#fff9f3"/>
       </svg>
-      <h1 class="word">KOMA</h1>
+      <div class="word-col">
+        <h1 class="word">KOMA</h1>
+        <p class="tagline">Film Emulation</p>
+      </div>
     </div>
-    <p class="tagline">Film Emulation</p>
   </div>
 </header>
 
@@ -752,7 +763,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <dt>Windows / Linux</dt><dd>対応予定。</dd>
     </dl>
     <p class="note" style="margin-top:2rem">
-      After Effects は現時点では CPU で描画します。速度はマシンと、どの処理を有効にしているかで変わります。
+      After Effects は現時点では CPU で描画します。<br><span class="np">速度はマシンと、</span><span class="np">どの処理を有効にしているかで変わります。</span>
     </p>
       </div>
     </details>
