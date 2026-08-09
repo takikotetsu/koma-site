@@ -464,13 +464,21 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
        in a still. The shot runs untouched: no dimming and no desaturation,
        because that would hide what it is here to show. The still underneath is
        the first frame, so nothing shifts when the video takes over. -->
-  <img class="hero-media hero-still" src="img/hero.jpg?v=bce73267"
-       srcset="img/hero@960.jpg?v=bce73267 960w, img/hero.jpg?v=bce73267 1920w"
+  <img class="hero-media hero-still" src="img/hero.jpg?v=eb117b39"
+       srcset="img/hero@960.jpg?v=eb117b39 960w, img/hero.jpg?v=eb117b39 1920w"
        sizes="100vw" alt="" width="1920" height="1080">
   <video class="hero-media hero-video" autoplay muted loop playsinline
-         preload="metadata" poster="img/hero.jpg?v=bce73267" width="1920" height="1080"
+         preload="metadata" poster="img/hero.jpg?v=eb117b39" width="1920" height="1080"
          aria-hidden="true" tabindex="-1">
-    <source src="vid/hero.mp4?v=bce73267" type="video/mp4">
+    <!-- AV1 first, for its film grain synthesis: the encoder takes the grain
+         out, sends a clean picture cheaply, and the decoder puts the grain
+         back from a handful of parameters. Grain is the one thing a bitrate
+         cannot afford — h264 at three times this file size keeps 16% of it,
+         this keeps 72% — and grain is what the page is selling. The codecs
+         string is not decoration: without it Safari would claim the file and
+         then fail, instead of moving on to the line below. -->
+    <source src="vid/hero.av1.mp4?v=eb117b39" type='video/mp4; codecs="av01.0.08M.08"'>
+    <source src="vid/hero.mp4?v=eb117b39" type="video/mp4">
   </video>
   <div class="hero-veil"></div>
   <div class="wrap">
@@ -578,9 +586,9 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <span class="cmp-tag cmp-l">Bypass</span>
       <span class="cmp-tag cmp-r">Film Classic</span>
     </div>
-    <div class="compare" data-ver="bce73267" data-base="img/" data-prefix="look-">
-      <img src="img/source.jpg?v=bce73267" alt="" width="1200" height="675">
-      <div class="cmp-after"><img src="img/look-filmClassic.jpg?v=bce73267" alt="" width="1200" height="675"></div>
+    <div class="compare" data-ver="eb117b39" data-base="img/" data-prefix="look-">
+      <img src="img/source.jpg?v=eb117b39" alt="" width="1200" height="675">
+      <div class="cmp-after"><img src="img/look-filmClassic.jpg?v=eb117b39" alt="" width="1200" height="675"></div>
       <div class="cmp-line"></div>
       <input class="cmp-range" type="range" min="0" max="100" value="50"
              aria-label="Bypass">
@@ -604,9 +612,9 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <span class="cmp-tag cmp-l">All off</span>
       <span class="cmp-tag cmp-r">Grain</span>
     </div>
-    <div class="compare" data-ver="bce73267" data-base="img/" data-prefix="fx-">
-      <img src="img/fx-base.jpg?v=bce73267" alt="" width="1200" height="675">
-      <div class="cmp-after"><img src="img/fx-grain.jpg?v=bce73267" alt="" width="1200" height="675"></div>
+    <div class="compare" data-ver="eb117b39" data-base="img/" data-prefix="fx-">
+      <img src="img/fx-base.jpg?v=eb117b39" alt="" width="1200" height="675">
+      <div class="cmp-after"><img src="img/fx-grain.jpg?v=eb117b39" alt="" width="1200" height="675"></div>
       <div class="cmp-line"></div>
       <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="All off">
     </div>
