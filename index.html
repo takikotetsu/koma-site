@@ -91,9 +91,16 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
  */
 .hero{
   position:relative;
-  /* a banner, not a full screen: 2:1, with a floor so the words still have
-     somewhere to sit on a phone, where 2:1 would be under 200px tall */
-  aspect-ratio:2/1; min-height:27rem; max-height:86vh;
+  /* A banner, not a full screen: 2:1, with a floor so the words still have
+     somewhere to sit on a phone, where 2:1 would be under 200px tall, and a
+     ceiling so it does not fill a tall window.
+     width:100% is not decoration. aspect-ratio works on whichever axis is not
+     already definite, so once max-height stops the height, the ratio starts
+     taking it out of the WIDTH instead: at 1440x560 the banner came out 963px
+     wide with black beside it. Giving the width explicitly leaves the ratio only
+     the height to decide, and max-height then merely crops it — which is what
+     object-fit:cover on the media is for. */
+  width:100%; aspect-ratio:2/1; min-height:27rem; max-height:86vh;
   display:flex; align-items:flex-end;
   overflow:hidden; background:#000;
 }
