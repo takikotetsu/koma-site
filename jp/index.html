@@ -283,22 +283,59 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 .plan li::before{content:""; position:absolute; left:0; top:1.05em;
   width:.45rem; height:1px; background:var(--rule)}
 
-/* ---- looks -------------------------------------------------------------- */
-.looks{
-  display:grid; gap:1px; grid-template-columns:repeat(3,1fr);
-  background:var(--hair); border:1px solid var(--hair);
+/* ---- before and after ---------------------------------------------------
+ * Six thumbnails of the same frame did not sell anything: at that size the
+ * looks differ by less than the eye picks up in a grid, and there was nothing
+ * to compare them against. One large frame with the untouched plate under it
+ * and a handle to drag says in one gesture what the grid could not say in six
+ * pictures.
+ *
+ * The layer on top is clipped rather than resized, so the two halves stay in
+ * register: any scaling difference between them would read as the look changing
+ * the framing.
+ */
+.compare{
+  --pos:50%;
+  position:relative; overflow:hidden; border:1px solid var(--hair);
+  background:var(--ink); line-height:0; user-select:none;
 }
-@media (max-width:54rem){ .looks{grid-template-columns:repeat(2,1fr)} }
-@media (max-width:34rem){ .looks{grid-template-columns:1fr} }
-.look{position:relative; background:var(--ink); overflow:hidden}
-.look img{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover}
-.look figcaption{
-  position:absolute; left:0; bottom:0; right:0;
-  padding:3rem 1.2rem 1rem;
-  font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
-  font-weight:400; color:var(--hi);
-  background:linear-gradient(180deg,rgba(11,13,16,0),rgba(11,13,16,.9));
+.compare > img{display:block; width:100%; height:auto}
+.cmp-after img{display:block; width:100%; height:100%; object-fit:cover}
+.cmp-after{position:absolute; inset:0; clip-path:inset(0 0 0 var(--pos))}
+.cmp-line{
+  position:absolute; top:0; bottom:0; left:var(--pos); width:1px;
+  background:rgba(255,249,243,.85); pointer-events:none;
 }
+.cmp-line::after{
+  content:""; position:absolute; top:50%; left:50%; width:2.6rem; height:2.6rem;
+  transform:translate(-50%,-50%); border:1px solid rgba(255,249,243,.85);
+  border-radius:50%; background:rgba(11,13,16,.35);
+}
+.cmp-range{
+  position:absolute; inset:0; width:100%; height:100%; margin:0;
+  opacity:0; cursor:ew-resize; -webkit-appearance:none; appearance:none;
+  background:transparent;
+}
+.cmp-range::-webkit-slider-thumb{-webkit-appearance:none; width:3rem; height:100%}
+.cmp-range::-moz-range-thumb{width:3rem; height:100%; border:0; background:transparent}
+.cmp-tag{
+  position:absolute; bottom:1rem; font-size:.62rem; letter-spacing:.24em;
+  text-transform:uppercase; color:var(--hi); line-height:1;
+  padding:.5rem .8rem; background:rgba(11,13,16,.55); pointer-events:none;
+}
+.cmp-l{left:1rem}
+.cmp-r{right:1rem; color:var(--amber-lit)}
+
+/* the looks, as a row of switches under the frame */
+.chips{display:flex; flex-wrap:wrap; gap:1px; margin-top:1px;
+  background:var(--hair); border:1px solid var(--hair); border-top:0}
+.chip{
+  flex:1 1 8rem; background:var(--panel); color:var(--lo);
+  border:0; padding:1rem .6rem; cursor:pointer; font:inherit;
+  font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; font-weight:400;
+}
+.chip:hover{color:var(--hi)}
+.chip.on{color:var(--amber-lit); background:rgba(201,96,58,.1)}
 
 /* ---- the part most readers should be able to skip ------------------------
  * Everything here is true and most of it is the reason the picture looks right,
@@ -477,33 +514,24 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
   <div class="wrap">
     <h2>ルック</h2>
     <p class="head">ルックから始めて、あとは自分の絵に。</p>
-    <div class="looks">
-      <figure class="look">
-        <img src="../img/look-neutral.jpg" alt="Neutral" loading="lazy" width="760" height="428">
-        <figcaption>Neutral</figcaption>
-      </figure>
-      <figure class="look">
-        <img src="../img/look-filmClassic.jpg" alt="Film Classic" loading="lazy" width="760" height="428">
-        <figcaption>Film Classic</figcaption>
-      </figure>
-      <figure class="look">
-        <img src="../img/look-tealAmber.jpg" alt="Teal &amp; Amber" loading="lazy" width="760" height="428">
-        <figcaption>Teal &amp; Amber</figcaption>
-      </figure>
-      <figure class="look">
-        <img src="../img/look-goldenWarm.jpg" alt="Print Master" loading="lazy" width="760" height="428">
-        <figcaption>Print Master</figcaption>
-      </figure>
-      <figure class="look">
-        <img src="../img/look-neonNight.jpg" alt="Neon Night" loading="lazy" width="760" height="428">
-        <figcaption>Neon Night</figcaption>
-      </figure>
-      <figure class="look">
-        <img src="../img/look-fadedPastel.jpg" alt="Faded Pastel" loading="lazy" width="760" height="428">
-        <figcaption>Faded Pastel</figcaption>
-      </figure>
+    <div class="compare" data-base="../img/">
+      <img src="../img/source.jpg" alt="" width="760" height="427">
+      <div class="cmp-after"><img id="cmpAfter" src="../img/look-filmClassic.jpg" alt="" width="760" height="427"></div>
+      <div class="cmp-line"></div>
+      <input class="cmp-range" type="range" min="0" max="100" value="50"
+             aria-label="Bypass">
+      <span class="cmp-tag cmp-l">Bypass</span>
+      <span class="cmp-tag cmp-r" id="cmpName">Film Classic</span>
     </div>
-    <p class="note" style="margin-top:1.6rem">同じ1フレームを6つのルックで。入力は S-Log3。</p>
+    <div class="chips">
+      <button class="chip" data-look="neutral">Neutral</button>
+      <button class="chip on" data-look="filmClassic">Film Classic</button>
+      <button class="chip" data-look="tealAmber">Teal & Amber</button>
+      <button class="chip" data-look="goldenWarm">Print Master</button>
+      <button class="chip" data-look="neonNight">Neon Night</button>
+      <button class="chip" data-look="fadedPastel">Faded Pastel</button>
+    </div>
+    <p class="note" style="margin-top:1.6rem">同じ1フレームの、KOMA なしとあり。ハンドルをドラッグして、下でルックを選べます。入力は S-Log3。</p>
   </div>
 </section>
 
@@ -748,6 +776,36 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
     <p class="lang"><a href="../">English</a></p>
   </div>
 </footer>
+
+
+<script>
+// One handle, one row of switches. Inline because the page has to stand on its
+// own: no external script, nothing to fail while somebody is reading.
+(function () {
+  var box = document.querySelector('.compare');
+  if (!box) return;
+  var base = box.dataset.base,
+      range = box.querySelector('.cmp-range'),
+      after = document.getElementById('cmpAfter'),
+      name  = document.getElementById('cmpName');
+
+  range.addEventListener('input', function () {
+    box.style.setProperty('--pos', range.value + '%');
+  });
+
+  // Fetched now rather than on the click, so the first switch is not a flash of
+  // nothing where the picture was.
+  document.querySelectorAll('.chip').forEach(function (chip) {
+    new Image().src = base + 'look-' + chip.dataset.look + '.jpg';
+    chip.addEventListener('click', function () {
+      document.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
+      chip.classList.add('on');
+      after.src = base + 'look-' + chip.dataset.look + '.jpg';
+      name.textContent = chip.textContent;
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
