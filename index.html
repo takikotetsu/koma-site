@@ -455,13 +455,13 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
        in a still. The shot runs untouched: no dimming and no desaturation,
        because that would hide what it is here to show. The still underneath is
        the first frame, so nothing shifts when the video takes over. -->
-  <img class="hero-media hero-still" src="img/hero.jpg"
-       srcset="img/hero@960.jpg 960w, img/hero.jpg 1920w"
+  <img class="hero-media hero-still" src="img/hero.jpg?v=564bf9dc"
+       srcset="img/hero@960.jpg?v=564bf9dc 960w, img/hero.jpg?v=564bf9dc 1920w"
        sizes="100vw" alt="" width="1920" height="1080">
   <video class="hero-media hero-video" autoplay muted loop playsinline
-         preload="metadata" poster="img/hero.jpg" width="1920" height="1080"
+         preload="metadata" poster="img/hero.jpg?v=564bf9dc" width="1920" height="1080"
          aria-hidden="true" tabindex="-1">
-    <source src="vid/hero.mp4" type="video/mp4">
+    <source src="vid/hero.mp4?v=564bf9dc" type="video/mp4">
   </video>
   <div class="hero-veil"></div>
   <div class="wrap">
@@ -567,9 +567,9 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <span class="cmp-tag cmp-l">Bypass</span>
       <span class="cmp-tag cmp-r">Film Classic</span>
     </div>
-    <div class="compare" data-base="img/" data-prefix="look-">
-      <img src="img/source.jpg" alt="" width="1200" height="675">
-      <div class="cmp-after"><img src="img/look-filmClassic.jpg" alt="" width="1200" height="675"></div>
+    <div class="compare" data-ver="564bf9dc" data-base="img/" data-prefix="look-">
+      <img src="img/source.jpg?v=564bf9dc" alt="" width="1200" height="675">
+      <div class="cmp-after"><img src="img/look-filmClassic.jpg?v=564bf9dc" alt="" width="1200" height="675"></div>
       <div class="cmp-line"></div>
       <input class="cmp-range" type="range" min="0" max="100" value="50"
              aria-label="Bypass">
@@ -594,9 +594,9 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <span class="cmp-tag cmp-l">All off</span>
       <span class="cmp-tag cmp-r">Grain</span>
     </div>
-    <div class="compare" data-base="img/" data-prefix="fx-">
-      <img src="img/fx-base.jpg" alt="" width="1200" height="666">
-      <div class="cmp-after"><img src="img/fx-grain.jpg" alt="" width="1200" height="666"></div>
+    <div class="compare" data-ver="564bf9dc" data-base="img/" data-prefix="fx-">
+      <img src="img/fx-base.jpg?v=564bf9dc" alt="" width="1200" height="666">
+      <div class="cmp-after"><img src="img/fx-grain.jpg?v=564bf9dc" alt="" width="1200" height="666"></div>
       <div class="cmp-line"></div>
       <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="All off">
     </div>
@@ -876,7 +876,12 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 // loading nothing from anywhere else.
 (function () {
   document.querySelectorAll('.compare').forEach(function (box) {
-    var base   = box.dataset.base,
+    // The publish step stamps a version on every picture so a changed one is a
+    // changed URL. Without it the file name stays the same, the browser keeps
+    // what it has for ten minutes, and the person who asked for the change is
+    // told it is done while looking at the old one.
+    var ver    = box.dataset.ver ? '?v=' + box.dataset.ver : '',
+        base   = box.dataset.base,
         prefix = box.dataset.prefix,
         range  = box.querySelector('.cmp-range'),
         after  = box.querySelector('.cmp-after img'),
@@ -891,11 +896,11 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
     chips.querySelectorAll('.chip').forEach(function (chip) {
       // Fetched now rather than on the click, so the first switch is not a
       // flash of nothing where the picture was.
-      new Image().src = base + prefix + chip.dataset.item + '.jpg';
+      new Image().src = base + prefix + chip.dataset.item + '.jpg' + ver;
       chip.addEventListener('click', function () {
         chips.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
         chip.classList.add('on');
-        after.src = base + prefix + chip.dataset.item + '.jpg';
+        after.src = base + prefix + chip.dataset.item + '.jpg' + ver;
         label.textContent = chip.textContent;
         var desc = box.parentElement.querySelector('.cmp-desc');
         if (desc && chip.dataset.desc) desc.textContent = chip.dataset.desc;
