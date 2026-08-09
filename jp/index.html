@@ -96,8 +96,9 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
  * the type's side: each line carries its own halo, three layers from tight to
  * wide, sized to survive the brightest frame rather than the average one.
  *
- * Measured over every frame of the loop, the band the words occupy averages
- * between 69 and 139 of 255 — the words are in the lower left and even that shot
+ * The reel runs its whole length, so it goes through a high-key shot on a white
+ * wall. Measured over all 1559 frames, the band the words occupy averages
+ * between 27 and 139 of 255 — the words are in the lower left and even that shot
  * keeps flowers and shoulders down there — but 140 is bright enough that a
  * hairline needs the halo, not just a hint of one. That halo is the cost of
  * leaving the picture alone, and it is visible as a soft glow on the pale
@@ -456,11 +457,11 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 <header class="hero">
   <!-- The picture first, and it moves. See the note in ../index.html: the shot
        runs untouched and the legibility is bought on the type's side. -->
-  <img class="hero-media hero-still" src="../img/hero.jpg?v=ad4c8d49"
-       srcset="../img/hero@960.jpg?v=ad4c8d49 960w, ../img/hero.jpg?v=ad4c8d49 1920w"
+  <img class="hero-media hero-still" src="../img/hero.jpg?v=eb117b39"
+       srcset="../img/hero@960.jpg?v=eb117b39 960w, ../img/hero.jpg?v=eb117b39 1920w"
        sizes="100vw" alt="" width="1920" height="1080">
   <video class="hero-media hero-video" autoplay muted loop playsinline
-         preload="metadata" poster="../img/hero.jpg?v=ad4c8d49" width="1920" height="1080"
+         preload="metadata" poster="../img/hero.jpg?v=eb117b39" width="1920" height="1080"
          aria-hidden="true" tabindex="-1">
     <!-- AV1 first, for its film grain synthesis: the encoder takes the grain
          out, sends a clean picture cheaply, and the decoder puts the grain
@@ -469,8 +470,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
          this keeps 72% — and grain is what the page is selling. The codecs
          string is not decoration: without it Safari would claim the file and
          then fail, instead of moving on to the line below. -->
-    <source src="../vid/hero.av1.mp4?v=ad4c8d49" type='video/mp4; codecs="av01.0.08M.08"'>
-    <source src="../vid/hero.mp4?v=ad4c8d49" type="video/mp4">
+    <source src="../vid/hero.av1.mp4?v=eb117b39" type='video/mp4; codecs="av01.0.08M.08"'>
+    <source src="../vid/hero.mp4?v=eb117b39" type="video/mp4">
   </video>
   <div class="hero-veil"></div>
   <div class="wrap">
@@ -575,9 +576,9 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <span class="cmp-tag cmp-l">Bypass</span>
       <span class="cmp-tag cmp-r">Film Classic</span>
     </div>
-    <div class="compare" data-ver="ad4c8d49" data-base="../img/" data-prefix="look-">
-      <img src="../img/source.jpg?v=ad4c8d49" alt="" width="1200" height="675">
-      <div class="cmp-after"><img src="../img/look-filmClassic.jpg?v=ad4c8d49" alt="" width="1200" height="675"></div>
+    <div class="compare" data-ver="eb117b39" data-base="../img/" data-prefix="look-">
+      <img src="../img/source.jpg?v=eb117b39" alt="" width="1200" height="675">
+      <div class="cmp-after"><img src="../img/look-filmClassic.jpg?v=eb117b39" alt="" width="1200" height="675"></div>
       <div class="cmp-line"></div>
       <input class="cmp-range" type="range" min="0" max="100" value="50"
              aria-label="Bypass">
@@ -601,9 +602,9 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <span class="cmp-tag cmp-l">すべてオフ</span>
       <span class="cmp-tag cmp-r">粒子</span>
     </div>
-    <div class="compare" data-ver="ad4c8d49" data-base="../img/" data-prefix="fx-">
-      <img src="../img/fx-base.jpg?v=ad4c8d49" alt="" width="1200" height="675">
-      <div class="cmp-after"><img src="../img/fx-grain.jpg?v=ad4c8d49" alt="" width="1200" height="675"></div>
+    <div class="compare" data-ver="eb117b39" data-base="../img/" data-prefix="fx-">
+      <img src="../img/fx-base.jpg?v=eb117b39" alt="" width="1200" height="675">
+      <div class="cmp-after"><img src="../img/fx-grain.jpg?v=eb117b39" alt="" width="1200" height="675"></div>
       <div class="cmp-line"></div>
       <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="すべてオフ">
     </div>
