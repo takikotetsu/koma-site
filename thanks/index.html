@@ -128,7 +128,16 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 }
 .hero-media{
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  /* Up from black, once, on load. Both layers — the still and the video — so
+     there is nothing to see through while it happens; the hero's own black is
+     what shows. Done here rather than burnt into the file because a fade in the
+     encode would replay every time the loop came round, and because the one
+     thing that must not be spent on it is bitrate: a slow ramp out of black is
+     hard to compress, and grain is what that bitrate is for. */
+  animation:heroIn 1.8s ease-out both;
 }
+@keyframes heroIn{from{opacity:0} to{opacity:1}}
+@media (prefers-reduced-motion:reduce){ .hero-media{animation:none} }
 /* A phone crops a 16:9 shot down to a tall slice, and the middle of this one is
    the book — the brightest thing in the frame, and where the words would land.
    Taking the slice from further right puts them on hair and shoulder instead.
