@@ -222,16 +222,24 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 /* 読みが分からないと、人に言えない。ロゴの上に小さく置くのは日本語の
    製品では見慣れた形で、字面を邪魔しない。写真の上に乗るので、
    .word と同じ理由でハローを持たせている。 */
+/* 9.9px で入れてみたが、読まれずに終わる大きさだった。読み方を伝えるのが
+   目的なので、気づかずに通り過ぎない大きさまで上げてある。大きくしたぶん
+   字間と太さは落とす — ワードマークが font-weight:100 のヘアラインなので、
+   読みのほうが太いと先にそちらが目に入って主従が入れ替わる。 */
 .yomi{
-  margin:.85rem 0 0; color:var(--hi);
-  font-size:.62rem; letter-spacing:.42em; font-weight:400;
+  margin:0; color:var(--hi);
+  font-size:1.15rem; letter-spacing:.28em; font-weight:200;
   text-shadow:0 0 .5rem rgba(4,6,8,.95), 0 0 1.4rem rgba(4,6,8,.85),
               0 0 3rem rgba(4,6,8,.6);
 }
-/* 読みとタグラインは小さい行が2本続くので、字面のあいだは詰める。
-   .tagline そのものは触らない — 英語ページには読みが無く、そこでは
-   ワードマークの直下に .9rem で付くのが正しい。 */
-.yomi + .tagline{margin-top:.35rem}
+/* 読みは名前の真横に置く。タグラインの上や下に積むと、同じくらいの
+   大きさの行が続いて「読み」なのか「説明」なのか読み分けられない。
+   ベースライン揃え。gap が小さいのは、ワードマークが .34em の字送りを
+   持っていて最後の A のあとに既に余白があるため。
+   .tagline は触らない — 英語ページには読みが無く、そこではワードマークの
+   直下に .9rem で付くのが正しい。 */
+.word-row{display:flex; align-items:baseline; gap:.55rem}
+.word-row .word{margin:0}
 .tagline{
   margin:.9rem 0 0; color:var(--hi);
   font-size:.64rem; letter-spacing:.5em; text-transform:uppercase; font-weight:400;
