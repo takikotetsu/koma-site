@@ -3,12 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KOMA — Film Emulation</title>
-<meta name="description" content="KOMA is a film emulation plug-in for OFX hosts and for Adobe Premiere Pro and After Effects, with a standalone application that puts the same look on an SDI monitor on set (SDI is in beta).">
-
-<!-- The palette is the application's, taken from apps/KomaBrand.h so the site
-     and the splash cannot drift apart. If the mark changes there, change it
-     here in the same commit. -->
+<title>KOMA End User License Agreement — KOMA</title>
 <style>
 /* KOMA — one stylesheet, both languages.
  *
@@ -552,520 +547,112 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 </style>
 </head>
 <body>
-
-<header class="hero">
-  <!-- The picture first, and it moves. A page about how something looks should
-       show it before it explains itself, and grain and gate weave do not exist
-       in a still. The shot runs untouched: no dimming and no desaturation,
-       because that would hide what it is here to show. The still underneath is
-       the first frame, so nothing shifts when the video takes over. -->
-  <img class="hero-media hero-still" src="img/hero.jpg?v=eb117b39"
-       srcset="img/hero@960.jpg?v=eb117b39 960w, img/hero.jpg?v=eb117b39 1920w"
-       sizes="100vw" alt="" width="1920" height="1080">
-  <video class="hero-media hero-video" autoplay muted loop playsinline
-         preload="metadata" poster="img/hero.jpg?v=eb117b39" width="1920" height="1080"
-         aria-hidden="true" tabindex="-1">
-    <!-- AV1 first, for its film grain synthesis: the encoder takes the grain
-         out, sends a clean picture cheaply, and the decoder puts the grain
-         back from a handful of parameters. Grain is the one thing a bitrate
-         cannot afford — h264 at three times this file size keeps 16% of it,
-         this keeps 72% — and grain is what the page is selling. The codecs
-         string is not decoration: without it Safari would claim the file and
-         then fail, instead of moving on to the line below. -->
-    <source src="vid/hero.av1.mp4?v=eb117b39" type='video/mp4; codecs="av01.0.08M.08"'>
-    <source src="vid/hero.mp4?v=eb117b39" type="video/mp4">
-  </video>
-  <div class="hero-veil"></div>
-  <div class="wrap">
-    <div class="lockup">
-      <svg class="gate" viewBox="0 0 120 120" role="img" aria-label="KOMA">
-        <defs>
-          <radialGradient id="bloom" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"   stop-color="#fff9f3" stop-opacity="1"/>
-            <stop offset="14%"  stop-color="#ffdcb4" stop-opacity=".92"/>
-            <stop offset="38%"  stop-color="#c9603a" stop-opacity=".42"/>
-            <stop offset="100%" stop-color="#c9603a" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <rect x="10" y="10" width="100" height="100" rx="9"
-              fill="none" stroke="#39424e" stroke-width="4"/>
-        <circle cx="60" cy="60" r="46" fill="url(#bloom)"/>
-        <circle cx="60" cy="60" r="9.5" fill="#fff9f3"/>
-      </svg>
-      <div class="word-col">
-        <h1 class="word">KOMA</h1>
-        <p class="tagline">Film Emulation</p>
-      </div>
-    </div>
-  </div>
-</header>
-
-<section class="intro">
-  <div class="wrap">
-    <h2>Film emulation</h2>
-    <p class="line">Digital, in the developer.</p>
-    <p class="sub">Exposure, development, print.<br>Run in the order they happen, so the colour and the grain are not something added afterwards.</p>
-    <p class="sub">Resolve, Flame, Premiere Pro, After Effects, and the standalone application for set — its SDI in beta. One installer gets you all of it.</p>
-    <p class="cta">
-      <a class="btn btn-lit" href="#get">Download</a>
-      <a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">&yen;19,800 / year</a>
-    </p>
-    <p class="note" style="margin:0">Free to use and watermarked until it is licensed. macOS 11 and later.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>In short</h2>
-    <div class="proof">
-      <div class="proof-cell">
-        <p class="proof-num">14</p>
-        <p class="proof-lab">stocks, six looks</p>
-        <p class="proof-sub">Negative, reversal, monochrome and print. Every value
-          a look sets stays adjustable.</p>
-      </div>
-      <div class="proof-cell">
-        <p class="proof-num">1<small>INSTALLER</small></p>
-        <p class="proof-lab">every host on the machine</p>
-        <p class="proof-sub">OFX and Adobe in one package, and one licence for
-          all of it. No per-host purchase.</p>
-      </div>
-      <div class="proof-cell">
-        <p class="proof-num">4K<small>REAL TIME</small></p>
-        <p class="proof-lab">Metal on every stage</p>
-        <p class="proof-sub">Grain, halation, MTF and gate weave all on the GPU.
-          <br><span class="foot">Measured on a MacBook Pro (M1 Max)</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>Where it runs</h2>
-    <p class="head">Buy it once. Use it everywhere you work.</p>
-    <div class="hosts">
-      <div class="host">
-        <b>DaVinci Resolve Studio</b>
-        <span>OFX plug-in &mdash; the free edition does not load OFX plug-ins</span>
-      </div>
-      <div class="host">
-        <b>Autodesk&reg; Flame&reg;</b>
-        <span>OFX plug-in</span>
-      </div>
-      <div class="host">
-        <b>Adobe&reg; Premiere Pro&reg;</b>
-        <span>Native plug-in, on the GPU</span>
-      </div>
-      <div class="host">
-        <b>Adobe&reg; After Effects&reg;</b>
-        <span>Native plug-in</span>
-      </div>
-      <div class="host">
-        <b>Other OFX hosts</b>
-        <span>Nuke, Baselight, Vegas Pro <em>(untested)</em></span>
-      </div>
-      <div class="host">
-        <b>KOMA, on its own</b>
-        <span>Standalone, with SDI in and out <em>(beta)</em></span>
-      </div>
-    </div>
-    <p class="note">Nuke, Baselight and Vegas Pro should load KOMA &mdash; it is a standard OFX plug-in and there is nothing host-specific in it &mdash; but we have not run it in any of them. If you work in one and are willing to try it, write to <a href="mailto:support.koma@kotetsu.work">support.koma@kotetsu.work</a> and we will give you a licence for free.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>The looks</h2>
-    <p class="head">Six presets, every one of them editable.</p>
-    <div class="cmp-head">
-      <span class="cmp-tag cmp-l">Bypass</span>
-      <span class="cmp-tag cmp-r">Film Classic</span>
-    </div>
-    <div class="compare" data-ver="eb117b39" data-base="img/" data-prefix="look-">
-      <img src="img/source.jpg?v=eb117b39" alt="" width="1200" height="675">
-      <div class="cmp-after"><img src="img/look-filmClassic.jpg?v=eb117b39" alt="" width="1200" height="675"></div>
-      <div class="cmp-line"></div>
-      <input class="cmp-range" type="range" min="0" max="100" value="50"
-             aria-label="Bypass">
-    </div>
-    <div class="chips">
-      <button class="chip" data-item="neutral">Neutral</button>
-      <button class="chip on" data-item="filmClassic">Film Classic</button>
-      <button class="chip" data-item="tealAmber">Teal & Amber</button>
-      <button class="chip" data-item="goldenWarm">Print Master</button>
-      <button class="chip" data-item="neonNight">Neon Night</button>
-      <button class="chip" data-item="fadedPastel">Faded Pastel</button>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>Stage by stage</h2>
-    <p class="head">What happens on film, one thing at a time.</p>
-    <div class="cmp-head">
-      <span class="cmp-tag cmp-l">All off</span>
-      <span class="cmp-tag cmp-r">Grain</span>
-    </div>
-    <div class="compare" data-ver="eb117b39" data-base="img/" data-prefix="fx-">
-      <img src="img/fx-base.jpg?v=eb117b39" alt="" width="1200" height="675">
-      <div class="cmp-after"><img src="img/fx-grain.jpg?v=eb117b39" alt="" width="1200" height="675"></div>
-      <div class="cmp-line"></div>
-      <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="All off">
-    </div>
-    <div class="chips">
-      <button class="chip on" data-item="grain" data-desc="Film grain, multiplied in density: coarser in the shadows and tighter in the highlights. Shown at 35mm.">Grain</button>
-      <button class="chip" data-item="halation" data-desc="Light that gets through the emulsion, reflects off the back of the base and exposes it again. Long wavelengths go deepest, so red spreads widest.">Halation</button>
-      <button class="chip" data-item="bloom" data-desc="Scatter inside the lens. A wide, soft glow around anything bright.">Bloom</button>
-      <button class="chip" data-item="irradiation" data-desc="Light scattering sideways off crystals within the emulsion. Tighter than halation, and strongest in the blue layer.">Irradiation</button>
-      <button class="chip" data-item="mtf" data-desc="Film resolves less fine detail than a sensor, and a smaller gauge is magnified more, so it resolves less again.">Resolution</button>
-      <button class="chip" data-item="acutance" data-desc="Developer exhausts beside a dense edge, leaving a light line on one side and a dark one on the other — Mackie lines. It is why film looks sharp while resolving less.">Acutance</button>
-      <button class="chip" data-item="ca" data-desc="Lateral chromatic aberration in the lens: radial, zero at the centre, worst in the corners.">Aberration</button>
-      <button class="chip" data-item="vignette" data-desc="Falloff toward the edges of the frame.">Vignette</button>
-      <button class="chip" data-item="leak" data-desc="Light getting past the cartridge or the gate and exposing the film directly.">Fogging</button>
-    </div>
-    <p class="cmp-desc">Film grain, multiplied in density: coarser in the shadows and tighter in the highlights. Shown at 35mm.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <p class="head">The film emulation runs while you are shooting.</p>
-    <p>The standalone application takes SDI in, applies a grade and the film
-      pass, and sends SDI out. The settings save as a <code>.koma</code> preset,
-      which the plug-ins read.</p>
-
-    <p class="note"><strong>SDI is in beta.</strong> It has been run on real
-      hardware in both directions, on AJA (Io 4K, Io XT, driver 17.6.0) and on
-      Blackmagic (DeckLink Micro, Desktop Video 16.0.1). What is not covered is
-      everything else: SDI behaviour follows the driver version and the
-      generation of the card, and three devices on one machine do not say what a
-      fourth will do. Everything else in the application — the picture, the
-      grade, the presets, the stills — is not beta.</p>
-
-    <div class="figure" style="margin-top:2.5rem">
-      <svg viewBox="0 0 900 250" role="img"
-           aria-label="Camera into KOMA over SDI, KOMA out to a reference monitor, and the same preset carried into Resolve, Flame or Premiere in post.">
-        <!-- capture -->
-        <rect class="dg-box" x="8"   y="40"  width="150" height="72" rx="2"/>
-        <text class="dg-t" x="83"  y="82"  text-anchor="middle">Camera</text>
-
-        <line class="dg-line" x1="158" y1="76" x2="240" y2="76"/>
-        <path  class="dg-line" d="M240 76 l-9 -4 v8 z" fill="var(--rule)"/>
-        <text class="dg-s" x="199" y="64"  text-anchor="middle">SDI in</text>
-
-        <!-- the application -->
-        <rect class="dg-box-lit" x="248" y="20"  width="300" height="112" rx="2"/>
-        <text class="dg-s" x="398" y="44"  text-anchor="middle">KOMA application</text>
-        <rect class="dg-box" x="268" y="60"  width="124" height="46" rx="2"/>
-        <text class="dg-t" x="330" y="88"  text-anchor="middle">Grade</text>
-        <rect class="dg-box" x="404" y="60"  width="124" height="46" rx="2"/>
-        <text class="dg-t" x="466" y="88"  text-anchor="middle">Film</text>
-
-        <line class="dg-line" x1="548" y1="76" x2="630" y2="76"/>
-        <path  class="dg-line" d="M630 76 l-9 -4 v8 z" fill="var(--rule)"/>
-        <text class="dg-s" x="589" y="64"  text-anchor="middle">SDI out</text>
-
-        <rect class="dg-box" x="638" y="40"  width="254" height="72" rx="2"/>
-        <text class="dg-t" x="765" y="82"  text-anchor="middle">Reference monitor</text>
-
-        <!-- and the same look downstream -->
-        <line class="dg-lit" x1="398" y1="132" x2="398" y2="176"/>
-        <path  class="dg-lit" d="M398 176 l-4 -9 h8 z" fill="var(--amber)"/>
-
-        <rect class="dg-box-lit" x="248" y="176" width="300" height="58" rx="2"/>
-        <text class="dg-t" x="398" y="211" text-anchor="middle">The .koma preset</text>
-
-        <line class="dg-line" x1="548" y1="205" x2="630" y2="205"/>
-        <path  class="dg-line" d="M630 205 l-9 -4 v8 z" fill="var(--rule)"/>
-
-        <rect class="dg-box" x="638" y="176" width="254" height="58" rx="2"/>
-        <text class="dg-t" x="765" y="205" text-anchor="middle">Resolve / Flame /</text>
-        <text class="dg-t" x="765" y="223" text-anchor="middle">Premiere Pro</text>
-      </svg>
-      <figcaption>The preset written on set is the one the edit and the comp open.</figcaption>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>The detail</h2>
-    <p class="head">Why it looks the way it does.</p>
-
-    <details>
-      <summary>What it actually does</summary>
-      <div class="body">
-
-    <p>
-      The picture is taken back to exposure, run through the negative's
-      characteristic curve, printed, and returned to display. Colour and grain
-      are not added afterwards — they come out of the pass.
-    </p>
-    <div class="grid" style="margin-top:2.5rem">
-      <div>
-        <h3>Tonality</h3>
-        <p>The negative's curve and the print's density, calibrated on white,
-           mid and black. Rec.709 in and Rec.709 out is not tone mapped twice.</p>
-      </div>
-      <div>
-        <h3>Scatter</h3>
-        <p>Lens flare, lateral scatter inside the emulsion, reflection off the
-           back of the base, and dye cloud diffusion. Different physics, so
-           different radii and different colour bias.</p>
-      </div>
-      <div>
-        <h3>Grain</h3>
-        <p>Multiplied in density, with sigma going as the square root of
-           density. Each layer has its own particle size, and the gauge runs
-           from 65mm down to 8mm.</p>
-      </div>
-      <div>
-        <h3>Resolution</h3>
-        <p>MTF falloff, the acutance developing leaves at an edge, and the
-           interlayer effect. Lateral chromatic aberration, gate weave, light
-           leaks.</p>
-      </div>
-    </div>
-      </div>
-    </details>
-
-    <details>
-      <summary>The same look in every application</summary>
-      <div class="body">
-
-    <p>
-      A shot is graded in one application, comped in another and cut in a third.
-      KOMA is one engine behind all of them, so the look does not have to be
-      rebuilt at each door — and a comp does not have to be handed back because
-      the plate no longer matches.
-    </p>
-    <div class="grid" style="margin-top:2.5rem">
-      <div>
-        <h3>One file</h3>
-        <p>A <code>.koma</code> preset carries every value. Save it on the grade,
-           open it in the comp, apply it on the cut. It is plain text, so it goes
-           in the show's repository with everything else.</p>
-      </div>
-      <div>
-        <h3>The same numbers</h3>
-        <p>The plug-ins and the application share one implementation, checked
-           frame against frame between CPU and GPU. A look is not re-approximated
-           per host, so the same preset gives the same picture.</p>
-      </div>
-      <div>
-        <h3>Written by name</h3>
-        <p>Stocks, looks and colourspaces are stored as names, not as positions
-           in a menu. Presets survive the list being reordered or added to, which
-           is what makes them safe to keep for the length of a show.</p>
-      </div>
-      <div>
-        <h3>Off before the plate</h3>
-        <p>Bypass returns the input untouched, so a comp can be built on the
-           clean plate and the film pass put back over the finished shot — the
-           order it happens in on a real one.</p>
-      </div>
-    </div>
-      </div>
-    </details>
-
-    <details>
-      <summary>On set, in full</summary>
-      <div class="body">
-    <div class="grid" style="margin-top:3rem">
-      <div>
-        <h3>Both directions</h3>
-        <p>AJA and Blackmagic cards, in and out. The output locks to the incoming
-           signal, so it follows the camera's rate rather than asking for one.</p>
-      </div>
-      <div>
-        <h3>A grade in front</h3>
-        <p>CDL, tone curve and HSL curves sit before the film stage — the same
-           order as a grade node in front of the plug-in, so what is set on set
-           is what is rebuilt in post.</p>
-      </div>
-      <div>
-        <h3>Minimum delay</h3>
-        <p>One frame. The picture that goes to the monitor is the picture that
-           was rendered, not a second pass behind it.</p>
-      </div>
-      <div>
-        <h3>Stills and clips</h3>
-        <p>Open a frame or a clip, play it, step it, write a full-resolution
-           still. The look is judged on the material, not on a chart.</p>
-      </div>
-    </div>
-      </div>
-    </details>
-
-    <details>
-      <summary>What is in it</summary>
-      <div class="body">
-
-    <dl>
-      <dt>Stocks</dt><dd>Fourteen. Negative, reversal, monochrome, print.</dd>
-      <dt>Looks</dt><dd>Six including Neutral. Picking one writes its values into
-        the controls, so you can carry on adjusting from there.</dd>
-      <dt>Input</dt><dd>Rec.709, sRGB and linear, plus S-Log3, LogC3, LogC4,
-        V-Log, Log3G10 and C-Log3. The 18% grey of each sits where its maker
-        publishes it.</dd>
-      <dt>Presets</dt><dd><code>.koma</code> files, which travel between hosts.</dd>
-      <dt>Application</dt><dd>The same engine, standalone, with a grade
-        (CDL, tone curve, HSL) in front of the film stage.</dd>
-      <dt>SDI</dt><dd>In and out through AJA and Blackmagic cards from the
-        application: take a camera, put the look on it, send it to the monitor.</dd>
-      <dt>macOS</dt><dd>11 and later, on Apple silicon and on Intel. Metal on
-        every stage; 4K plays in real time.</dd>
-      <dt>Windows / Linux</dt><dd>Planned.</dd>
-    </dl>
-    <p class="note" style="margin-top:2rem">
-      After Effects renders on the CPU at present. How fast it runs depends on
-      the machine and on which stages are on.
-    </p>
-      </div>
-    </details>
-  </div>
-</section>
-
-<section id="get">
-  <div class="wrap">
-    <div class="plans">
-      <div class="plan">
-        <h3>Unlicensed</h3>
-        <p class="price">Free</p>
-        <p class="sub">Every feature, on every host.</p>
-        <ul>
-          <li>Nothing is disabled or reduced</li>
-          <li>The output carries a KOMA watermark</li>
-          <li>No account and no time limit</li>
-        </ul>
-        <p class="cta"><a class="btn btn-lit" href="https://github.com/takikotetsu/koma-site/releases/download/v1.0/KOMA-1.0.pkg">Download for macOS</a></p>
-      </div>
-      <div class="plan plan-lit">
-        <h3>Licensed</h3>
-        <p class="price">&yen;19,800 / year</p>
-        <p class="sub">About US$129. Tax and the exact rate to be confirmed.</p>
-        <ul>
-          <li>The watermark comes off everywhere</li>
-          <li>Two machines at a time, and you can move a seat: release one, activate another</li>
-          <li>Activation is online, once. After that it renders with no network; it checks in about once a day when there is one, and a machine that cannot reach us is never stopped by that</li>
-          <li>One licence covers the plug-ins and the application</li>
-        </ul>
-        <p class="cta"><a class="btn btn-lit" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">Buy KOMA</a></p>
-      </div>
-    </div>
-    <p class="note" style="margin-top:2rem">
-      Sales are not open yet. Write to
-      <a href="mailto:support.koma@kotetsu.work">support.koma@kotetsu.work</a> and you will hear
-      when they are.
-    </p>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <p>KOMA — KOTETSU Inc.</p>
-    <p>
-      Adobe, Premiere Pro and After Effects are trademarks of Adobe Inc.
-      DaVinci Resolve is a trademark of Blackmagic Design Pty Ltd.
-      Autodesk and Flame are registered trademarks of Autodesk, Inc.
-      Nuke is a trademark of The Foundry Visionmongers Ltd, Baselight of
-      FilmLight Ltd, and Vegas Pro of MAGIX Software GmbH.
-      KOMA is not endorsed by or affiliated with any of them; their product
-      names appear here only to say which hosts it runs in.
-    </p>
-    <p>
-      The film names in KOMA are its own. They are not the trademarks of any
-      film product.
-    </p>
-    <p class="lang"><a href="eula.html">End User License Agreement</a></p>
-<p class="lang"><a href="jp/">日本語</a></p>
-  </div>
-</footer>
-
-
-
-
-<script>
-// Every .compare works the same way and takes its files from its own data
-// attributes, because there are two of these on the page and a second copy of
-// this loop is how the two stop behaving alike. Inline, so the page keeps
-// loading nothing from anywhere else.
-(function () {
-  document.querySelectorAll('.compare').forEach(function (box) {
-    // The publish step stamps a version on every picture so a changed one is a
-    // changed URL. Without it the file name stays the same, the browser keeps
-    // what it has for ten minutes, and the person who asked for the change is
-    // told it is done while looking at the old one.
-    var ver    = box.dataset.ver ? '?v=' + box.dataset.ver : '',
-        base   = box.dataset.base,
-        prefix = box.dataset.prefix,
-        range  = box.querySelector('.cmp-range'),
-        after  = box.querySelector('.cmp-after img'),
-        label  = box.parentElement.querySelector('.cmp-r'),
-        chips  = box.nextElementSibling;
-
-    function place(pct) {
-      var p = pct < 0 ? 0 : pct > 100 ? 100 : pct;
-      range.value = p;
-      box.style.setProperty('--pos', p + '%');
-    }
-    // The keyboard, and anything else that moves the control itself.
-    range.addEventListener('input', function () { place(+range.value); });
-
-    // The pointer does NOT go through the range input, and that is the fix.
-    // A range input overlaid at opacity 0 works on a desktop because a mouse
-    // press lands on the track and the browser jumps the thumb to it. **iOS
-    // does not do that** — Safari only moves a slider when the gesture starts
-    // on the thumb itself, which is invisible here, so on a phone the two
-    // comparisons on this page did nothing at all. Reading the position off
-    // the box is the same gesture on every device: press anywhere and the
-    // divider is there.
-    //
-    // The input stays. It is still where the value lives, still what a keyboard
-    // moves, and still what a screen reader announces; it is simply no longer
-    // the thing the finger talks to.
-    function fromEvent(e) {
-      var r = box.getBoundingClientRect();
-      place((e.clientX - r.left) / r.width * 100);
-    }
-    // Whether a drag is in progress is tracked here rather than asked of the
-    // browser. Capture is still requested — it is what keeps the drag alive
-    // once the finger leaves the picture, which on a phone happens almost at
-    // once — but the moves are not conditional on it having worked. A guard
-    // that reads hasPointerCapture() stops working the moment capture fails
-    // for any reason, and it fails silently: the press still moves the divider,
-    // so it looks fixed, and only the dragging is dead.
-    var dragging = false;
-    box.addEventListener('pointerdown', function (e) {
-      dragging = true;
-      try { box.setPointerCapture(e.pointerId); } catch (err) { /* drag still works */ }
-      fromEvent(e);
-      e.preventDefault();
-    });
-    box.addEventListener('pointermove', function (e) { if (dragging) fromEvent(e); });
-    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (t) {
-      box.addEventListener(t, function () { dragging = false; });
-    });
-    if (!chips || !chips.classList.contains('chips')) return;
-
-    chips.querySelectorAll('.chip').forEach(function (chip) {
-      // Fetched now rather than on the click, so the first switch is not a
-      // flash of nothing where the picture was.
-      new Image().src = base + prefix + chip.dataset.item + '.jpg' + ver;
-      chip.addEventListener('click', function () {
-        chips.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
-        chip.classList.add('on');
-        after.src = base + prefix + chip.dataset.item + '.jpg' + ver;
-        label.textContent = chip.textContent;
-        var desc = box.parentElement.querySelector('.cmp-desc');
-        if (desc && chip.dataset.desc) desc.textContent = chip.dataset.desc;
-      });
-    });
-  });
-})();
-</script>
-
+<main class="wrap legal">
+<h1>KOMA End User License Agreement</h1>
+<h2>Article 1 (Purpose)</h2>
+<p>This End User License Agreement (this &quot;Agreement&quot;) sets forth the terms and conditions under which Kotetsu Inc. (the &quot;Company&quot;) licenses to users the right to use the software &quot;KOMA&quot; (the &quot;Software&quot;) provided by the Company.</p>
+<p>By installing the Software on a device used by the user or by using the Software, the user is deemed to have accepted the terms of, and entered into, this Agreement.</p>
+<h2>Article 2 (Definitions)</h2>
+<p>For purposes of this Agreement, the following terms shall have the meanings set forth below:</p>
+<ol>
+<li>&quot;Software&quot; means the software &quot;KOMA&quot; provided by the Company, including the plug-ins and the accompanying application, together with any Updates, manuals, and other related materials provided by the Company.</li>
+<li>&quot;User&quot; means any individual or legal entity that enters into this Agreement and uses the Software in accordance with this Agreement.</li>
+<li>&quot;License&quot; means the non-exclusive and non-transferable right to use the Software granted by the Company to the User in accordance with the terms and conditions of this Agreement.</li>
+<li>&quot;Free License&quot; means a License granted by the Company to use the free version of the Software.</li>
+<li>&quot;Paid License&quot; means a License granted by the Company to use the paid version of the Software.</li>
+<li>&quot;Host Application&quot; means a video editing application or other application provided by a third party that loads and runs those parts of the Software provided as plug-ins.</li>
+<li>&quot;Update&quot; means any program provided by the Company for the Software that implements additions or modifications to features, bug fixes, security measures, or other changes.</li>
+</ol>
+<h2>Article 3 (License Grant)</h2>
+<ol>
+<li>The Company grants the User a License subject to the terms and conditions of this Agreement.</li>
+<li>If the User holds a Paid License, the User may install the Software on up to two (2) computers used by the User for each Paid License. The User may, by the means provided by the Company, deactivate the license on a computer on which it has been activated and move the activation to another computer.</li>
+</ol>
+<h2>Article 4 (Ownership of Rights)</h2>
+<p>All copyrights and other intellectual property rights relating to the Software (collectively, &quot;Intellectual Property Rights&quot;) are owned by the Company. This Agreement grants the User only the right to use the Software and does not transfer any Intellectual Property Rights in the Software from the Company to the User.</p>
+<h2>Article 5 (Prohibited Conduct)</h2>
+<ol>
+<li>The User shall not engage in any of the following conduct in connection with the use of the Software (collectively, the &quot;Prohibited Conduct&quot;):</li>
+<ol>
+<li>transferring, lending, sublicensing, or otherwise allowing any third party to use the Software or the License;</li>
+<li>sharing with any third party, lending, transferring, reselling, or publicly disclosing any license key or other information required for license authentication;</li>
+<li>except to the extent permitted by applicable law, reverse engineering, decompiling, disassembling, or otherwise analyzing or attempting to analyze the source code, structure, or operating principles of the Software;</li>
+<li>circumventing or disabling, or attempting to circumvent or disable, any license authentication mechanism or other technological protection measure implemented in the Software, including the Watermark described in Article 6.2;</li>
+<li>circumventing or attempting to circumvent the number of Licenses, the number of devices on which the Software may be used, or any other conditions of use specified by the Company;</li>
+<li>using the Software for any activity that violates applicable laws or public policy, or that infringes or is likely to infringe the rights or interests of the Company or any third party; or</li>
+<li>engaging in any other activity relating to the Software that the Company reasonably determines to be inappropriate.</li>
+</ol>
+<li>If the Company becomes aware that the User has engaged in any Prohibited Conduct, the Company may, without prior notice or demand, terminate this Agreement and suspend the User&#x27;s use of the Software. The Company shall not be liable for any damages incurred by the User as a result of such termination or suspension.</li>
+</ol>
+<h2>Article 6 (Specifications of the Software)</h2>
+<ol>
+<li>The Software consists of plug-ins that run within Host Applications and an accompanying application. The Software alters the appearance of images and does not delete, overwrite, or modify the User&#x27;s source material.</li>
+<li>Where the Software is used under a Free License, an identifying mark (the &quot;Watermark&quot;) is superimposed on the images the Software outputs. Where a Paid License has been activated, no Watermark is superimposed.</li>
+<li>Where a Paid License has a defined term and that term expires, the Software continues to operate, but the images it outputs carry the Watermark. Expiry of the term does not restrict the use of any work already produced with the Software before that expiry.</li>
+<li>The operation of the Software is affected by the specifications, version, and settings of the Host Application, and by the User&#x27;s operating environment, including the GPU, GPU driver, operating system, and other third-party software. The Company shall not be liable where all or part of the Software ceases to operate as a result of changes to, or discontinuation of, a Host Application, or any other cause beyond the Company&#x27;s control.</li>
+<li>The Company makes no warranty whatsoever regarding operation within any Host Application other than those for which the Company has stated support.</li>
+</ol>
+<h2>Article 7 (Disclaimer of Warranties)</h2>
+<ol>
+<li>To the maximum extent permitted by applicable law, the Company makes no warranties with respect to the Software, whether express or implied, including any warranties of merchantability, fitness for a particular purpose, usefulness, accuracy, completeness, continuity, security, or otherwise.</li>
+<li>The Company does not warrant that the Software will be free from errors, bugs, or other defects, that the Software will operate without interruption, or that the Software will operate properly in all operating environments.</li>
+<li>If any defect or other issue is discovered in the Software, the Company will endeavor to correct or improve it, but shall have no obligation to do so.</li>
+<li>The User acknowledges that the Software may be affected by the User&#x27;s operating environment, devices, Host Applications, operating system, or other third-party software.</li>
+</ol>
+<h2>Article 8 (Updates)</h2>
+<ol>
+<li>The Company may, at its sole discretion, provide Updates for the purpose of adding or improving features, correcting defects, implementing security measures, or making other changes to the Software.</li>
+<li>Except to the extent required by applicable law, the Company shall have no obligation to provide any Updates and does not warrant that it will correct any particular defect, add or improve any particular feature, or support any particular operating environment.</li>
+<li>The Company shall not be liable for any defect or other damage arising from the User&#x27;s failure to apply an Update, except where such defect or damage is caused by the Company&#x27;s willful misconduct or gross negligence.</li>
+</ol>
+<h2>Article 9 (Support)</h2>
+<ol>
+<li>If the User discovers any defect, bug, or other issue with the Software, the User may notify the Company in the manner specified by the Company.</li>
+<li>Upon receiving a notice under the preceding paragraph, the Company will review the reported issue and, as necessary, endeavor to address it by providing a corrected version or an Update, or by any other method the Company deems appropriate (&quot;Support&quot;).</li>
+<li>In order to receive Support, the User shall, if requested by the Company, provide the name and version of the Host Application in use, details of the operating environment, and any other information specified by the Company. If the User fails to provide such information, the Company may be unable to provide all or part of the Support.</li>
+<li>In providing Support, the Company may require the User to use the Software with the latest Update applied.</li>
+<li>The Company may, at its sole discretion, determine the nature, method, and timing of the responses set forth in the preceding paragraphs and the manner in which Support is provided.</li>
+</ol>
+<h2>Article 10 (Limitation of Liability)</h2>
+<ol>
+<li>Except in cases of the Company&#x27;s willful misconduct or gross negligence, the Company shall not be liable for any damages incurred by the User arising out of or in connection with the use of, or inability to use, the Software. Where the Company is liable to the User for damages, such liability shall be limited to direct and ordinary damages actually incurred by the User and shall not include lost profits, indirect damages, or other special damages.</li>
+<li>Where the User uses the Software for business purposes and the Company is liable for damages under this Agreement, the Company&#x27;s aggregate liability shall not exceed the total amount actually paid by the User to the Company for the applicable License.</li>
+<li>Nothing in this Article shall limit any rights or remedies available to the User under applicable mandatory laws.</li>
+</ol>
+<h2>Article 11 (Term and Termination)</h2>
+<ol>
+<li>This Agreement shall become effective when the User accepts the terms of this Agreement and shall remain in effect for as long as the User continues to use the Software pursuant to this Agreement, unless otherwise provided herein.</li>
+<li>If the User breaches any provision of this Agreement or if there are other reasonable grounds that make it difficult for the Company to continue this Agreement, the Company may terminate this Agreement without prior notice or demand to the User.</li>
+<li>Upon termination of this Agreement, the User shall immediately cease using the Software and delete the Software, including all copies thereof.</li>
+</ol>
+<h2>Article 12 (Discontinuation of the Software)</h2>
+<ol>
+<li>The Company may, for business, technical, or other reasons, discontinue all or part of the Software, including Updates, technical support, downloads, or other related services.</li>
+<li>Except to the extent required by applicable law, the Company shall have no obligation to continue providing Updates, Support, or any other services relating to the Software.</li>
+<li>Even after the discontinuation of the Software, the User may continue to use the Software that has already been duly activated. However, the Company does not warrant compatibility with any new operating environment or the continued use of the Software.</li>
+<li>Except in cases of the Company&#x27;s willful misconduct or gross negligence, the Company shall not be liable for any damages incurred by the User as a result of the discontinuation of the Software under this Article.</li>
+</ol>
+<h2>Article 13 (Exclusion of Anti-Social Forces)</h2>
+<ol>
+<li>The User represents and warrants that the User is not, and has not in the past been, a member of, affiliated with, or otherwise associated with any organized crime group, any member or affiliate thereof, or any other criminal or anti-social organization or group.</li>
+<li>If the User breaches the preceding paragraph, the Company may immediately terminate this Agreement without prior notice or demand.</li>
+</ol>
+<h2>Article 14 (Amendments to this Agreement)</h2>
+<ol>
+<li>The Company may amend this Agreement without obtaining the User&#x27;s individual consent if the Company determines that such amendment is necessary.</li>
+<li>If the Company determines that it is necessary, the Company may require the User to consent to the amended Agreement. If the User does not provide such consent, the User may be unable to use all or part of the Software.</li>
+</ol>
+<h2>Article 15 (Severability)</h2>
+<p>If any provision of this Agreement, in whole or in part, is held to be invalid or unlawful, such invalidity or unlawfulness shall not affect the validity, interpretation, or application of any other provision of this Agreement, and the remaining provisions shall remain lawful, valid, and in full force and effect.</p>
+<h2>Article 16 (Governing Law)</h2>
+<p>This Agreement shall be governed by and construed in accordance with the laws of Japan. Notwithstanding the foregoing, nothing in this Agreement shall deprive the User of any protection afforded to the User by any mandatory provisions of applicable law that cannot be derogated from by agreement.</p>
+<h2>Article 17 (Jurisdiction)</h2>
+<p>Any dispute arising out of or in connection with this Agreement between the User and the Company shall be subject to the exclusive jurisdiction of the district court having jurisdiction over the location of the Company&#x27;s head office as the court of first instance.</p>
+<h2>Article 18 (Governing Language)</h2>
+<p>This Agreement is based on the Japanese version of the End User License Agreement. In the event of any inconsistency or conflict between this Agreement and the Japanese version, the Japanese version shall prevail.</p>
+<h2>Article 19 (Survival)</h2>
+<p>Article 4 (Ownership of Rights), Article 7 (Disclaimer of Warranties), Article 10 (Limitation of Liability), Article 11.3 (Term and Termination), Article 12.4 (Discontinuation of the Software), Article 15 (Severability), Article 16 (Governing Law), Article 17 (Jurisdiction), Article 18 (Governing Language), and this Article shall survive the termination of this Agreement and remain in full force and effect.</p>
+<p class="legal-back"><a href="index.html">KOMA</a></p>
+</main>
 </body>
 </html>

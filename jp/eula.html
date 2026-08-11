@@ -1,14 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KOMA — Film Emulation</title>
-<meta name="description" content="KOMA is a film emulation plug-in for OFX hosts and for Adobe Premiere Pro and After Effects, with a standalone application that puts the same look on an SDI monitor on set (SDI is in beta).">
-
-<!-- The palette is the application's, taken from apps/KomaBrand.h so the site
-     and the splash cannot drift apart. If the mark changes there, change it
-     here in the same commit. -->
+<title>KOMA ソフトウェア使用許諾契約 — KOMA</title>
 <style>
 /* KOMA — one stylesheet, both languages.
  *
@@ -552,520 +547,110 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 </style>
 </head>
 <body>
-
-<header class="hero">
-  <!-- The picture first, and it moves. A page about how something looks should
-       show it before it explains itself, and grain and gate weave do not exist
-       in a still. The shot runs untouched: no dimming and no desaturation,
-       because that would hide what it is here to show. The still underneath is
-       the first frame, so nothing shifts when the video takes over. -->
-  <img class="hero-media hero-still" src="img/hero.jpg?v=eb117b39"
-       srcset="img/hero@960.jpg?v=eb117b39 960w, img/hero.jpg?v=eb117b39 1920w"
-       sizes="100vw" alt="" width="1920" height="1080">
-  <video class="hero-media hero-video" autoplay muted loop playsinline
-         preload="metadata" poster="img/hero.jpg?v=eb117b39" width="1920" height="1080"
-         aria-hidden="true" tabindex="-1">
-    <!-- AV1 first, for its film grain synthesis: the encoder takes the grain
-         out, sends a clean picture cheaply, and the decoder puts the grain
-         back from a handful of parameters. Grain is the one thing a bitrate
-         cannot afford — h264 at three times this file size keeps 16% of it,
-         this keeps 72% — and grain is what the page is selling. The codecs
-         string is not decoration: without it Safari would claim the file and
-         then fail, instead of moving on to the line below. -->
-    <source src="vid/hero.av1.mp4?v=eb117b39" type='video/mp4; codecs="av01.0.08M.08"'>
-    <source src="vid/hero.mp4?v=eb117b39" type="video/mp4">
-  </video>
-  <div class="hero-veil"></div>
-  <div class="wrap">
-    <div class="lockup">
-      <svg class="gate" viewBox="0 0 120 120" role="img" aria-label="KOMA">
-        <defs>
-          <radialGradient id="bloom" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"   stop-color="#fff9f3" stop-opacity="1"/>
-            <stop offset="14%"  stop-color="#ffdcb4" stop-opacity=".92"/>
-            <stop offset="38%"  stop-color="#c9603a" stop-opacity=".42"/>
-            <stop offset="100%" stop-color="#c9603a" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <rect x="10" y="10" width="100" height="100" rx="9"
-              fill="none" stroke="#39424e" stroke-width="4"/>
-        <circle cx="60" cy="60" r="46" fill="url(#bloom)"/>
-        <circle cx="60" cy="60" r="9.5" fill="#fff9f3"/>
-      </svg>
-      <div class="word-col">
-        <h1 class="word">KOMA</h1>
-        <p class="tagline">Film Emulation</p>
-      </div>
-    </div>
-  </div>
-</header>
-
-<section class="intro">
-  <div class="wrap">
-    <h2>Film emulation</h2>
-    <p class="line">Digital, in the developer.</p>
-    <p class="sub">Exposure, development, print.<br>Run in the order they happen, so the colour and the grain are not something added afterwards.</p>
-    <p class="sub">Resolve, Flame, Premiere Pro, After Effects, and the standalone application for set — its SDI in beta. One installer gets you all of it.</p>
-    <p class="cta">
-      <a class="btn btn-lit" href="#get">Download</a>
-      <a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">&yen;19,800 / year</a>
-    </p>
-    <p class="note" style="margin:0">Free to use and watermarked until it is licensed. macOS 11 and later.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>In short</h2>
-    <div class="proof">
-      <div class="proof-cell">
-        <p class="proof-num">14</p>
-        <p class="proof-lab">stocks, six looks</p>
-        <p class="proof-sub">Negative, reversal, monochrome and print. Every value
-          a look sets stays adjustable.</p>
-      </div>
-      <div class="proof-cell">
-        <p class="proof-num">1<small>INSTALLER</small></p>
-        <p class="proof-lab">every host on the machine</p>
-        <p class="proof-sub">OFX and Adobe in one package, and one licence for
-          all of it. No per-host purchase.</p>
-      </div>
-      <div class="proof-cell">
-        <p class="proof-num">4K<small>REAL TIME</small></p>
-        <p class="proof-lab">Metal on every stage</p>
-        <p class="proof-sub">Grain, halation, MTF and gate weave all on the GPU.
-          <br><span class="foot">Measured on a MacBook Pro (M1 Max)</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>Where it runs</h2>
-    <p class="head">Buy it once. Use it everywhere you work.</p>
-    <div class="hosts">
-      <div class="host">
-        <b>DaVinci Resolve Studio</b>
-        <span>OFX plug-in &mdash; the free edition does not load OFX plug-ins</span>
-      </div>
-      <div class="host">
-        <b>Autodesk&reg; Flame&reg;</b>
-        <span>OFX plug-in</span>
-      </div>
-      <div class="host">
-        <b>Adobe&reg; Premiere Pro&reg;</b>
-        <span>Native plug-in, on the GPU</span>
-      </div>
-      <div class="host">
-        <b>Adobe&reg; After Effects&reg;</b>
-        <span>Native plug-in</span>
-      </div>
-      <div class="host">
-        <b>Other OFX hosts</b>
-        <span>Nuke, Baselight, Vegas Pro <em>(untested)</em></span>
-      </div>
-      <div class="host">
-        <b>KOMA, on its own</b>
-        <span>Standalone, with SDI in and out <em>(beta)</em></span>
-      </div>
-    </div>
-    <p class="note">Nuke, Baselight and Vegas Pro should load KOMA &mdash; it is a standard OFX plug-in and there is nothing host-specific in it &mdash; but we have not run it in any of them. If you work in one and are willing to try it, write to <a href="mailto:support.koma@kotetsu.work">support.koma@kotetsu.work</a> and we will give you a licence for free.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>The looks</h2>
-    <p class="head">Six presets, every one of them editable.</p>
-    <div class="cmp-head">
-      <span class="cmp-tag cmp-l">Bypass</span>
-      <span class="cmp-tag cmp-r">Film Classic</span>
-    </div>
-    <div class="compare" data-ver="eb117b39" data-base="img/" data-prefix="look-">
-      <img src="img/source.jpg?v=eb117b39" alt="" width="1200" height="675">
-      <div class="cmp-after"><img src="img/look-filmClassic.jpg?v=eb117b39" alt="" width="1200" height="675"></div>
-      <div class="cmp-line"></div>
-      <input class="cmp-range" type="range" min="0" max="100" value="50"
-             aria-label="Bypass">
-    </div>
-    <div class="chips">
-      <button class="chip" data-item="neutral">Neutral</button>
-      <button class="chip on" data-item="filmClassic">Film Classic</button>
-      <button class="chip" data-item="tealAmber">Teal & Amber</button>
-      <button class="chip" data-item="goldenWarm">Print Master</button>
-      <button class="chip" data-item="neonNight">Neon Night</button>
-      <button class="chip" data-item="fadedPastel">Faded Pastel</button>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>Stage by stage</h2>
-    <p class="head">What happens on film, one thing at a time.</p>
-    <div class="cmp-head">
-      <span class="cmp-tag cmp-l">All off</span>
-      <span class="cmp-tag cmp-r">Grain</span>
-    </div>
-    <div class="compare" data-ver="eb117b39" data-base="img/" data-prefix="fx-">
-      <img src="img/fx-base.jpg?v=eb117b39" alt="" width="1200" height="675">
-      <div class="cmp-after"><img src="img/fx-grain.jpg?v=eb117b39" alt="" width="1200" height="675"></div>
-      <div class="cmp-line"></div>
-      <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="All off">
-    </div>
-    <div class="chips">
-      <button class="chip on" data-item="grain" data-desc="Film grain, multiplied in density: coarser in the shadows and tighter in the highlights. Shown at 35mm.">Grain</button>
-      <button class="chip" data-item="halation" data-desc="Light that gets through the emulsion, reflects off the back of the base and exposes it again. Long wavelengths go deepest, so red spreads widest.">Halation</button>
-      <button class="chip" data-item="bloom" data-desc="Scatter inside the lens. A wide, soft glow around anything bright.">Bloom</button>
-      <button class="chip" data-item="irradiation" data-desc="Light scattering sideways off crystals within the emulsion. Tighter than halation, and strongest in the blue layer.">Irradiation</button>
-      <button class="chip" data-item="mtf" data-desc="Film resolves less fine detail than a sensor, and a smaller gauge is magnified more, so it resolves less again.">Resolution</button>
-      <button class="chip" data-item="acutance" data-desc="Developer exhausts beside a dense edge, leaving a light line on one side and a dark one on the other — Mackie lines. It is why film looks sharp while resolving less.">Acutance</button>
-      <button class="chip" data-item="ca" data-desc="Lateral chromatic aberration in the lens: radial, zero at the centre, worst in the corners.">Aberration</button>
-      <button class="chip" data-item="vignette" data-desc="Falloff toward the edges of the frame.">Vignette</button>
-      <button class="chip" data-item="leak" data-desc="Light getting past the cartridge or the gate and exposing the film directly.">Fogging</button>
-    </div>
-    <p class="cmp-desc">Film grain, multiplied in density: coarser in the shadows and tighter in the highlights. Shown at 35mm.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <p class="head">The film emulation runs while you are shooting.</p>
-    <p>The standalone application takes SDI in, applies a grade and the film
-      pass, and sends SDI out. The settings save as a <code>.koma</code> preset,
-      which the plug-ins read.</p>
-
-    <p class="note"><strong>SDI is in beta.</strong> It has been run on real
-      hardware in both directions, on AJA (Io 4K, Io XT, driver 17.6.0) and on
-      Blackmagic (DeckLink Micro, Desktop Video 16.0.1). What is not covered is
-      everything else: SDI behaviour follows the driver version and the
-      generation of the card, and three devices on one machine do not say what a
-      fourth will do. Everything else in the application — the picture, the
-      grade, the presets, the stills — is not beta.</p>
-
-    <div class="figure" style="margin-top:2.5rem">
-      <svg viewBox="0 0 900 250" role="img"
-           aria-label="Camera into KOMA over SDI, KOMA out to a reference monitor, and the same preset carried into Resolve, Flame or Premiere in post.">
-        <!-- capture -->
-        <rect class="dg-box" x="8"   y="40"  width="150" height="72" rx="2"/>
-        <text class="dg-t" x="83"  y="82"  text-anchor="middle">Camera</text>
-
-        <line class="dg-line" x1="158" y1="76" x2="240" y2="76"/>
-        <path  class="dg-line" d="M240 76 l-9 -4 v8 z" fill="var(--rule)"/>
-        <text class="dg-s" x="199" y="64"  text-anchor="middle">SDI in</text>
-
-        <!-- the application -->
-        <rect class="dg-box-lit" x="248" y="20"  width="300" height="112" rx="2"/>
-        <text class="dg-s" x="398" y="44"  text-anchor="middle">KOMA application</text>
-        <rect class="dg-box" x="268" y="60"  width="124" height="46" rx="2"/>
-        <text class="dg-t" x="330" y="88"  text-anchor="middle">Grade</text>
-        <rect class="dg-box" x="404" y="60"  width="124" height="46" rx="2"/>
-        <text class="dg-t" x="466" y="88"  text-anchor="middle">Film</text>
-
-        <line class="dg-line" x1="548" y1="76" x2="630" y2="76"/>
-        <path  class="dg-line" d="M630 76 l-9 -4 v8 z" fill="var(--rule)"/>
-        <text class="dg-s" x="589" y="64"  text-anchor="middle">SDI out</text>
-
-        <rect class="dg-box" x="638" y="40"  width="254" height="72" rx="2"/>
-        <text class="dg-t" x="765" y="82"  text-anchor="middle">Reference monitor</text>
-
-        <!-- and the same look downstream -->
-        <line class="dg-lit" x1="398" y1="132" x2="398" y2="176"/>
-        <path  class="dg-lit" d="M398 176 l-4 -9 h8 z" fill="var(--amber)"/>
-
-        <rect class="dg-box-lit" x="248" y="176" width="300" height="58" rx="2"/>
-        <text class="dg-t" x="398" y="211" text-anchor="middle">The .koma preset</text>
-
-        <line class="dg-line" x1="548" y1="205" x2="630" y2="205"/>
-        <path  class="dg-line" d="M630 205 l-9 -4 v8 z" fill="var(--rule)"/>
-
-        <rect class="dg-box" x="638" y="176" width="254" height="58" rx="2"/>
-        <text class="dg-t" x="765" y="205" text-anchor="middle">Resolve / Flame /</text>
-        <text class="dg-t" x="765" y="223" text-anchor="middle">Premiere Pro</text>
-      </svg>
-      <figcaption>The preset written on set is the one the edit and the comp open.</figcaption>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>The detail</h2>
-    <p class="head">Why it looks the way it does.</p>
-
-    <details>
-      <summary>What it actually does</summary>
-      <div class="body">
-
-    <p>
-      The picture is taken back to exposure, run through the negative's
-      characteristic curve, printed, and returned to display. Colour and grain
-      are not added afterwards — they come out of the pass.
-    </p>
-    <div class="grid" style="margin-top:2.5rem">
-      <div>
-        <h3>Tonality</h3>
-        <p>The negative's curve and the print's density, calibrated on white,
-           mid and black. Rec.709 in and Rec.709 out is not tone mapped twice.</p>
-      </div>
-      <div>
-        <h3>Scatter</h3>
-        <p>Lens flare, lateral scatter inside the emulsion, reflection off the
-           back of the base, and dye cloud diffusion. Different physics, so
-           different radii and different colour bias.</p>
-      </div>
-      <div>
-        <h3>Grain</h3>
-        <p>Multiplied in density, with sigma going as the square root of
-           density. Each layer has its own particle size, and the gauge runs
-           from 65mm down to 8mm.</p>
-      </div>
-      <div>
-        <h3>Resolution</h3>
-        <p>MTF falloff, the acutance developing leaves at an edge, and the
-           interlayer effect. Lateral chromatic aberration, gate weave, light
-           leaks.</p>
-      </div>
-    </div>
-      </div>
-    </details>
-
-    <details>
-      <summary>The same look in every application</summary>
-      <div class="body">
-
-    <p>
-      A shot is graded in one application, comped in another and cut in a third.
-      KOMA is one engine behind all of them, so the look does not have to be
-      rebuilt at each door — and a comp does not have to be handed back because
-      the plate no longer matches.
-    </p>
-    <div class="grid" style="margin-top:2.5rem">
-      <div>
-        <h3>One file</h3>
-        <p>A <code>.koma</code> preset carries every value. Save it on the grade,
-           open it in the comp, apply it on the cut. It is plain text, so it goes
-           in the show's repository with everything else.</p>
-      </div>
-      <div>
-        <h3>The same numbers</h3>
-        <p>The plug-ins and the application share one implementation, checked
-           frame against frame between CPU and GPU. A look is not re-approximated
-           per host, so the same preset gives the same picture.</p>
-      </div>
-      <div>
-        <h3>Written by name</h3>
-        <p>Stocks, looks and colourspaces are stored as names, not as positions
-           in a menu. Presets survive the list being reordered or added to, which
-           is what makes them safe to keep for the length of a show.</p>
-      </div>
-      <div>
-        <h3>Off before the plate</h3>
-        <p>Bypass returns the input untouched, so a comp can be built on the
-           clean plate and the film pass put back over the finished shot — the
-           order it happens in on a real one.</p>
-      </div>
-    </div>
-      </div>
-    </details>
-
-    <details>
-      <summary>On set, in full</summary>
-      <div class="body">
-    <div class="grid" style="margin-top:3rem">
-      <div>
-        <h3>Both directions</h3>
-        <p>AJA and Blackmagic cards, in and out. The output locks to the incoming
-           signal, so it follows the camera's rate rather than asking for one.</p>
-      </div>
-      <div>
-        <h3>A grade in front</h3>
-        <p>CDL, tone curve and HSL curves sit before the film stage — the same
-           order as a grade node in front of the plug-in, so what is set on set
-           is what is rebuilt in post.</p>
-      </div>
-      <div>
-        <h3>Minimum delay</h3>
-        <p>One frame. The picture that goes to the monitor is the picture that
-           was rendered, not a second pass behind it.</p>
-      </div>
-      <div>
-        <h3>Stills and clips</h3>
-        <p>Open a frame or a clip, play it, step it, write a full-resolution
-           still. The look is judged on the material, not on a chart.</p>
-      </div>
-    </div>
-      </div>
-    </details>
-
-    <details>
-      <summary>What is in it</summary>
-      <div class="body">
-
-    <dl>
-      <dt>Stocks</dt><dd>Fourteen. Negative, reversal, monochrome, print.</dd>
-      <dt>Looks</dt><dd>Six including Neutral. Picking one writes its values into
-        the controls, so you can carry on adjusting from there.</dd>
-      <dt>Input</dt><dd>Rec.709, sRGB and linear, plus S-Log3, LogC3, LogC4,
-        V-Log, Log3G10 and C-Log3. The 18% grey of each sits where its maker
-        publishes it.</dd>
-      <dt>Presets</dt><dd><code>.koma</code> files, which travel between hosts.</dd>
-      <dt>Application</dt><dd>The same engine, standalone, with a grade
-        (CDL, tone curve, HSL) in front of the film stage.</dd>
-      <dt>SDI</dt><dd>In and out through AJA and Blackmagic cards from the
-        application: take a camera, put the look on it, send it to the monitor.</dd>
-      <dt>macOS</dt><dd>11 and later, on Apple silicon and on Intel. Metal on
-        every stage; 4K plays in real time.</dd>
-      <dt>Windows / Linux</dt><dd>Planned.</dd>
-    </dl>
-    <p class="note" style="margin-top:2rem">
-      After Effects renders on the CPU at present. How fast it runs depends on
-      the machine and on which stages are on.
-    </p>
-      </div>
-    </details>
-  </div>
-</section>
-
-<section id="get">
-  <div class="wrap">
-    <div class="plans">
-      <div class="plan">
-        <h3>Unlicensed</h3>
-        <p class="price">Free</p>
-        <p class="sub">Every feature, on every host.</p>
-        <ul>
-          <li>Nothing is disabled or reduced</li>
-          <li>The output carries a KOMA watermark</li>
-          <li>No account and no time limit</li>
-        </ul>
-        <p class="cta"><a class="btn btn-lit" href="https://github.com/takikotetsu/koma-site/releases/download/v1.0/KOMA-1.0.pkg">Download for macOS</a></p>
-      </div>
-      <div class="plan plan-lit">
-        <h3>Licensed</h3>
-        <p class="price">&yen;19,800 / year</p>
-        <p class="sub">About US$129. Tax and the exact rate to be confirmed.</p>
-        <ul>
-          <li>The watermark comes off everywhere</li>
-          <li>Two machines at a time, and you can move a seat: release one, activate another</li>
-          <li>Activation is online, once. After that it renders with no network; it checks in about once a day when there is one, and a machine that cannot reach us is never stopped by that</li>
-          <li>One licence covers the plug-ins and the application</li>
-        </ul>
-        <p class="cta"><a class="btn btn-lit" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">Buy KOMA</a></p>
-      </div>
-    </div>
-    <p class="note" style="margin-top:2rem">
-      Sales are not open yet. Write to
-      <a href="mailto:support.koma@kotetsu.work">support.koma@kotetsu.work</a> and you will hear
-      when they are.
-    </p>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <p>KOMA — KOTETSU Inc.</p>
-    <p>
-      Adobe, Premiere Pro and After Effects are trademarks of Adobe Inc.
-      DaVinci Resolve is a trademark of Blackmagic Design Pty Ltd.
-      Autodesk and Flame are registered trademarks of Autodesk, Inc.
-      Nuke is a trademark of The Foundry Visionmongers Ltd, Baselight of
-      FilmLight Ltd, and Vegas Pro of MAGIX Software GmbH.
-      KOMA is not endorsed by or affiliated with any of them; their product
-      names appear here only to say which hosts it runs in.
-    </p>
-    <p>
-      The film names in KOMA are its own. They are not the trademarks of any
-      film product.
-    </p>
-    <p class="lang"><a href="eula.html">End User License Agreement</a></p>
-<p class="lang"><a href="jp/">日本語</a></p>
-  </div>
-</footer>
-
-
-
-
-<script>
-// Every .compare works the same way and takes its files from its own data
-// attributes, because there are two of these on the page and a second copy of
-// this loop is how the two stop behaving alike. Inline, so the page keeps
-// loading nothing from anywhere else.
-(function () {
-  document.querySelectorAll('.compare').forEach(function (box) {
-    // The publish step stamps a version on every picture so a changed one is a
-    // changed URL. Without it the file name stays the same, the browser keeps
-    // what it has for ten minutes, and the person who asked for the change is
-    // told it is done while looking at the old one.
-    var ver    = box.dataset.ver ? '?v=' + box.dataset.ver : '',
-        base   = box.dataset.base,
-        prefix = box.dataset.prefix,
-        range  = box.querySelector('.cmp-range'),
-        after  = box.querySelector('.cmp-after img'),
-        label  = box.parentElement.querySelector('.cmp-r'),
-        chips  = box.nextElementSibling;
-
-    function place(pct) {
-      var p = pct < 0 ? 0 : pct > 100 ? 100 : pct;
-      range.value = p;
-      box.style.setProperty('--pos', p + '%');
-    }
-    // The keyboard, and anything else that moves the control itself.
-    range.addEventListener('input', function () { place(+range.value); });
-
-    // The pointer does NOT go through the range input, and that is the fix.
-    // A range input overlaid at opacity 0 works on a desktop because a mouse
-    // press lands on the track and the browser jumps the thumb to it. **iOS
-    // does not do that** — Safari only moves a slider when the gesture starts
-    // on the thumb itself, which is invisible here, so on a phone the two
-    // comparisons on this page did nothing at all. Reading the position off
-    // the box is the same gesture on every device: press anywhere and the
-    // divider is there.
-    //
-    // The input stays. It is still where the value lives, still what a keyboard
-    // moves, and still what a screen reader announces; it is simply no longer
-    // the thing the finger talks to.
-    function fromEvent(e) {
-      var r = box.getBoundingClientRect();
-      place((e.clientX - r.left) / r.width * 100);
-    }
-    // Whether a drag is in progress is tracked here rather than asked of the
-    // browser. Capture is still requested — it is what keeps the drag alive
-    // once the finger leaves the picture, which on a phone happens almost at
-    // once — but the moves are not conditional on it having worked. A guard
-    // that reads hasPointerCapture() stops working the moment capture fails
-    // for any reason, and it fails silently: the press still moves the divider,
-    // so it looks fixed, and only the dragging is dead.
-    var dragging = false;
-    box.addEventListener('pointerdown', function (e) {
-      dragging = true;
-      try { box.setPointerCapture(e.pointerId); } catch (err) { /* drag still works */ }
-      fromEvent(e);
-      e.preventDefault();
-    });
-    box.addEventListener('pointermove', function (e) { if (dragging) fromEvent(e); });
-    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (t) {
-      box.addEventListener(t, function () { dragging = false; });
-    });
-    if (!chips || !chips.classList.contains('chips')) return;
-
-    chips.querySelectorAll('.chip').forEach(function (chip) {
-      // Fetched now rather than on the click, so the first switch is not a
-      // flash of nothing where the picture was.
-      new Image().src = base + prefix + chip.dataset.item + '.jpg' + ver;
-      chip.addEventListener('click', function () {
-        chips.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
-        chip.classList.add('on');
-        after.src = base + prefix + chip.dataset.item + '.jpg' + ver;
-        label.textContent = chip.textContent;
-        var desc = box.parentElement.querySelector('.cmp-desc');
-        if (desc && chip.dataset.desc) desc.textContent = chip.dataset.desc;
-      });
-    });
-  });
-})();
-</script>
-
+<main class="wrap legal">
+<h1>KOMA ソフトウェア使用許諾契約</h1>
+<h2>第1条（目的）</h2>
+<p>本契約は、株式会社虎徹（以下「当社」といいます）が提供するソフトウェア「KOMA」（以下「本ソフトウェア」といいます。）の使用をユーザーに許諾するにあたっての条件を定めるために締結されます。</p>
+<p>ユーザーは、本ソフトウェアをユーザーが使用する機器にインストールした場合、又は本ソフトウェアを使用した場合、本契約の内容を承諾の上、本契約を締結したものとみなされます。</p>
+<h2>第2条（定義）</h2>
+<p>本契約において、次の各号の用語は、次の意味を有するものとします。</p>
+<ol>
+<li>「本ソフトウェア」とは、当社が提供するソフトウェア「KOMA」（プラグイン及びこれに付随するアプリケーションを含みます。）及びこれに付随するアップデート、マニュアルその他当社が提供する関連資料をいいます。</li>
+<li>「ユーザー」とは、本契約を締結し、本契約に従い本ソフトウェアを使用する個人又は法人をいいます。</li>
+<li>「本ライセンス」とは、当社が、ユーザーに対し、本契約の条件に従って付与する、本ソフトウェアの非独占的かつ譲渡不能な使用権をいいます。</li>
+<li>「無償ライセンス」とは、本ライセンスのうち、本ソフトウェアの無償版を使用するために当社が付与するライセンスをいいます。</li>
+<li>「有償ライセンス」とは、本ライセンスのうち、本ソフトウェアの有償版を使用するために当社が付与するライセンスをいいます。</li>
+<li>「ホストアプリケーション」とは、本ソフトウェアのうちプラグインとして提供されるものを読み込んで動作させる、第三者が提供する映像編集ソフトウェアその他のアプリケーションをいいます。</li>
+<li>「アップデート」とは、当社が本ソフトウェアについて提供する機能の追加、変更、不具合の修正、セキュリティ対策その他の変更を反映したプログラムをいいます。</li>
+</ol>
+<h2>第3条（使用許諾）</h2>
+<ol>
+<li>当社は、ユーザーに対し、本契約の条件に従い、本ライセンスを付与します。</li>
+<li>ユーザーが有償ライセンスを有する場合、ユーザーは有償ライセンス１件につき、ユーザーが使用する２台までのコンピュータに本ソフトウェアをインストールすることができます。ユーザーは、当社が提供する方法により、インストール済みのコンピュータのライセンス認証を解除し、他のコンピュータに認証を移すことができます。</li>
+</ol>
+<h2>第4条（権利帰属）</h2>
+<p>本ソフトウェアに関連する著作権その他の知的財産権（以下「知的財産権」といいます。）は、全て当社に帰属します。本契約の締結は、ユーザーに本ソフトウェアの使用権を付与するものであり、本ソフトウェアの知的財産権が、当社からユーザーに移転することはありません。</p>
+<h2>第5条（禁止事項）</h2>
+<ol>
+<li>ユーザーは、本ソフトウェアの使用にあたり、次の各号に定める行為（以下「禁止事項」といいます。）を行ってはならないものとします。</li>
+<ol>
+<li>本ソフトウェア又は本ライセンスを第三者に譲渡し、貸与し、再使用許諾し、又はその他の方法により第三者に使用させる行為</li>
+<li>ライセンスキーその他ライセンス認証に必要な情報を第三者と共有し、貸与し、譲渡し、転売し、又は公開する行為</li>
+<li>法令により許容される場合を除き、本ソフトウェアのリバースエンジニアリング、逆コンパイル、逆アセンブル、その他本ソフトウェアのソースコード、構造又は動作原理を解析し、又は解析しようとする行為</li>
+<li>ライセンス認証機構その他本ソフトウェアに設けられた技術的保護手段（次条第2項に定めるウォーターマークの表示を含みます。）を回避し、無効化し、又はその回避若しくは無効化を試みる行為</li>
+<li>ライセンス数、使用可能端末数その他当社が定める使用条件を回避し、又は回避しようとする行為</li>
+<li>本ソフトウェアを、法令ないし公序良俗に違反する行為又は当社ないし第三者の権利利益を侵害し、若しくは侵害するおそれのある行為に使用する行為</li>
+<li>前各号のほか、本ソフトウェアに関連する、当社が合理的に不適当と判断する行為</li>
+</ol>
+<li>当社は、ユーザーが禁止事項を行ったことを認識した場合、何らの通知催告なく、本契約を解除し、本ソフトウェアの使用を停止することができるものとします。この場合において、ユーザーに損害が生じた場合においても、当社はその損害を賠償する責任を負わないものとします。</li>
+</ol>
+<h2>第6条（本ソフトウェアの仕様）</h2>
+<ol>
+<li>本ソフトウェアは、ホストアプリケーション上で動作するプラグイン及びこれに付随するアプリケーションから構成されます。本ソフトウェアは、映像の見た目を変更するものであり、ユーザーの素材データを削除し、上書きし、又は改変するものではありません。</li>
+<li>無償ライセンスにより本ソフトウェアを使用する場合、本ソフトウェアが出力する映像には、識別のための表示（以下「ウォーターマーク」といいます。）が重畳されます。有償ライセンスの認証が完了している場合、ウォーターマークは重畳されません。</li>
+<li>有償ライセンスに有効期間の定めがある場合において、当該期間が満了したときは、本ソフトウェアは引き続き動作しますが、その出力する映像にはウォーターマークが重畳されます。当該期間の満了は、それ以前に本ソフトウェアを使用して作成された成果物の利用を制限するものではありません。</li>
+<li>本ソフトウェアの動作は、ホストアプリケーションの仕様、バージョン及び設定、並びにユーザーの使用環境（GPU、GPU ドライバ、オペレーティングシステムその他の第三者製ソフトウェア等を含みます。）の影響を受けます。当社は、ホストアプリケーションの提供者による仕様の変更、提供の終了その他当社の管理の及ばない事由により本ソフトウェアの全部又は一部が動作しなくなる場合があることについて、責任を負いません。</li>
+<li>当社が対応を表明したホストアプリケーション以外での動作について、当社は何ら保証するものではありません。</li>
+</ol>
+<h2>第7条（非保証）</h2>
+<ol>
+<li>当社は、本ソフトウェアについて、商品性、特定の目的への適合性、有用性、正確性、完全性、継続性、セキュリティその他一切の事項を保証するものではありません。</li>
+<li>当社は、本ソフトウェアにエラー、バグその他の不具合が存在しないこと、本ソフトウェアが中断なく稼働すること、又は本ソフトウェアが全ての使用環境において正常に動作することを保証するものではありません。</li>
+<li>当社は、本ソフトウェアについて、不具合その他の問題が発見された場合、その修正又は改善に努めますが、これを行う義務を負うものではありません。</li>
+<li>ユーザーは、本ソフトウェアがその使用環境、使用機器、ホストアプリケーション、オペレーティングシステムその他の第三者製ソフトウェア等の影響を受ける場合があることを、あらかじめ了承するものとします。</li>
+</ol>
+<h2>第8条（アップデート）</h2>
+<ol>
+<li>当社は、自らの裁量により、本ソフトウェアの機能追加、機能改善、不具合の修正、セキュリティ対策その他の変更を目的として、アップデートを提供することがあります。</li>
+<li>当社は、アップデートを提供する義務を負うものではなく、特定の不具合の修正、機能の追加又は改善若しくは特定の使用環境への対応を保証するものではありません。</li>
+<li>ユーザーがアップデートを適用しなかったことに起因して生じた不具合その他の損害について、当社は責任を負いません。ただし、当社の故意又は重過失による場合には、この限りではありません。</li>
+</ol>
+<h2>第9条（サポート）</h2>
+<ol>
+<li>ユーザーは、本ソフトウェアに不具合、バグその他の問題を発見した場合には、当社が定める方法により、当社に通知することができます。</li>
+<li>当社は、前項の通知を受けた場合、その内容を確認の上、必要に応じて、修正版又はアップデートの提供その他当社が適当と判断する方法により対応するよう努めるものとします（以下「サポート」といいます。）。</li>
+<li>ユーザーは、サポートを受けるにあたり、当社が必要と認める場合には、使用しているホストアプリケーションの名称及びバージョン、使用環境その他当社が指定する情報を提出するものとします。当社は、当該情報の提出がない場合、サポートの一部又は全部を提供できないことがあります。</li>
+<li>当社は、サポートの提供にあたり、ユーザーに対し最新のアップデートを適用した状態で本ソフトウェアを使用することを求めることができます。</li>
+<li>当社は、前各項に定める対応の内容、方法、時期、そのサポートの提供方法を自らの裁量により決定することができます。</li>
+</ol>
+<h2>第10条（責任の制限）</h2>
+<ol>
+<li>当社は、本ソフトウェアの使用又は使用不能に起因若しくは関連してユーザーに生じた損害について、当社に故意又は重過失がある場合を除き、責任を負いません。当社がユーザーに対して損害賠償責任を負う場合、その賠償の範囲はユーザーに現実に生じた直接かつ通常の損害に限られ、逸失利益、間接損害その他の特別損害については賠償の範囲に含まれないものとします。</li>
+<li>ユーザーが事業として本ソフトウェアを使用する場合において、当社が本契約に基づき損害賠償責任を負う場合、その賠償額は、当該ユーザーが当該ライセンスの対価として当社に現実に支払った料金の総額を上限とします。</li>
+<li>本条の規定は、消費者契約法その他の強行法規によりユーザーに認められる権利を制限するものではありません。</li>
+</ol>
+<h2>第11条（契約期間及び終了）</h2>
+<ol>
+<li>本契約は、ユーザーが本契約の内容に同意した時点で成立し、ユーザーが本契約に基づき本ソフトウェアの使用を継続する限り、有効に存続します。ただし、本契約に別段の定めがある場合を除きます。</li>
+<li>ユーザーが本契約のいずれかの条項に違反した場合その他当社が本契約を継続し難い合理的な理由が存在する場合、当社は、ユーザーに対し、何らの通知催告なく本契約を解除することができます。</li>
+<li>本契約が終了した場合、ユーザーは直ちに本ソフトウェアの使用を中止し、本ソフトウェア（複製物を含みます。）を削除するものとします。</li>
+</ol>
+<h2>第12条（本ソフトウェアの提供終了）</h2>
+<ol>
+<li>当社は、事業上、技術上その他の理由により、本ソフトウェアの全部又は一部について、アップデート、技術サポート、ダウンロード提供その他の提供を終了することがあります。</li>
+<li>当社は、ユーザーに対し、本ソフトウェアのアップデート、サポートその他の提供を継続する義務を負いません。</li>
+<li>本ソフトウェアの提供終了後も、ユーザーは、既に適法にライセンス認証が完了した本ソフトウェアを引き続き使用することができます。ただし、当社は、新たな使用環境への対応その他継続的な使用を保証するものではありません。</li>
+<li>当社は、本条に基づく本ソフトウェアの提供終了によりユーザーに生じた損害について、当社に故意又は重過失がある場合を除き、その責任を負いません。</li>
+</ol>
+<h2>第13条（反社会的勢力の排除）</h2>
+<ol>
+<li>ユーザーは、自らが暴力団、その関係団体、これらの構成員、関係者その他の反社会的勢力（以下「反社会的勢力」という。）でないこと、及び過去に反社会的勢力ではなかったことを保証します。</li>
+<li>ユーザーが前項に違反した場合、当社は、何らの通知催告を要せず、直ちに本契約を解除することができるものとします。</li>
+</ol>
+<h2>第14条（規約の変更）</h2>
+<ol>
+<li>当社は、必要があると認められる場合には、ユーザーの個別の同意を得ることなく、本契約を変更することができます。</li>
+<li>当社は、必要があると認められる場合には、変更後の本契約への同意をユーザーに求めることができるものとします。この場合、ユーザーが当該同意を行わないときは、本ソフトウェアの全部又は一部を使用できなくなる場合があります。</li>
+</ol>
+<h2>第15条（分離可能性）</h2>
+<p>本契約のいずれかの条項の全部又は一部が無効又は違法となった場合であっても、当該無効又は違法は、本契約の他の条項並びにその解釈及び適用に何ら影響せず、これらの適法性及び有効性を損なわず、またこれらを無効にするものではありません。</p>
+<h2>第16条（準拠法）</h2>
+<p>本契約は日本法に準拠し、日本法に従って解釈されます。</p>
+<h2>第17条（裁判管轄）</h2>
+<p>ユーザーと当社との間における一切の紛争は、当社の本店所在地を管轄する地方裁判所を第一審の専属的合意管轄裁判所とします。</p>
+<h2>第18条（存続条項）</h2>
+<p>本契約終了後も、第4条（権利帰属）、第7条（非保証）、第10条（責任の制限）、第11条（契約期間及び終了）第3項、第12条（本ソフトウェアの提供終了）第4項、第15条（分離可能性）、第16条（準拠法）、第17条（裁判管轄）及び本条は、本契約終了後も引き続き有効に存続するものとします。</p>
+<p class="legal-back"><a href="index.html">KOMA</a></p>
+</main>
 </body>
 </html>

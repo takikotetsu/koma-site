@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KOMA — フィルムエミュレーション</title>
-<meta name="description" content="KOMA は OFX ホストと Adobe Premiere Pro / After Effects で動くフィルムエミュレーションです。SDI 入出力を持つスタンドアロンで、同じルックを現場のモニタにも出せます。">
+<meta name="description" content="KOMA は OFX ホストと Adobe Premiere Pro / After Effects で動くフィルムエミュレーションです。SDI 入出力を持つスタンドアロン（SDI はベータ）で、同じルックを現場のモニタにも出せます。">
 <style>
 /* KOMA — one stylesheet, both languages.
  *
@@ -128,16 +128,32 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 }
 .hero-media{
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-  /* Up from black, once, on load. Both layers — the still and the video — so
-     there is nothing to see through while it happens; the hero's own black is
-     what shows. Done here rather than burnt into the file because a fade in the
-     encode would replay every time the loop came round, and because the one
-     thing that must not be spent on it is bitrate: a slow ramp out of black is
-     hard to compress, and grain is what that bitrate is for. */
-  animation:heroIn 1.8s ease-out both;
 }
-@keyframes heroIn{from{opacity:0} to{opacity:1}}
-@media (prefers-reduced-motion:reduce){ .hero-media{animation:none} }
+/* Up from black, once, on load — as **one picture**.
+ *
+ * This used to fade the two layers separately, each from opacity 0, and that is
+ * a different thing: the video starts playing at once while the still stays on
+ * frame one, so half way through you are looking at a half-transparent moving
+ * shot laid over a frozen one. At 1.8s it read as a soft start; at 3s it reads
+ * as a double exposure, which is what it always was.
+ *
+ * So the layers stay opaque and stacked, and what fades is a sheet of the
+ * page's own black over them. There is only ever one picture underneath it.
+ *
+ * Above the veil (same z-index, later in the box tree) and below .wrap, so the
+ * words do not fade with it — they did not before either.
+ *
+ * Not burnt into the video, for two reasons: a fade in the encode replays every
+ * time the loop comes round, and a slow ramp out of black is expensive to
+ * compress — bitrate that grain is supposed to be spending.
+ */
+.hero::after{
+  content:""; position:absolute; inset:0; z-index:2;
+  background:var(--ink); pointer-events:none;
+  animation:heroIn 3s ease-out both;
+}
+@keyframes heroIn{from{opacity:1} to{opacity:0}}
+@media (prefers-reduced-motion:reduce){ .hero::after{animation:none; opacity:0} }
 .hero-veil{
   position:absolute; inset:0; pointer-events:none;
   background:linear-gradient(180deg,
@@ -217,12 +233,22 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
               0 0 3.2rem rgba(4,6,8,.6);
 }
 
-/* The still is under the video and is what shows when the video is not
-   playing: while it loads, on iOS in low power mode, and below. */
-.hero-still{z-index:0}
+/* The still is off by default, and that is a removal rather than a tidy-up.
+ *
+ * It was there to be what shows when the video is not playing — while it loads,
+ * and on iOS in low power mode. **The <video> element's own poster already does
+ * that**, and it is the same file, so the still was a second copy of the first
+ * frame stacked under a moving picture for no gain. It is also what made the
+ * fade show a double exposure: two layers, two different pictures.
+ *
+ * The one case that genuinely has no video is reduced motion, so that is the
+ * one case it appears in.
+ */
+.hero-still{display:none}
 .hero-video{z-index:1}
 @media (prefers-reduced-motion:reduce){
   .hero-video{display:none}
+  .hero-still{display:block; z-index:0}
 }
 
 /* ---- the three things worth knowing before anything else ----------------
@@ -321,6 +347,9 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
   margin-bottom:.55rem; line-height:1.3;
 }
 .host span{display:block; color:var(--lo); font-size:.8rem; line-height:1.8}
+/* The grid is a bordered block, so a note set straight against it reads as
+   another cell that lost its border. Give it room to be a footnote. */
+.hosts + .note{margin-top:1.6rem}
 
 /* ---- a drawing, when a sentence would need three goes -------------------- */
 .figure{border:1px solid var(--hair); background:rgba(18,21,25,.45); padding:2.2rem 1.6rem}
@@ -452,6 +481,13 @@ details .body{padding:2.2rem 0 .6rem 1.7rem}
 
 /* ---- lists -------------------------------------------------------------- */
 .grid{display:grid; gap:3rem; grid-template-columns:repeat(auto-fit,minmax(14rem,1fr))}
+/* 14rem is a comfortable column of English and a bad one of Japanese: at that
+   width a line holds about eighteen characters, and no breaking rule saves a
+   paragraph that narrow — `word-break:auto-phrase` is on and still puts 「色や」
+   and 「白・」 at the end of a line, because those are legal phrase ends. The
+   fix is room, not rules. Wider columns also stop four items sitting three and
+   one. English keeps the narrower minimum: it wraps well at any width. */
+:lang(ja) .grid{grid-template-columns:repeat(auto-fit,minmax(24rem,1fr))}
 .grid p{margin:0; font-size:.92rem; line-height:1.95}
 dl{margin:0; display:grid; gap:0 2.5rem; grid-template-columns:max-content 1fr}
 dt{
@@ -492,6 +528,23 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
   text-transform:uppercase; border-bottom-color:rgba(111,120,133,.3);
 }
 .lang a:hover{color:var(--hi); border-bottom-color:var(--hi)}
+
+/* ---- the legal documents -------------------------------------------------
+ * A contract is read differently from a landing page: in order, slowly, and
+ * often to find one clause. So the headings here are ordinary headings rather
+ * than the tracked labels the rest of the site uses, and the measure is
+ * narrower than the page's.
+ */
+.legal{max-width:46rem; padding-top:5rem; padding-bottom:6rem}
+.legal h1{font-size:1.5rem; font-weight:200; letter-spacing:.06em;
+  color:var(--hi); margin:0 0 2.6rem; line-height:1.6}
+.legal h2{font-size:1.02rem; font-weight:300; letter-spacing:.06em;
+  color:var(--hi); text-transform:none; margin:2.8rem 0 .9rem}
+.legal p{font-size:.92rem; line-height:2.0; max-width:none}
+.legal ol{padding-left:1.6em; margin:0 0 1.2rem}
+.legal li{font-size:.92rem; line-height:2.0; margin:0 0 .5rem}
+.legal ol ol{margin:.5rem 0 .9rem}
+.legal-back{margin-top:4rem; padding-top:2rem; border-top:1px solid var(--hair)}
 </style>
 </head>
 <body>
@@ -545,7 +598,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
     <h2>フィルムエミュレーション</h2>
     <p class="line"><span class="np">デジタルデータを、</span><span class="np">現像液に浸す。</span></p>
     <p class="sub">露光、現像、プリント。<br>実際に起きる順番でそのまま通すので、色も粒子も「後から足したもの」になりません。</p>
-    <p class="sub">Resolve、Flame、Premiere Pro、After Effects、そして現場用の単体アプリまで。インストーラひとつで全てを手に入れてください。</p>
+    <p class="sub">Resolve、Flame、Premiere Pro、After Effects、そして現場用の単体アプリまで（アプリの SDI はベータです）。インストーラひとつで全てを手に入れてください。</p>
     <p class="cta">
       <a class="btn btn-lit" href="#get">ダウンロード</a>
       <a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">&yen;19,800 / 年</a>
@@ -583,8 +636,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
     <p class="head"><span class="np">一度のインストールで、</span><span class="np">お手持ちのソフト全部に。</span></p>
     <div class="hosts">
       <div class="host">
-        <b>DaVinci Resolve</b>
-        <span>OFX プラグイン</span>
+        <b>DaVinci Resolve Studio</b>
+        <span>OFX プラグイン &mdash; 無償版は OFX プラグインに対応していません</span>
       </div>
       <div class="host">
         <b>Autodesk&reg; Flame&reg;</b>
@@ -600,13 +653,14 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       </div>
       <div class="host">
         <b>その他の OFX 対応ソフト</b>
-        <span>Nuke、Baselight、Vegas Pro</span>
+        <span>Nuke、Baselight、Vegas Pro <em>（未検証）</em></span>
       </div>
       <div class="host">
         <b>KOMA 単体</b>
-        <span>単体アプリ、SDI 入出力</span>
+        <span>単体アプリ、SDI 入出力 <em>（ベータ）</em></span>
       </div>
     </div>
+    <p class="note">Nuke、Baselight、Vegas Pro は、理論上は動作します（標準的な OFX プラグインで、ホスト固有の実装は含まれていません）。ただし、いずれも実機で検証できていません。お使いの方で検証にご協力いただける場合は <a href="mailto:support.koma@kotetsu.work">support.koma@kotetsu.work</a> までご連絡ください。ライセンスを無償でご提供いたします。</p>
   </div>
 </section>
 
@@ -667,9 +721,10 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 
 <section>
   <div class="wrap">
-    <h2>現場で</h2>
     <p class="head"><span class="np">撮影中も</span><span class="np">フィルムエミュレーションを適用可能。</span></p>
     <p>単体アプリは SDI 入力を受けて、グレーディングとフィルムの処理を通し、SDI で出します。設定は <code>.koma</code> ファイルに保存でき、そのままプラグイン側で読み込めます。</p>
+
+    <p class="note"><strong>SDI はベータです。</strong>入出力とも実機で動かしてあります — AJA は Io 4K と Io XT（ドライバ 17.6.0）、Blackmagic は DeckLink Micro（Desktop Video 16.0.1）。確かめられていないのはそれ以外です。SDI はドライバの版とカードの世代で挙動が変わるもので、1台の機械で3機種通ったことは、4機種目がどうなるかを何も言いません。アプリのそれ以外 — 絵、グレーディング、プリセット、スチル書き出し — はベータではありません。</p>
 
     <div class="figure" style="margin-top:2.5rem">
       <svg viewBox="0 0 900 250" role="img"
@@ -723,7 +778,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <div class="body">
 
     <p>
-      入力を露光量に戻し、ネガの特性曲線を通し、プリントに焼き、表示に戻します。色や粒子を後から足すのではなく、その一連を通した結果として出てきます。
+      入力を露光量に戻し、ネガの特性曲線を通し、プリントに焼き、表示に戻します。<span class="np">色や粒子を</span>後から足すのではなく、その一連を通した結果として出てきます。
     </p>
     <div class="grid" style="margin-top:2.5rem">
       <div>
@@ -751,7 +806,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
       <div class="body">
 
     <p>
-      1つのショットを、グレーディングは Resolve、合成は Flame、編集は Premiere、というように別々のソフトで触ることになります。KOMA はそのどれもが同じエンジンを呼んでいるので、ソフトを移るたびにルックを作り直す必要がありません。「素材の色が変わっていて合成をやり直し」も起きません。
+      1つのショットを、グレーディングは Resolve、合成は Flame、編集は Premiere、<span class="np">というように</span>別々のソフトで触ることになります。KOMA はそのどれもが同じエンジンを呼んでいるので、ソフトを移るたびにルックを作り直す必要がありません。「素材の色が変わっていて合成をやり直し」も起きません。
     </p>
     <div class="grid" style="margin-top:2.5rem">
       <div>
@@ -832,7 +887,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
           <li>出力に KOMA の透かしが入ります</li>
           <li>アカウント登録も試用期限もありません</li>
         </ul>
-        <p class="cta"><a class="btn btn-line" href="mailto:support.koma@kotetsu.work?subject=KOMA%20download">ダウンロードを希望する</a></p>
+        <p class="cta"><a class="btn btn-lit" href="https://github.com/takikotetsu/koma-site/releases/download/v1.0/KOMA-1.0.pkg">macOS 版をダウンロード</a></p>
       </div>
       <div class="plan plan-lit">
         <h3>製品版</h3>
@@ -840,8 +895,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         <p class="sub">約 US$129。税と為替レートは確定前です。</p>
         <ul>
           <li>すべての出力から透かしが外れます</li>
-          <li>PC ではなく購入者に紐づくので、台数の制限がありません</li>
-          <li>認証サーバーへの問い合わせなし。ネット環境のない現場でも動きます</li>
+          <li>同時に2台まで。機材を入れ替えるときは、片方を解除してもう1台で有効にできます</li>
+          <li>認証はオンラインで1回。あとはネットが無くてもレンダリングできます。ネットがあるときは1日に一度だけ確認しますが、繋がらないことで止まることはありません</li>
           <li>ライセンス1つで、プラグインも単体アプリも有効になります</li>
         </ul>
         <p class="cta"><a class="btn btn-lit" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">購入する</a></p>
@@ -863,7 +918,8 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
     <p>
       KOMA に収録しているフィルムの呼称は独自のもので、実在するフィルム製品の商標ではありません。
     </p>
-    <p class="lang"><a href="../">English</a></p>
+    <p class="lang"><a href="eula.html">ソフトウェア使用許諾契約</a> · <a href="tokushoho.html">特定商取引法に基づく表示</a></p>
+<p class="lang"><a href="../">English</a></p>
   </div>
 </footer>
 
