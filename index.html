@@ -223,6 +223,15 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
   text-shadow:0 0 .7rem rgba(4,6,8,.95), 0 0 1.8rem rgba(4,6,8,.85),
               0 0 4.5rem rgba(4,6,8,.7);
 }
+/* 読みが分からないと、人に言えない。ロゴの上に小さく置くのは日本語の
+   製品では見慣れた形で、字面を邪魔しない。写真の上に乗るので、
+   .word と同じ理由でハローを持たせている。 */
+.yomi{
+  margin:0 0 .5rem; color:var(--hi);
+  font-size:.62rem; letter-spacing:.42em; font-weight:400;
+  text-shadow:0 0 .5rem rgba(4,6,8,.95), 0 0 1.4rem rgba(4,6,8,.85),
+              0 0 3rem rgba(4,6,8,.6);
+}
 .tagline{
   margin:.9rem 0 0; color:var(--hi);
   font-size:.64rem; letter-spacing:.5em; text-transform:uppercase; font-weight:400;

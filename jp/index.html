@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KOMA — フィルムエミュレーション</title>
-<meta name="description" content="KOMA は OFX ホストと Adobe Premiere Pro / After Effects で動くフィルムエミュレーションです。SDI 入出力を持つスタンドアロン（SDI はベータ）で、同じルックを現場のモニタにも出せます。">
+<title>KOMA（コーマ）— フィルムエミュレーション</title>
+<meta name="description" content="KOMA（コーマ）は OFX ホストと Adobe Premiere Pro / After Effects で動くフィルムエミュレーションです。SDI 入出力を持つスタンドアロン（SDI はベータ）で、同じルックを現場のモニタにも出せます。">
 <style>
 /* KOMA — one stylesheet, both languages.
  *
@@ -218,6 +218,15 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
      reading as two effects instead of one. */
   text-shadow:0 0 .7rem rgba(4,6,8,.95), 0 0 1.8rem rgba(4,6,8,.85),
               0 0 4.5rem rgba(4,6,8,.7);
+}
+/* 読みが分からないと、人に言えない。ロゴの上に小さく置くのは日本語の
+   製品では見慣れた形で、字面を邪魔しない。写真の上に乗るので、
+   .word と同じ理由でハローを持たせている。 */
+.yomi{
+  margin:0 0 .5rem; color:var(--hi);
+  font-size:.62rem; letter-spacing:.42em; font-weight:400;
+  text-shadow:0 0 .5rem rgba(4,6,8,.95), 0 0 1.4rem rgba(4,6,8,.85),
+              0 0 3rem rgba(4,6,8,.6);
 }
 .tagline{
   margin:.9rem 0 0; color:var(--hi);
@@ -586,6 +595,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
         <circle cx="60" cy="60" r="9.5" fill="#fff9f3"/>
       </svg>
       <div class="word-col">
+        <p class="yomi">コーマ</p>
         <h1 class="word">KOMA</h1>
         <p class="tagline">Film Emulation</p>
       </div>
