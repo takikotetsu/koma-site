@@ -389,6 +389,13 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 .plans{display:grid; gap:1.6rem; grid-template-columns:repeat(auto-fit,minmax(19rem,1fr))}
 .plan{border:1px solid var(--hair); padding:2.3rem 2.1rem; background:rgba(18,21,25,.5)}
 .plan-lit{border-color:rgba(201,96,58,.5)}
+/* **無料版がいちばん押してほしいもの。** 誰もこのプラグインを知らないうちは、
+ * 買う判断より先に「入れて試す」が来る。最初は購入タイルの上に一行だけ置いて
+ * いたが、それだと注釈に見えて、いちばん重要なボタンがいちばん小さくなった。
+ * 幅いっぱいの枠にして、金額の位置に「無料」を置き、明るいボタンはここだけ。 */
+.plan-free{background:rgba(24,28,33,.6)}
+.plan-free .price{color:var(--amber-lit)}
+.plan-free .sub{max-width:44em; min-height:0}
 .plan h3{margin-bottom:.2rem}
 .plan .price{font-size:clamp(2rem,3.4vw,2.8rem); font-weight:100;
   letter-spacing:.01em; margin:1rem 0 .3rem}

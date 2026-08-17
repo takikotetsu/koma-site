@@ -394,6 +394,13 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 .plans{display:grid; gap:1.6rem; grid-template-columns:repeat(auto-fit,minmax(19rem,1fr))}
 .plan{border:1px solid var(--hair); padding:2.3rem 2.1rem; background:rgba(18,21,25,.5)}
 .plan-lit{border-color:rgba(201,96,58,.5)}
+/* **無料版がいちばん押してほしいもの。** 誰もこのプラグインを知らないうちは、
+ * 買う判断より先に「入れて試す」が来る。最初は購入タイルの上に一行だけ置いて
+ * いたが、それだと注釈に見えて、いちばん重要なボタンがいちばん小さくなった。
+ * 幅いっぱいの枠にして、金額の位置に「無料」を置き、明るいボタンはここだけ。 */
+.plan-free{background:rgba(24,28,33,.6)}
+.plan-free .price{color:var(--amber-lit)}
+.plan-free .sub{max-width:44em; min-height:0}
 .plan h3{margin-bottom:.2rem}
 .plan .price{font-size:clamp(2rem,3.4vw,2.8rem); font-weight:100;
   letter-spacing:.01em; margin:1rem 0 .3rem}
@@ -633,7 +640,7 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
     <p class="sub">Resolve, Flame, Premiere Pro, After Effects, and the standalone application for set — its SDI in beta. One installer gets you all of it.</p>
     <p class="cta">
       <a class="btn btn-lit" href="#get">Download</a>
-      <a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">From &yen;1,980 / month</a>
+      <a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV?product_id=ac69f86c-4d18-46e3-9817-18b074a5146e">From &yen;1,980 / month</a>
     </p>
     <p class="note" style="margin:0">Free to use and watermarked until it is licensed. macOS 11 and later.</p>
   </div>
@@ -955,33 +962,41 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 
 <section id="get">
   <div class="wrap">
-    <p class="sub" style="margin:0 0 1.6rem">
-      <strong>Try it first.</strong> Every feature works on every host before you
-      buy anything — no account, no time limit. The output carries a watermark
-      until a licence is in.
-      <a class="btn btn-line" style="margin-left:.8rem" href="https://github.com/takikotetsu/koma-site/releases/download/v1.2.1/KOMA-1.2.1.pkg">Download for macOS</a>
-    </p>
+    <h2>Try it, then decide</h2>
+
+    <div class="plan plan-free">
+      <h3>Free, with no end date</h3>
+      <p class="price">Free</p>
+      <p class="sub">Every feature, on every host. No account, nothing switched
+        off, no trial running out. The output carries a KOMA watermark until a
+        licence goes in — that is the only difference.</p>
+      <p class="cta"><a class="btn btn-lit" href="https://github.com/takikotetsu/koma-site/releases/download/v1.2.1/KOMA-1.2.1.pkg">Download for macOS</a></p>
+    </div>
+
+    <p class="note" style="margin:2.6rem 0 1.2rem">Take the watermark off:</p>
+
     <div class="plans">
       <div class="plan">
         <h3>Monthly</h3>
         <p class="price">&yen;1,980 <small>/ mo</small></p>
         <p class="sub">For a job, then stop. Cancel whenever.</p>
-        <p class="cta"><a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">Choose monthly</a></p>
+        <p class="cta"><a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV?product_id=ac69f86c-4d18-46e3-9817-18b074a5146e">Choose monthly</a></p>
       </div>
       <div class="plan plan-lit">
         <h3>Yearly</h3>
         <p class="price">&yen;19,800 <small>/ yr</small></p>
         <p class="sub">A third less than paying by the month.</p>
-        <p class="cta"><a class="btn btn-lit" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">Choose yearly</a></p>
+        <p class="cta"><a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV?product_id=e42fabac-4612-4f79-9390-3c2b870d111b">Choose yearly</a></p>
       </div>
       <div class="plan">
         <h3>Perpetual</h3>
         <p class="price">&yen;39,800 <small>once</small></p>
         <p class="sub">Two years of the yearly price, and it is yours. Updates
           included.</p>
-        <p class="cta"><a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">Buy outright</a></p>
+        <p class="cta"><a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV?product_id=c9d0c69a-23a4-4a24-ad79-bc2169faf46a">Buy outright</a></p>
       </div>
     </div>
+
     <p class="note" style="margin-top:2rem">
       Every licence is the same licence: the watermark comes off everywhere, two
       machines at a time with seats you can move, and one key covers the plug-ins
