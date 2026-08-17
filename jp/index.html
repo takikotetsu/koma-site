@@ -393,7 +393,11 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 .plan h3{margin-bottom:.2rem}
 .plan .price{font-size:clamp(2rem,3.4vw,2.8rem); font-weight:100;
   letter-spacing:.01em; margin:1rem 0 .3rem}
-.plan .sub{color:var(--lo); font-size:.8rem; margin:0 0 1.4rem}
+/* 「/ 月」「一度きり」の類。金額と同じ大きさだと単位が金額に見えるので落とす。
+   .proof-num small と同じ考え方で、そちらと同じ比率にしてある。 */
+.plan .price small{font-size:.36em; letter-spacing:.1em; color:var(--lo);
+  margin-left:.4em; font-weight:300}
+.plan .sub{color:var(--lo); font-size:.8rem; margin:0 0 1.4rem; min-height:3.4em}
 .plan ul{margin:0 0 1.7rem; padding:0; list-style:none}
 .plan li{
   color:var(--mid); font-size:.86rem; line-height:1.8; padding:.4rem 0 .4rem 1.1rem;
@@ -901,33 +905,34 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 
 <section id="get">
   <div class="wrap">
+    <p class="sub" style="margin:0 0 1.6rem">
+      <strong>まず試せます。</strong> 買う前に、すべての機能がすべてのホストで動きます。アカウントも期限もありません。ライセンスを入れるまで、出力に透かしが乗ります。
+      <a class="btn btn-line" style="margin-left:.8rem" href="https://github.com/takikotetsu/koma-site/releases/download/v1.2.1/KOMA-1.2.1.pkg">macOS 版をダウンロード</a>
+    </p>
     <div class="plans">
       <div class="plan">
-        <h3>無料版</h3>
-        <p class="price">無料</p>
-        <p class="sub">全機能、全対応ソフトで。</p>
-        <ul>
-          <li>機能制限はありません</li>
-          <li>出力に KOMA の透かしが入ります</li>
-          <li>アカウント登録も試用期限もありません</li>
-        </ul>
-        <p class="cta"><a class="btn btn-lit" href="https://github.com/takikotetsu/koma-site/releases/download/v1.2.1/KOMA-1.2.1.pkg">macOS 版をダウンロード</a></p>
+        <h3>月払い</h3>
+        <p class="price">&yen;1,980 <small>/ 月</small></p>
+        <p class="sub">案件のあいだだけ。いつでも解約できます。</p>
+        <p class="cta"><a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">月払いにする</a></p>
       </div>
       <div class="plan plan-lit">
-        <h3>製品版</h3>
-        <p class="price">&yen;19,800 / 年</p>
-        <p class="sub">月払いは &yen;1,980。<strong>&yen;39,800 の買い切り</strong>もあります。アップデートを含みます。</p>
-        <p class="sub">年額は約 US$129。税と為替レートは確定前です。</p>
-        <ul>
-          <li>すべての出力から透かしが外れます</li>
-          <li>同時に2台まで。機材を入れ替えるときは、片方を解除してもう1台で有効にできます</li>
-          <li>認証はオンラインで1回。あとはネットが無くてもレンダリングできます。ネットがあるときは1日に一度だけ確認しますが、繋がらないことで止まることはありません</li>
-          <li>ライセンス1つで、プラグインも単体アプリも有効になります</li>
-        </ul>
-        <p class="cta"><a class="btn btn-lit" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">購入する</a></p>
+        <h3>年払い</h3>
+        <p class="price">&yen;19,800 <small>/ 年</small></p>
+        <p class="sub">月払いより3割ほど安くなります。</p>
+        <p class="cta"><a class="btn btn-lit" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">年払いにする</a></p>
+      </div>
+      <div class="plan">
+        <h3>買い切り</h3>
+        <p class="price">&yen;39,800 <small>一度きり</small></p>
+        <p class="sub">年払い2年ぶんで、そのあとは払いません。アップデートを含みます。</p>
+        <p class="cta"><a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">買い切りにする</a></p>
       </div>
     </div>
     <p class="note" style="margin-top:2rem">
+      どれを選んでもライセンスの中身は同じです。すべての出力から透かしが外れ、同時に2台まで使えて、席は入れ替えられます。ライセンス1つでプラグインも単体アプリも有効になります。認証はオンラインで1回だけ。あとはネットが無くてもレンダリングでき、繋がらないことで止まることはありません。表示価格は税込みです。海外のカードは、そのカード会社のレートで請求されます。
+    </p>
+    <p class="note" style="margin-top:1rem">
       購入前に確かめておきたいことがあれば、
       <a href="mailto:support.koma@kotetsu.work">support.koma@kotetsu.work</a> までお知らせください。
     </p>

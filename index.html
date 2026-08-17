@@ -397,7 +397,11 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em}
 .plan h3{margin-bottom:.2rem}
 .plan .price{font-size:clamp(2rem,3.4vw,2.8rem); font-weight:100;
   letter-spacing:.01em; margin:1rem 0 .3rem}
-.plan .sub{color:var(--lo); font-size:.8rem; margin:0 0 1.4rem}
+/* 「/ 月」「一度きり」の類。金額と同じ大きさだと単位が金額に見えるので落とす。
+   .proof-num small と同じ考え方で、そちらと同じ比率にしてある。 */
+.plan .price small{font-size:.36em; letter-spacing:.1em; color:var(--lo);
+  margin-left:.4em; font-weight:300}
+.plan .sub{color:var(--lo); font-size:.8rem; margin:0 0 1.4rem; min-height:3.4em}
 .plan ul{margin:0 0 1.7rem; padding:0; list-style:none}
 .plan li{
   color:var(--mid); font-size:.86rem; line-height:1.8; padding:.4rem 0 .4rem 1.1rem;
@@ -951,34 +955,42 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 
 <section id="get">
   <div class="wrap">
+    <p class="sub" style="margin:0 0 1.6rem">
+      <strong>Try it first.</strong> Every feature works on every host before you
+      buy anything — no account, no time limit. The output carries a watermark
+      until a licence is in.
+      <a class="btn btn-line" style="margin-left:.8rem" href="https://github.com/takikotetsu/koma-site/releases/download/v1.2.1/KOMA-1.2.1.pkg">Download for macOS</a>
+    </p>
     <div class="plans">
       <div class="plan">
-        <h3>Unlicensed</h3>
-        <p class="price">Free</p>
-        <p class="sub">Every feature, on every host.</p>
-        <ul>
-          <li>Nothing is disabled or reduced</li>
-          <li>The output carries a KOMA watermark</li>
-          <li>No account and no time limit</li>
-        </ul>
-        <p class="cta"><a class="btn btn-lit" href="https://github.com/takikotetsu/koma-site/releases/download/v1.2.1/KOMA-1.2.1.pkg">Download for macOS</a></p>
+        <h3>Monthly</h3>
+        <p class="price">&yen;1,980 <small>/ mo</small></p>
+        <p class="sub">For a job, then stop. Cancel whenever.</p>
+        <p class="cta"><a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">Choose monthly</a></p>
       </div>
       <div class="plan plan-lit">
-        <h3>Licensed</h3>
-        <p class="price">&yen;19,800 / year</p>
-        <p class="sub">Or &yen;1,980 a month. Or <strong>&yen;39,800 once</strong> — a
-          perpetual licence, updates included.</p>
-        <p class="sub">About US$129 a year. Tax and the exact rate to be confirmed.</p>
-        <ul>
-          <li>The watermark comes off everywhere</li>
-          <li>Two machines at a time, and you can move a seat: release one, activate another</li>
-          <li>Activation is online, once. After that it renders with no network; it checks in about once a day when there is one, and a machine that cannot reach us is never stopped by that</li>
-          <li>One licence covers the plug-ins and the application</li>
-        </ul>
-        <p class="cta"><a class="btn btn-lit" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">Buy KOMA</a></p>
+        <h3>Yearly</h3>
+        <p class="price">&yen;19,800 <small>/ yr</small></p>
+        <p class="sub">A third less than paying by the month.</p>
+        <p class="cta"><a class="btn btn-lit" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">Choose yearly</a></p>
+      </div>
+      <div class="plan">
+        <h3>Perpetual</h3>
+        <p class="price">&yen;39,800 <small>once</small></p>
+        <p class="sub">Two years of the yearly price, and it is yours. Updates
+          included.</p>
+        <p class="cta"><a class="btn btn-line" href="https://buy.polar.sh/polar_cl_hj68hWlQ2wSi08V8ie96pn5wSCTLRJPNt0Eyk1b3thV">Buy outright</a></p>
       </div>
     </div>
     <p class="note" style="margin-top:2rem">
+      Every licence is the same licence: the watermark comes off everywhere, two
+      machines at a time with seats you can move, and one key covers the plug-ins
+      and the application. Activation is online once; after that it renders with
+      no network, and a machine that cannot reach us is never stopped by that.
+      Prices include tax. About US$13, US$129 and US$259 — if your card is billed
+      in another currency, your issuer sets the rate.
+    </p>
+    <p class="note" style="margin-top:1rem">
       Anything you want to ask before buying, write to
       <a href="mailto:support.koma@kotetsu.work">support.koma@kotetsu.work</a>.
     </p>
