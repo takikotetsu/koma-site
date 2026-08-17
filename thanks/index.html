@@ -572,10 +572,50 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
   color:var(--hi); margin:0 0 2.6rem; line-height:1.6}
 .legal h2{font-size:1.02rem; font-weight:300; letter-spacing:.06em;
   color:var(--hi); text-transform:none; margin:2.8rem 0 .9rem}
+.legal h3{font-size:.82rem; font-weight:400; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--lo); margin:2.4rem 0 .7rem}
 .legal p{font-size:.92rem; line-height:2.0; max-width:none}
 .legal ol{padding-left:1.6em; margin:0 0 1.2rem}
 .legal li{font-size:.92rem; line-height:2.0; margin:0 0 .5rem}
 .legal ol ol{margin:.5rem 0 .9rem}
+/* Tables and bullets came in with the help pages. The agreements have neither —
+ * a contract is numbered clauses — but a control reference is a table or it is
+ * nothing, and "Resolve — Effects → OpenFX" is a list of three hosts.
+ *
+ * The reference is long and read by scanning for one row, so the rules are
+ * horizontal only: enough to follow a line across, not a grid to look at. */
+/* 目次。節が多いページ(ヘルプ)にだけ出る。規約は順に読むものなので出ない。
+ * 二段組にして、上から下、左から右で読める向きにしてある。 */
+.toc{margin:0 0 3.2rem; padding:1.4rem 1.6rem; border:1px solid var(--hair);
+  background:rgba(18,21,25,.5)}
+.toc ul{margin:0; padding:0; list-style:none;
+  columns:2; column-gap:2.4rem}
+.toc li{font-size:.86rem; line-height:2.1; break-inside:avoid}
+.toc a{color:var(--mid)}
+.toc a:hover{color:var(--amber-lit)}
+@media (max-width:34rem){ .toc ul{columns:1} }
+
+.legal table{width:100%; border-collapse:collapse; margin:0 0 1.6rem;
+  font-size:.86rem; line-height:1.75}
+.legal th{text-align:left; font-weight:400; color:var(--hi);
+  border-bottom:1px solid var(--rule); padding:.5rem .9rem .5rem 0;
+  white-space:nowrap}
+.legal td{vertical-align:top; padding:.55rem .9rem .55rem 0;
+  border-bottom:1px solid var(--hair); color:var(--mid)}
+/* The last column is the description and takes whatever is left; the first
+ * three are a name, a range and a default, and all of them are short. */
+.legal td:first-child{color:var(--hi); white-space:nowrap}
+.legal td:nth-child(2), .legal td:nth-child(3){white-space:nowrap; color:var(--lo)}
+.legal ul{padding-left:1.5em; margin:0 0 1.2rem}
+.legal ul li{font-size:.92rem; line-height:2.0; margin:0 0 .35rem}
+
+/* 作った人。名前を書くより、印を置くほうが小さくて済む。
+ * 暗いところに白で浮かせるので、通常は落として、触れたときだけ上げる。 */
+.maker{margin:0 0 1.4rem}
+.maker img{display:block; width:96px; height:auto; opacity:.42;
+  transition:opacity .25s ease}
+.maker a:hover img{opacity:.85}
+
 .legal-back{margin-top:4rem; padding-top:2rem; border-top:1px solid var(--hair)}
 </style>
 </head>

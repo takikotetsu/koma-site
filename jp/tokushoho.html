@@ -571,48 +571,88 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
   color:var(--hi); margin:0 0 2.6rem; line-height:1.6}
 .legal h2{font-size:1.02rem; font-weight:300; letter-spacing:.06em;
   color:var(--hi); text-transform:none; margin:2.8rem 0 .9rem}
+.legal h3{font-size:.82rem; font-weight:400; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--lo); margin:2.4rem 0 .7rem}
 .legal p{font-size:.92rem; line-height:2.0; max-width:none}
 .legal ol{padding-left:1.6em; margin:0 0 1.2rem}
 .legal li{font-size:.92rem; line-height:2.0; margin:0 0 .5rem}
 .legal ol ol{margin:.5rem 0 .9rem}
+/* Tables and bullets came in with the help pages. The agreements have neither —
+ * a contract is numbered clauses — but a control reference is a table or it is
+ * nothing, and "Resolve — Effects → OpenFX" is a list of three hosts.
+ *
+ * The reference is long and read by scanning for one row, so the rules are
+ * horizontal only: enough to follow a line across, not a grid to look at. */
+/* 目次。節が多いページ(ヘルプ)にだけ出る。規約は順に読むものなので出ない。
+ * 二段組にして、上から下、左から右で読める向きにしてある。 */
+.toc{margin:0 0 3.2rem; padding:1.4rem 1.6rem; border:1px solid var(--hair);
+  background:rgba(18,21,25,.5)}
+.toc ul{margin:0; padding:0; list-style:none;
+  columns:2; column-gap:2.4rem}
+.toc li{font-size:.86rem; line-height:2.1; break-inside:avoid}
+.toc a{color:var(--mid)}
+.toc a:hover{color:var(--amber-lit)}
+@media (max-width:34rem){ .toc ul{columns:1} }
+
+.legal table{width:100%; border-collapse:collapse; margin:0 0 1.6rem;
+  font-size:.86rem; line-height:1.75}
+.legal th{text-align:left; font-weight:400; color:var(--hi);
+  border-bottom:1px solid var(--rule); padding:.5rem .9rem .5rem 0;
+  white-space:nowrap}
+.legal td{vertical-align:top; padding:.55rem .9rem .55rem 0;
+  border-bottom:1px solid var(--hair); color:var(--mid)}
+/* The last column is the description and takes whatever is left; the first
+ * three are a name, a range and a default, and all of them are short. */
+.legal td:first-child{color:var(--hi); white-space:nowrap}
+.legal td:nth-child(2), .legal td:nth-child(3){white-space:nowrap; color:var(--lo)}
+.legal ul{padding-left:1.5em; margin:0 0 1.2rem}
+.legal ul li{font-size:.92rem; line-height:2.0; margin:0 0 .35rem}
+
+/* 作った人。名前を書くより、印を置くほうが小さくて済む。
+ * 暗いところに白で浮かせるので、通常は落として、触れたときだけ上げる。 */
+.maker{margin:0 0 1.4rem}
+.maker img{display:block; width:96px; height:auto; opacity:.42;
+  transition:opacity .25s ease}
+.maker a:hover img{opacity:.85}
+
 .legal-back{margin-top:4rem; padding-top:2rem; border-top:1px solid var(--hair)}
 </style>
 </head>
 <body>
 <main class="wrap legal">
 <h1>特定商取引法に基づく表示</h1>
-<h2>販売業者</h2>
+<h2 id="s0">販売業者</h2>
 <p>株式会社虎徹 （Kotetsu Inc.）</p>
-<h2>運営責任者</h2>
+<h2 id="s1">運営責任者</h2>
 <p>瀧　祐介</p>
-<h2>所在地</h2>
+<h2 id="s2">所在地</h2>
 <p>請求があった場合には、遅滞なくメールにて開示いたします。</p>
-<h2>電話番号</h2>
+<h2 id="s3">電話番号</h2>
 <p>請求があった場合には、遅滞なくメールにて開示いたします。</p>
-<h2>お問い合わせ先</h2>
+<h2 id="s4">お問い合わせ先</h2>
 <p>support.koma@kotetsu.work</p>
-<h2>販売・決済について</h2>
+<h2 id="s5">販売・決済について</h2>
 <p>本ソフトウェアの購入及び決済は、マーチャント・オブ・レコード（MoR）である Polar Software, Inc. を通じて行われます。購入に関する契約条件については、同社が定める購入者向け規約（https://polar.sh/legal/checkout-buyer-terms）その他の条件も適用されます。</p>
 <p>本ソフトウェアの使用許諾は、株式会社虎徹とユーザーとの間で締結されるソフトウェア使用許諾契約に基づき行われます。</p>
-<h2>販売価格</h2>
+<h2 id="s6">販売価格</h2>
 <p>各商品ページに記載（表示価格は税込）。</p>
 <p>ただし、海外決済のため、為替レートその他の影響により、表示価格とクレジットカード明細上の金額に若干の差額が生じる場合があります。</p>
-<h2>商品代金以外の諸費用等</h2>
+<h2 id="s7">商品代金以外の諸費用等</h2>
 <p>本ソフトウェアのダウンロード及び利用に必要なインターネット接続料金、通信料金その他これらに付随する費用は、お客様の負担となります。</p>
 <p>また、ご利用の決済手段によっては、決済事業者又はカード会社所定の手数料が発生する場合があります。</p>
-<h2>お支払方法・時期</h2>
+<h2 id="s8">お支払方法・時期</h2>
 <p>クレジットカードその他 Polar の決済画面に表示される方法により、購入時にお支払いいただきます。</p>
-<h2>商品の提供時期</h2>
+<h2 id="s9">商品の提供時期</h2>
 <p>決済完了後、直ちに本ソフトウェアの利用に必要なライセンスキーを電子的に発行します。</p>
-<h2>返品・返金・キャンセルについて</h2>
+<h2 id="s10">返品・返金・キャンセルについて</h2>
 <p>デジタルコンテンツという商品の性質上、購入後のお客様都合による返品、返金またはキャンセルはお受けしておりません。</p>
 <p>ただし、本ソフトウェアの重大な不具合により正常にご利用いただけない場合は、上記お問い合わせ先までご連絡ください。また、Polar が定める購入者向け規約、返金ポリシーその他適用される法令に基づき、返金その他の対応が行われる場合があります。</p>
-<h2>動作環境</h2>
+<h2 id="s11">動作環境</h2>
 <p>macOS 11 Big Sur 以降 / Apple Silicon &amp; Intel</p>
 <p>対応ホストアプリケーション: DaVinci Resolve Studio、Fusion Studio、Autodesk® Flame®（OFX）、Adobe Premiere Pro、Adobe After Effects</p>
-<h2>無償版について</h2>
+<h2 id="s12">無償版について</h2>
 <p>本ソフトウェアは、ライセンス認証を行わない状態でも全機能を使用できますが、出力される映像には識別のための表示（ウォーターマーク）が重畳されます。</p>
-<h2>適格請求書について</h2>
+<h2 id="s13">適格請求書について</h2>
 <p>本ソフトウェアの購入・決済は Polar を通じて行われます。購入時に発行される請求書その他の書類については、Polar の取扱いに従います。</p>
 <p class="legal-back"><a href="index.html">KOMA</a></p>
 </main>
