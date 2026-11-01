@@ -789,10 +789,74 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 <tr><td><strong>Mottle Scale</strong></td><td>0.25 – 4</td><td>1</td><td>Patch size. 1 is about a twentieth of the frame.</td></tr>
 <tr><td><strong>Freeze Mottle</strong></td><td></td><td>off</td><td>Film moves: every frame is a different piece of it, so the blotches are redrawn every frame. Tick this to hold one field still — eighty-pixel patches changing 24 times a second can read as boiling rather than as texture.</td></tr>
 </table>
+<h3>Grade — CDL</h3>
+<table>
+<tr><th>Control</th><th>Range</th><th>Default</th><th></th></tr>
+<tr><td><strong>Slope R</strong></td><td>0 – 3</td><td>1</td><td>ASC CDL, applied before the film stage: out = (in x slope + offset) ^ power. Slope is gain, offset is lift, power is gamma.</td></tr>
+<tr><td><strong>Slope G</strong></td><td>0 – 3</td><td>1</td><td></td></tr>
+<tr><td><strong>Slope B</strong></td><td>0 – 3</td><td>1</td><td></td></tr>
+<tr><td><strong>Offset R</strong></td><td>-0.4 – 0.4</td><td>0</td><td></td></tr>
+<tr><td><strong>Offset G</strong></td><td>-0.4 – 0.4</td><td>0</td><td></td></tr>
+<tr><td><strong>Offset B</strong></td><td>-0.4 – 0.4</td><td>0</td><td></td></tr>
+<tr><td><strong>Power R</strong></td><td>0.25 – 4</td><td>1</td><td></td></tr>
+<tr><td><strong>Power G</strong></td><td>0.25 – 4</td><td>1</td><td></td></tr>
+<tr><td><strong>Power B</strong></td><td>0.25 – 4</td><td>1</td><td></td></tr>
+<tr><td><strong>Saturation</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+</table>
+<h3>Grade — Tone</h3>
+<table>
+<tr><th>Control</th><th>Range</th><th>Default</th><th></th></tr>
+<tr><td><strong>Contrast</strong></td><td>0 – 2</td><td>1</td><td>Pivots about the code below, so raising contrast does not also raise exposure.</td></tr>
+<tr><td><strong>Pivot</strong></td><td>0.05 – 0.95</td><td>0.435</td><td></td></tr>
+<tr><td><strong>Shadows</strong></td><td>-1 – 1</td><td>0</td><td></td></tr>
+<tr><td><strong>Highlights</strong></td><td>-1 – 1</td><td>0</td><td></td></tr>
+</table>
+<h3>Grade — HSL</h3>
+<table>
+<tr><th>Control</th><th>Range</th><th>Default</th><th></th></tr>
+<tr><td><strong>Red Hue</strong></td><td>-60 – 60</td><td>0</td><td></td></tr>
+<tr><td><strong>Red Sat</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>Red Lum</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>Yellow Hue</strong></td><td>-60 – 60</td><td>0</td><td></td></tr>
+<tr><td><strong>Yellow Sat</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>Yellow Lum</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>Green Hue</strong></td><td>-60 – 60</td><td>0</td><td></td></tr>
+<tr><td><strong>Green Sat</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>Green Lum</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>Cyan Hue</strong></td><td>-60 – 60</td><td>0</td><td></td></tr>
+<tr><td><strong>Cyan Sat</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>Cyan Lum</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>Blue Hue</strong></td><td>-60 – 60</td><td>0</td><td></td></tr>
+<tr><td><strong>Blue Sat</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>Blue Lum</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>Magenta Hue</strong></td><td>-60 – 60</td><td>0</td><td></td></tr>
+<tr><td><strong>Magenta Sat</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>Magenta Lum</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+</table>
+<h3>Grade — Light</h3>
+<table>
+<tr><th>Control</th><th>Range</th><th>Default</th><th></th></tr>
+<tr><td><strong>Exposure</strong></td><td>-3 – 3</td><td>0</td><td>In stops, applied to the light before anything else in the grade. Part of the look, unlike the camera exposure in Source.</td></tr>
+<tr><td><strong>Temperature</strong></td><td>-1 – 1</td><td>0</td><td>Warmer to the right. Grey keeps its brightness.</td></tr>
+<tr><td><strong>Tint</strong></td><td>-1 – 1</td><td>0</td><td>Magenta to the right, green to the left.</td></tr>
+</table>
+<h3>Grade — Finish</h3>
+<table>
+<tr><th>Control</th><th>Range</th><th>Default</th><th></th></tr>
+<tr><td><strong>Vibrance</strong></td><td>-1 – 1</td><td>0</td><td>Saturation that leaves colours which are already strong alone.</td></tr>
+<tr><td><strong>Whites</strong></td><td>-1 – 1</td><td>0</td><td></td></tr>
+<tr><td><strong>Blacks</strong></td><td>-1 – 1</td><td>0</td><td></td></tr>
+<tr><td><strong>Fade</strong></td><td>0 – 1</td><td>0</td><td>Lifts black towards grey; white stays where it is.</td></tr>
+<tr><td><strong>Shadow Tint Hue</strong></td><td>0 – 360</td><td>220</td><td></td></tr>
+<tr><td><strong>Shadow Tint</strong></td><td>0 – 1</td><td>0</td><td></td></tr>
+<tr><td><strong>Highlight Tint Hue</strong></td><td>0 – 360</td><td>40</td><td></td></tr>
+<tr><td><strong>Highlight Tint</strong></td><td>0 – 1</td><td>0</td><td></td></tr>
+<tr><td><strong>Tint Balance</strong></td><td>-1 – 1</td><td>0</td><td>Where the shadow tint gives way to the highlight tint.</td></tr>
+</table>
 <h3>Films and looks</h3>
-<p><strong>Input Colorspace</strong> — Linear (Rec.709 primaries), Rec.709, sRGB, Bypass (no conversion), S-Log3 / S-Gamut3.Cine, LogC3 (EI800) / AWG3, LogC4 / AWG4, V-Log / V-Gamut, Log3G10 / REDWideGamutRGB, C-Log3 / Cinema Gamut</p>
+<p><strong>Input Colorspace</strong> — Linear (Rec.709 primaries), Rec.709, sRGB, Bypass (no conversion), S-Log3 / S-Gamut3.Cine, LogC3 (EI800) / AWG3, LogC4 / AWG4, V-Log / V-Gamut, Log3G10 / REDWideGamutRGB, C-Log3 / Cinema Gamut, Apple Log / Rec.2020</p>
 <p><strong>Film Type</strong> — -, Cine 50D (fine), Cine 250D, Cine 200T, Cine 500T (coarse), Cine Mono 250, Portrait 400, Portrait 160, Vivid 100, Amber 200, Pastel 400, Neon 800T, Chrome 50 (slide), Mono 400, Cine Print</p>
-<p><strong>Look</strong> — Neutral, Film Classic, Teal &amp; Amber, Print Master, Neon Night, Faded Pastel, Custom</p>
+<p><strong>Look</strong> — Neutral, Film Classic, Teal &amp; Amber, Print Master, Neon Night, Faded Pastel, Custom, Answer Print</p>
 <p class="legal-back"><a href="../index.html">KOMA</a></p>
 </main>
 </body>

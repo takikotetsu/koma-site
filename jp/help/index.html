@@ -788,10 +788,74 @@ footer p{color:var(--lo); font-size:.74rem; line-height:2.1; max-width:52rem;
 <tr><td><strong>色斑の大きさ</strong></td><td>0.25 – 4</td><td>1</td><td>斑ひとつの大きさ。1 で画面の約 1/20 です。</td></tr>
 <tr><td><strong>色斑を静止させる</strong></td><td></td><td>オフ</td><td>フィルムは動きます。1コマ1コマが別のフィルムなので、斑も毎フレーム 引き直されます。チェックを入れると1枚の場で静止します — 80px の斑が毎秒24回入れ替わると、質感ではなく「沸いている」ように 見えることがあるので。</td></tr>
 </table>
+<h3>グレーディング — CDL</h3>
+<table>
+<tr><th>コントロール</th><th>範囲</th><th>既定</th><th></th></tr>
+<tr><td><strong>スロープ R</strong></td><td>0 – 3</td><td>1</td><td>ASC CDL。フィルム段の手前で当たります: out = (in x slope + offset) ^ power。slope はゲイン、offset はリフト、power はガンマです。</td></tr>
+<tr><td><strong>スロープ G</strong></td><td>0 – 3</td><td>1</td><td></td></tr>
+<tr><td><strong>スロープ B</strong></td><td>0 – 3</td><td>1</td><td></td></tr>
+<tr><td><strong>オフセット R</strong></td><td>-0.4 – 0.4</td><td>0</td><td></td></tr>
+<tr><td><strong>オフセット G</strong></td><td>-0.4 – 0.4</td><td>0</td><td></td></tr>
+<tr><td><strong>オフセット B</strong></td><td>-0.4 – 0.4</td><td>0</td><td></td></tr>
+<tr><td><strong>パワー R</strong></td><td>0.25 – 4</td><td>1</td><td></td></tr>
+<tr><td><strong>パワー G</strong></td><td>0.25 – 4</td><td>1</td><td></td></tr>
+<tr><td><strong>パワー B</strong></td><td>0.25 – 4</td><td>1</td><td></td></tr>
+<tr><td><strong>彩度</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+</table>
+<h3>グレーディング — トーン</h3>
+<table>
+<tr><th>コントロール</th><th>範囲</th><th>既定</th><th></th></tr>
+<tr><td><strong>コントラスト</strong></td><td>0 – 2</td><td>1</td><td>下のコード値を軸に回るので、コントラストを上げても露出は動きません。</td></tr>
+<tr><td><strong>ピボット</strong></td><td>0.05 – 0.95</td><td>0.435</td><td></td></tr>
+<tr><td><strong>シャドウ</strong></td><td>-1 – 1</td><td>0</td><td></td></tr>
+<tr><td><strong>ハイライト</strong></td><td>-1 – 1</td><td>0</td><td></td></tr>
+</table>
+<h3>グレーディング — HSL</h3>
+<table>
+<tr><th>コントロール</th><th>範囲</th><th>既定</th><th></th></tr>
+<tr><td><strong>赤 色相</strong></td><td>-60 – 60</td><td>0</td><td></td></tr>
+<tr><td><strong>赤 彩度</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>赤 輝度</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>黄 色相</strong></td><td>-60 – 60</td><td>0</td><td></td></tr>
+<tr><td><strong>黄 彩度</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>黄 輝度</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>緑 色相</strong></td><td>-60 – 60</td><td>0</td><td></td></tr>
+<tr><td><strong>緑 彩度</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>緑 輝度</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>シアン 色相</strong></td><td>-60 – 60</td><td>0</td><td></td></tr>
+<tr><td><strong>シアン 彩度</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>シアン 輝度</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>青 色相</strong></td><td>-60 – 60</td><td>0</td><td></td></tr>
+<tr><td><strong>青 彩度</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>青 輝度</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>マゼンタ 色相</strong></td><td>-60 – 60</td><td>0</td><td></td></tr>
+<tr><td><strong>マゼンタ 彩度</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+<tr><td><strong>マゼンタ 輝度</strong></td><td>0 – 2</td><td>1</td><td></td></tr>
+</table>
+<h3>グレーディング — 光</h3>
+<table>
+<tr><th>コントロール</th><th>範囲</th><th>既定</th><th></th></tr>
+<tr><td><strong>露出</strong></td><td>-3 – 3</td><td>0</td><td>段数で指定します。グレードの中で最初に、光の量として掛かります。ソースの露出（撮影時の値）と違い、ルックの一部として保存されます。</td></tr>
+<tr><td><strong>色温度</strong></td><td>-1 – 1</td><td>0</td><td>右で暖かく。グレーの明るさは変わりません。</td></tr>
+<tr><td><strong>ティント</strong></td><td>-1 – 1</td><td>0</td><td>右でマゼンタ、左でグリーン。</td></tr>
+</table>
+<h3>グレーディング — 仕上げ</h3>
+<table>
+<tr><th>コントロール</th><th>範囲</th><th>既定</th><th></th></tr>
+<tr><td><strong>自然な彩度</strong></td><td>-1 – 1</td><td>0</td><td>もともと鮮やかな色には効きにくい彩度です。</td></tr>
+<tr><td><strong>白レベル</strong></td><td>-1 – 1</td><td>0</td><td></td></tr>
+<tr><td><strong>黒レベル</strong></td><td>-1 – 1</td><td>0</td><td></td></tr>
+<tr><td><strong>フェード</strong></td><td>0 – 1</td><td>0</td><td>黒をグレーへ持ち上げます。白は動きません。</td></tr>
+<tr><td><strong>シャドウの色 色相</strong></td><td>0 – 360</td><td>220</td><td></td></tr>
+<tr><td><strong>シャドウの色</strong></td><td>0 – 1</td><td>0</td><td></td></tr>
+<tr><td><strong>ハイライトの色 色相</strong></td><td>0 – 360</td><td>40</td><td></td></tr>
+<tr><td><strong>ハイライトの色</strong></td><td>0 – 1</td><td>0</td><td></td></tr>
+<tr><td><strong>色のバランス</strong></td><td>-1 – 1</td><td>0</td><td>シャドウの色とハイライトの色の境目です。</td></tr>
+</table>
 <h3>フィルムとルック</h3>
-<p><strong>入力カラースペース</strong> — Linear (Rec.709 primaries), Rec.709, sRGB, Bypass (no conversion), S-Log3 / S-Gamut3.Cine, LogC3 (EI800) / AWG3, LogC4 / AWG4, V-Log / V-Gamut, Log3G10 / REDWideGamutRGB, C-Log3 / Cinema Gamut</p>
+<p><strong>入力カラースペース</strong> — Linear (Rec.709 primaries), Rec.709, sRGB, Bypass (no conversion), S-Log3 / S-Gamut3.Cine, LogC3 (EI800) / AWG3, LogC4 / AWG4, V-Log / V-Gamut, Log3G10 / REDWideGamutRGB, C-Log3 / Cinema Gamut, Apple Log / Rec.2020</p>
 <p><strong>フィルム種別</strong> — -, Cine 50D (fine), Cine 250D, Cine 200T, Cine 500T (coarse), Cine Mono 250, Portrait 400, Portrait 160, Vivid 100, Amber 200, Pastel 400, Neon 800T, Chrome 50 (slide), Mono 400, Cine Print</p>
-<p><strong>ルック</strong> — Neutral, Film Classic, Teal &amp; Amber, Print Master, Neon Night, Faded Pastel, Custom</p>
+<p><strong>ルック</strong> — Neutral, Film Classic, Teal &amp; Amber, Print Master, Neon Night, Faded Pastel, Custom, Answer Print</p>
 <p class="legal-back"><a href="../index.html">KOMA</a></p>
 </main>
 </body>
